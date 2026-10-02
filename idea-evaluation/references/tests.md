@@ -1,4 +1,5 @@
 # Test library (cheapest test that can falsify the riskiest assumption)
+Write every test as an **XYZ hypothesis** (Savoia): "At least X % of Y will do Z", where Z carries *skin in the game* (time, money, personal data), not just an opinion.
 Always set before running: **time-box, numeric pass threshold, kill criterion.** Prefer tests that produce behavior or commitment over opinions.
 
 | Test | Proves | Typical effort | Example pass signal |

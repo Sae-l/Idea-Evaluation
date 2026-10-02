@@ -31,34 +31,12 @@ if len(args) != 2:
 data = json.load(open(args[0], encoding="utf-8"))
 out = args[1]
 
-W = {"upside": .25, "demand": .20, "feasibility": .15, "cost": .15, "speed": .15, "fit": .10}
-W.update(data.get("weights", {}))
-EF = {"E0": .80, "E1": .85, "E2": .90, "E3": .95, "E4": 1.0}
-EF.update(data.get("evidence_factors", {}))
-TH = {"A": 3.4, "B": 2.8, "C": 2.2}
-TH.update(data.get("thresholds", {}))
-CRIT = list(W)
+sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
+from scoring import CRIT, config, score as _score, economics as econ
+
+W, EF, TH = config(data)
 ideas = data.get("ideas", [])
-
-
-def score(d):
-    if any(d.get(g) == "no" for g in ("gate_desirability", "gate_feasibility", "gate_viability")):
-        return None, "Stopped"
-    vals = [d.get(c) for c in CRIT]
-    if any(v is None for v in vals):
-        return None, "incomplete"
-    raw = sum(W[c] * d[c] for c in CRIT)
-    adj = raw * EF.get(d.get("evidence", "E0"), EF["E0"])
-    p = "A" if adj >= TH["A"] else "B" if adj >= TH["B"] else "C" if adj >= TH["C"] else "D"
-    return round(adj, 1), p
-
-
-def econ(d):
-    try:
-        m = d["price"] - d["variable_cost"]
-        return m, (-(-d["fixed_costs"] // m) if m > 0 else None)
-    except (KeyError, TypeError):
-        return None, None
+score = lambda d: _score(d, W, EF, TH)
 
 
 if as_csv:
