@@ -36,7 +36,7 @@ dist/                            packaged <skill>.skill files
 `python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header.
 
 ## Quality
-See `docs/RESEARCH.md` for sources, confidence per design decision and known limits (weights are uncalibrated; ADHD benefit is a design hypothesis, not yet tested with users). Run `python tests/test_scoring.py` and `python tests/test_skills_in_sync.py` after changes; `evals/` holds eval cases and checkers (`check_output.py`, `check_plan.py`, `check_redteam.py`) and `evals/RESULTS.md` the latest measured results.
+See `docs/RESEARCH.md` for sources, confidence per design decision and known limits (weights are uncalibrated; ADHD benefit is a design hypothesis, not yet tested with users; trigger accuracy of the descriptions is untested, see `evals/RESULTS.md`). Run `python tests/test_scoring.py` and `python tests/test_skills_in_sync.py` after changes; `evals/` holds eval cases and checkers (`check_output.py`, `check_plan.py`, `check_redteam.py`) and `evals/RESULTS.md` the latest measured results.
 
 ## Sources behind the method
 Desirability/Viability/Feasibility (IDEO), Stage-Gate (Cooper), Assumption Mapping (Bland & Osterwalder, *Testing Business Ideas*), Lean Startup, Jobs-to-be-Done, The Mom Test, Pretotyping, Effectuation (Sarasvathy), Pre-mortem (Klein), reference-class forecasting (Kahneman), ICE/RICE/WSJF, TRL. Base-rate example: US BLS Business Employment Dynamics.

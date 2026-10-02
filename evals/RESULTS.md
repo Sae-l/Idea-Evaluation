@@ -23,5 +23,8 @@ What the skills added over the baseline (baselines were already competent on con
 ## Regression of idea-evaluation (3 of 12 cases re-run: 1, 9, 10)
 Case 1: 446 words, passes. Case 9: stops the harmful idea with pivot and "verify locally"; passes after fix. Case 10: passes after fix. Cases 2–8, 11–12 not re-run.
 
+## Trigger accuracy: NOT measured (inconclusive harness)
+The skill-creator trigger harness (`run_eval.py`, 8 queries per skill: 4 should trigger, 4 should not, 2 runs each) found almost no triggers: 1 of 4 positive queries passed at a 50 % rate per skill and no positive passed at 100 %; the negative cases passed trivially because nothing triggered. A **control run with the previously installed German skill `ideen-bewertung`, whose description matches the queries directly, also scored 0 of 4**. Hence in this sandbox (100+ competing skills, headless `claude -p`, temporary command file as the test vehicle) the harness does not discriminate, and no conclusion about the three descriptions is drawn. The query sets are kept in `evals/trigger/*.json` for re-running in a real client. Manual check recommended: in the target client (Claude, VS Code/Copilot), try the 4 positive and 4 near-miss prompts per skill and note which skill, if any, loads.
+
 ## Not yet measured
-Trigger accuracy of the three descriptions (see below if filled in), behavior with real user ideas, effect on users with ADHD, calibration of weights/thresholds/multipliers.
+Trigger accuracy (above), behavior with real user ideas, effect on users with ADHD, calibration of weights, thresholds and multipliers, run-to-run stability beyond single samples.
