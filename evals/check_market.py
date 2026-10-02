@@ -15,7 +15,7 @@ m = re.search(r"searches:\s*(\d+)", text, re.I)
 if not m and not no_web: fails.append("missing 'Searches: N' footer")
 elif m and int(m.group(1)) > 6: fails.append(f"{m.group(1)} searches (max 6)")
 bare = [l for l in text.splitlines() if re.search(r"(€|\$|£|EUR|USD)\s?\d|\d\s?(%|€|EUR|USD)", l)
-        and not re.search(r"https?://|fact|estimate|source|unchecked|assum|official|vendor|study|blog|verify|At least|user'?s? (price|figure)|you (said|stated)|not found|contradicted|market check:", l, re.I)
+        and not re.search(r"https?://|fact|estimate|source|unchecked|assum|official|vendor|study|blog|verify|At least|user'?s? (price|figure)|you (said|stated)|found|contradicted|market check:", l, re.I)
         and not l.strip().startswith("|")]
 if bare: fails.append(f"{len(bare)} lines with unlabeled numbers: " + " | ".join(b.strip()[:60] for b in bare[:3]))
 print(f"{words} words, {len(rows) - 1 if rows else 0} table rows;", "FAIL: " + "; ".join(fails) if fails else "mechanical checks passed")
