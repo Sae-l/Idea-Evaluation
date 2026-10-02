@@ -10,8 +10,8 @@
 
 **Portfolio view (several ideas).** Check dependencies (does idea B need A's audience or tool?), shared assets (one test serves two ideas), and option value (a cheap test that keeps a big idea alive). Prefer sequences where early ideas build assets for later ones. Avoid running two ideas that compete for the same scarce resource (time, attention, cash).
 
-**Ethics and harm.** One line: could the idea hurt users, third parties or vulnerable groups, or depend on deception, exploitation of addiction/attention, privacy violations, or illegal activity? A clear yes → Stopped or pivot, whatever the score.
+**Ethics and harm.** One line: could the idea hurt users, third parties or vulnerable groups, or depend on deception, exploitation of addiction/attention, privacy violations, or illegal activity? A clear yes → Stop (name a pivot), whatever the score.
 
 **Non-commercial goals.** Map *Upside* to the user's goal: impact (people reached × depth × durability), learning (skill gained per hour), research (novelty × significance), enjoyment/portfolio (sustained interest). Say which meaning was used. Skip unit economics unless money matters.
 
-**Sensitivity.** In Deep or Export mode, run `python scripts/scoring.py ideas.json --sensitivity`: if the top idea or classes change when any weight moves ±20 %, call the ranking fragile and decide by the cheaper test instead.
+**Sensitivity.** In Export mode or with 3 or more ideas, run `python scripts/scoring.py ideas.json --sensitivity`: if the top idea or classes change when any weight moves ±20 %, call the ranking fragile and decide by the cheaper test instead.

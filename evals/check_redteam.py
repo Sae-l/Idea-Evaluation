@@ -2,7 +2,7 @@
 import re, sys
 
 text = open(sys.argv[1], encoding="utf-8").read()
-mode = sys.argv[sys.argv.index("--mode") + 1] if "--mode" in sys.argv else "quick"
+mode = sys.argv[sys.argv.index("--mode") + 1] if "--mode" in sys.argv[:-1] else "quick"
 TOLERANCE = 1.1  # word limits are soft targets; allow +10 %
 words, fails = len(text.split()), []
 if words > TOLERANCE * (650 if mode == "full" else 550): fails.append(f"too long: {words} words")

@@ -15,4 +15,4 @@
 
 Cognitive traps to check in the user's own reasoning: planning fallacy (inside view), survivorship bias (only successes cited), confirmation bias (only friendly feedback), sunk cost (continuing because of past spend), anchoring on an earlier score.
 
-Severity guide: fatal = cannot work or causes harm (→ Stop, or Fix first if a named fix exists); major = changes economics or timeline by a multiple (→ Fix first: its test or fix comes before spending); minor = fix during execution (→ Proceed only if all findings are minor).
+Severity guide: fatal = cannot work or causes harm (→ Stop if there is harm to others or the only fix is a different idea, else Fix first); major = changes economics or timeline by a multiple (→ Fix first: its test or fix comes before spending); minor = fix during execution (→ Proceed only if all findings are minor).

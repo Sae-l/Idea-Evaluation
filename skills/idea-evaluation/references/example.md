@@ -15,13 +15,13 @@ Internal ratings (Upside/Demand/Feasibility/Cost/Speed/Fit → weighted × evide
 | 1 | Spreadsheet course | 3.5 | E2 | low | A |
 | 2 | Translator newsletter | 3.2 | E0 | very low | B |
 
-**Parked** (revisit 2026-11-01): repair marketplace (cold start → fix: one repair type, by hand) · pill-reminder device (hardware cost, regulation) · solar tracker (prior art unknown)
+**Parked** (revisit 2026-11-01): translator newsletter (B, no capacity; runs after the course test) · repair marketplace (cold start → fix: one repair type, by hand) · pill-reminder device (hardware cost, regulation) · solar tracker (prior art unknown)
 **Stopped:** none
 
-### Top 2
+### Top 3 (only two qualify)
 **1. Spreadsheet course:** office workers pay to save hours; today they copy-paste or ask a colleague.
 - **Riskiest assumption** (business: they pay) → **Test:** At least 5 of 30 people in one role will pre-pay | 10 days | pass if ≥5 paid, stop if ≤1
-- **Economics:** price 40 − variable cost 3 = 37; break-even 600 ÷ 37 ≈ 17 buyers | **Base rate:** most online courses sell few copies without an existing audience
+- **Economics:** price 40 − variable cost 3 = 37; fixed 600 (assumption) ÷ 37 ≈ 17 buyers for break-even | **Base rate:** most online courses sell few copies without an existing audience
 
 **2. Translator newsletter** (lifts to A if ≥30 sign-ups from two communities show demand): freelancers pay later, if at all; today they use forums.
 - **Riskiest assumption** (problem) → **Test:** At least 30 of 1,000 viewers of a sample issue will subscribe | 7 days | pass if ≥30, stop if <10

@@ -1,6 +1,6 @@
 # Idea Card (shared handoff format)
 
-Plain `key: value` lines, all fields optional. Skills read a card if present; otherwise they ask for the minimum (max 3 questions) or mark assumptions. Each skill ships an identical copy at `references/idea-card.md`.
+Plain `key: value` lines, all fields optional. Skills read a card if present; otherwise they ask for the minimum (max 3 questions; a skill may ask fewer) or mark assumptions. Each skill ships an identical copy at `references/idea-card.md`.
 
 ```
 ## Idea Card

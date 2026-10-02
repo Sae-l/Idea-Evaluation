@@ -1,5 +1,5 @@
 """Build a comparison workbook (or CSV) from JSON. Currency- and user-neutral.
-Input is validated first (ratings 1-5, known gates and evidence levels, unique names); invalid input exits non-zero
+Input is validated first (whole ratings 1-5, finite non-negative numbers, known gates and evidence levels, unique names); invalid input exits with code 2
 and a message naming the problem. Text cells are never interpreted as formulas.
 
 Usage: python build_xlsx.py ideas.json output.xlsx [--csv]
@@ -32,13 +32,13 @@ from scoring import CRIT, breakeven_label, config, economics as econ, load, norm
 args = [a for a in sys.argv[1:] if not a.startswith("--")]
 as_csv = "--csv" in sys.argv
 if len(args) != 2:
-    sys.exit(__doc__)
+    print(__doc__, file=sys.stderr); sys.exit(2)
 if os.path.abspath(args[0]) == os.path.abspath(args[1]):
-    sys.exit("output path must differ from the input path")
+    print("output path must differ from the input path", file=sys.stderr); sys.exit(2)
 data = load(args[0])
 errs = validate(data)
 if errs:
-    sys.exit("invalid input:\n  " + "\n  ".join(errs))
+    print("invalid input:\n  " + "\n  ".join(errs), file=sys.stderr); sys.exit(2)
 out = args[1]
 
 W, EF, TH = config(data)

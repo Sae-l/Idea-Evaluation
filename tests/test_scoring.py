@@ -49,12 +49,21 @@ assert normalize({"gate_viability": " NO "})["gate_viability"] == "no"
 # --- validation
 bad = {"ideas": [idea(upside="4"), idea(demand=9), idea(idea="", fit=3), {"upside": 3}, idea(gate_viability="maybe"),
                  idea(evidence="E9"), idea(price="cheap"), idea(), idea()], "weights": {"upside": .5}, "time_budget_h_week": -1}
+for k in (0, 1, 4, 5, 6):
+    bad["ideas"][k]["idea"] = f"case{k}"          # unique names; items 7 and 8 stay duplicates on purpose
 errs = validate(bad)
 joined = "\n".join(errs)
-for needle in ("'upside' must be a number from 1 to 5", "'demand' must be a number from 1 to 5", "'idea' (name) is required",
-               "gate_viability", "'evidence'", "'price' must be a number", "duplicate name", "weights must sum to 1", "time_budget_h_week"):
+for needle in ("'upside' must be a whole number from 1 to 5", "'demand' must be a whole number from 1 to 5", "'idea' (name) is required",
+               "gate_viability", "'evidence'", "'price' must be a finite number", "duplicate name", "weights must sum to 1", "time_budget_h_week"):
     assert needle in joined, (needle, errs)
 assert validate({"ideas": [idea(upside=True)]}) != []          # booleans are not numbers
+assert validate({"ideas": [idea(upside=3.5)]}) != []           # ratings are whole numbers (the sheet only accepts those)
+for bad_extra in ({"price": float("nan")}, {"price": float("inf")}, {"price": -1}, {"fixed_costs": -5}, {"hours_week": -2},
+                  {"notes": {"x": 1}}, {"problem": ["a"]}):
+    assert validate({"ideas": [idea(**bad_extra)]}), bad_extra
+assert validate({"ideas": [idea(), idea(idea="X ")], "time_budget_h_week": float("inf")}) != []
+assert validate({"ideas": [idea(idea="a"), idea(idea="A ")]}) != []                        # duplicates ignore case and spaces
+assert validate({"ideas": [idea()], "currency": 5}) != []
 assert validate({"ideas": "nope"}) and validate([]) and validate({"ideas": []}) == []
 try:
     config({"weights": {"nonsense": 1}}); raise SystemExit("config accepted unknown key")
@@ -64,6 +73,11 @@ try:
     config({"thresholds": {"A": 2, "B": 3}}); raise SystemExit("config accepted unordered thresholds")
 except InputError:
     pass
+for bad_cfg in ({"weights": {"upside": float("nan")}}, {"evidence_factors": {"E0": float("inf")}}, {"weights": {"upside": -.1, "fit": .35}}):
+    try:
+        config(bad_cfg); raise SystemExit(f"config accepted {bad_cfg}")
+    except InputError:
+        pass
 
 # --- custom configuration is honoured
 w2, ev2, th2 = config({"weights": {"upside": .35, "fit": 0}, "thresholds": {"A": 4.0}})
@@ -102,7 +116,9 @@ with tempfile.TemporaryDirectory() as d:
     r = run(os.path.join(SCRIPTS, "scoring.py"), p("bad.json"), expect=2)
     assert r.returncode == 2 and "idea #1" in r.stderr and "Traceback" not in r.stderr, r.stderr
     open(p("broken.json"), "w").write("{not json")
-    assert "cannot read" in run(os.path.join(SCRIPTS, "scoring.py"), p("broken.json"), expect=1).stderr
+    open(p("nan.json"), "w").write('{"ideas": [{"idea": "x", "price": NaN}]}')
+    assert "not allowed" in run(os.path.join(SCRIPTS, "scoring.py"), p("nan.json"), expect=2).stderr
+    assert "cannot read" in run(os.path.join(SCRIPTS, "scoring.py"), p("broken.json"), expect=2).stderr
 
     # CSV export: all columns, sorted like the sheet, BOM, injection neutralized, input never overwritten
     inj = {"currency": "=CUR", "ideas": [idea(idea="=HYPERLINK(\"http://x\")", problem="@SUM(1)", notes="-cmd", gate_viability="yes",
@@ -117,8 +133,8 @@ with tempfile.TemporaryDirectory() as d:
     other = rows[1]
     assert other["idea"].startswith("'=") and other["problem"].startswith("'@") and other["notes"].startswith("'-"), other
     assert other["gate_viability"] == "yes" and other["breakeven_customers"] == "no margin", other
-    run(os.path.join(SCRIPTS, "build_xlsx.py"), p("inj.json"), p("inj.json"), "--csv", expect=1)      # same in/out path
-    run(os.path.join(SCRIPTS, "build_xlsx.py"), p("bad.json"), p("x.csv"), "--csv", expect=1)          # invalid input
+    run(os.path.join(SCRIPTS, "build_xlsx.py"), p("inj.json"), p("inj.json"), "--csv", expect=2)      # same in/out path
+    run(os.path.join(SCRIPTS, "build_xlsx.py"), p("bad.json"), p("x.csv"), "--csv", expect=2)          # invalid input
     json.dump({"ideas": []}, open(p("empty.json"), "w"))
     run(os.path.join(SCRIPTS, "build_xlsx.py"), p("empty.json"), p("e.csv"), "--csv")
 

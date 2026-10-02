@@ -4,12 +4,12 @@ CLI: python scoring.py ideas.json [--sensitivity]
   prints adjusted score / priority / margin / break-even per idea;
   --sensitivity perturbs weights (+/-20 %), evidence factors (+/-0.05) and thresholds (+/-0.1)
   and reports whether the top idea and the A/B/C/D classes stay stable.
-Exit codes: 0 ok, 2 invalid input.
+Exit codes: 0 ok, 2 invalid input or usage (unreadable file, bad JSON, failed validation) - the same in build_xlsx.py.
 
 Rounding matches the spreadsheet exactly: raw = ROUND(sum(weight*rating), 2) half-up,
 adjusted = ROUND(raw * evidence factor, 1) half-up, priority from the rounded adjusted score.
 """
-import json, sys
+import json, math, sys
 from decimal import Decimal, ROUND_HALF_UP
 
 CRIT = ["upside", "demand", "feasibility", "cost", "speed", "fit"]
@@ -23,6 +23,11 @@ FLOOR = ("demand", "feasibility", "cost")   # a rating of 1 here is a fatal weak
 
 class InputError(ValueError):
     """Raised for invalid input; the message names the problem."""
+
+
+def _num(v):
+    """True for real, finite numbers (bool, NaN and infinity are rejected)."""
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
 
 
 def _d(x):
@@ -41,8 +46,8 @@ def config(data):
         if not isinstance(given, dict) or set(given) - set(base):
             raise InputError(f"'{name}' must be an object with keys {sorted(base)}")
         for k, v in given.items():
-            if isinstance(v, bool) or not isinstance(v, (int, float)):
-                raise InputError(f"'{name}.{k}' must be a number")
+            if not _num(v) or v < 0:
+                raise InputError(f"'{name}.{k}' must be a finite number >= 0")
         base.update(given)
     if abs(sum(w.values()) - 1) > 1e-6:
         raise InputError(f"weights must sum to 1 (got {sum(w.values()):.4f})")
@@ -75,8 +80,10 @@ def validate(data):
     except InputError as e:
         errs.append(str(e))
     hours = data.get("time_budget_h_week", 8)
-    if isinstance(hours, bool) or not isinstance(hours, (int, float)) or hours <= 0:
-        errs.append("'time_budget_h_week' must be a positive number")
+    if not _num(hours) or hours <= 0:
+        errs.append("'time_budget_h_week' must be a positive finite number")
+    if "currency" in data and not isinstance(data["currency"], str):
+        errs.append("'currency' must be text")
     if "notes" in data and not (isinstance(data["notes"], list) and all(isinstance(x, str) for x in data["notes"])):
         errs.append("'notes' must be a list of strings")
     names = set()
@@ -87,16 +94,16 @@ def validate(data):
         label = f"idea #{i} ({d.get('idea')!r})"
         if not isinstance(d.get("idea"), str) or not d["idea"].strip():
             errs.append(f"idea #{i}: 'idea' (name) is required")
-        elif d["idea"] in names:
+        elif d["idea"].strip().casefold() in names:
             errs.append(f"{label}: duplicate name")
         else:
-            names.add(d["idea"])
+            names.add(d["idea"].strip().casefold())
         for c in CRIT:
             v = d.get(c)
             if v is None:
                 continue
-            if isinstance(v, bool) or not isinstance(v, (int, float)) or not 1 <= v <= 5:
-                errs.append(f"{label}: '{c}' must be a number from 1 to 5 (got {v!r})")
+            if not _num(v) or not 1 <= v <= 5 or v != int(v):
+                errs.append(f"{label}: '{c}' must be a whole number from 1 to 5 (got {v!r})")
         for g in GATES:
             if d.get(g) is not None and d[g] not in GATE_VALUES:
                 errs.append(f"{label}: '{g}' must be one of {GATE_VALUES} (got {raw.get(g)!r})")
@@ -104,8 +111,12 @@ def validate(data):
             errs.append(f"{label}: 'evidence' must be one of {sorted(EVIDENCE)} (got {raw.get('evidence')!r})")
         for k in ("price", "variable_cost", "fixed_costs", "hours_week", "weeks_to_first_evidence"):
             v = d.get(k)
-            if v is not None and (isinstance(v, bool) or not isinstance(v, (int, float))):
-                errs.append(f"{label}: '{k}' must be a number (got {v!r})")
+            if v is not None and (not _num(v) or v < 0):
+                errs.append(f"{label}: '{k}' must be a finite number >= 0 (got {v!r})")
+        for k in ("id", "problem", "riskiest_assumption", "test", "pass_threshold", "premortem", "notes", "cost_to_mvp"):
+            v = d.get(k)
+            if v is not None and not isinstance(v, str) and not _num(v):
+                errs.append(f"{label}: '{k}' must be text or a number (got {type(v).__name__})")
     return errs
 
 
@@ -188,18 +199,24 @@ def sensitivity(ideas, w, ev, th, delta=.2):
             "top": [ideas[k].get("idea") for k in top0]}
 
 
+def _no_constant(name):
+    raise ValueError(f"{name} is not allowed in JSON input")
+
+
 def load(path):
     try:
         with open(path, encoding="utf-8") as f:
-            return json.load(f)
-    except (OSError, json.JSONDecodeError) as e:
-        sys.exit(f"cannot read {path}: {e}")
+            return json.load(f, parse_constant=_no_constant)   # rejects NaN / Infinity
+    except (OSError, ValueError) as e:                         # JSONDecodeError is a ValueError
+        print(f"cannot read {path}: {e}", file=sys.stderr)
+        sys.exit(2)
 
 
 def main(argv):
     files = [a for a in argv if not a.startswith("--")]
     if len(files) != 1:
-        sys.exit(__doc__)
+        print(__doc__, file=sys.stderr)
+        return 2
     data = load(files[0])
     errs = validate(data)
     if errs:
