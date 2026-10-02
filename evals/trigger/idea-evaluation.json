@@ -1,0 +1,34 @@
+[
+ {
+  "query": "I have 8 business ideas written down in a notes file and only about 6 hours a week. Help me figure out which one to start with and which to drop.",
+  "should_trigger": true
+ },
+ {
+  "query": "Is my idea of selling handmade pet portraits online actually worth pursuing? Be honest about its potential.",
+  "should_trigger": true
+ },
+ {
+  "query": "ich habe fünf Produktideen und weiß nicht, welche ich zuerst umsetzen soll. Kannst du sie bewerten und priorisieren?",
+  "should_trigger": true
+ },
+ {
+  "query": "Here is my brainstorm list from the weekend: a meal-prep app, a bike repair stand, a newsletter on local history, a plant subscription. Rank them by potential and tell me which to park.",
+  "should_trigger": true
+ },
+ {
+  "query": "Make me a detailed 4-week project plan and a daily to-do list for launching my newsletter.",
+  "should_trigger": false
+ },
+ {
+  "query": "Poke holes in my business plan before I invest my savings. What could go wrong?",
+  "should_trigger": false
+ },
+ {
+  "query": "Which laptop should I buy for video editing under 1500 dollars?",
+  "should_trigger": false
+ },
+ {
+  "query": "Write a Python function that ranks a list of dictionaries by their score field.",
+  "should_trigger": false
+ }
+]

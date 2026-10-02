@@ -12,6 +12,11 @@ Maintainer document (not loaded by the skill). It records which design decisions
 | Affordable loss, start from means | Sarasvathy, effectuation (systematic review of the affordable-loss principle exists) | medium |
 | Pre-mortem | Klein (HBR 2007) | high |
 | Base rates / outside view | Kahneman & Lovallo; BLS Business Employment Dynamics: about 78 % of new employer establishments survive year 1, about 51 % reach year 5 (BLS data through 2025, via secondary summaries) | high for the idea; quote numbers only with their source and country |
+| Estimates as ranges, outside view, buffers (default x1.5 known tasks, x2 first-time tasks) | Planning fallacy (Kahneman & Tversky 1979; Buehler, Griffin & Ross 1994: students finished theses on average 22 days later than predicted); reference-class forecasting (Lovallo & Kahneman 2003). The multipliers are **the author's defaults**; practitioner sources suggest ADHD adults sometimes need x2 to x3 | idea: high; multipliers: low until calibrated with the user's own actual times |
+| Fixed time, variable scope; cancel by default instead of extending ("circuit breaker") | Shape Up (Basecamp): appetite, circuit breaker | medium (practitioner method, not controlled studies) |
+| If-then start cues ("When X happens, I do Y") | Gollwitzer & Sheeran 2006 meta-analysis: 94 studies, d = .65 for goal attainment, d = .61 for getting started; only 3 clinical-population studies in that analysis | high in general populations, **low-medium for ADHD specifically** |
+| Task chunking (15-60 min), time-boxed blocks, estimating generously | ADHD time-perception and time-estimation difficulties (reviews of time perception in adult ADHD; practitioner sources, one survey of ~1,860 adults reports estimation difficulty for about a third) | medium-low |
+| Red team centered on a pre-mortem, not a lone devil's advocate | Mitchell, Russo & Pennington 1989 (prospective hindsight: reported ~30 % more reasons identified); pre-mortem reduced plan over-confidence more than comparison conditions (Veinott, Klein & Wiggins); devil's advocacy evidence is mixed; red teams work only with independence and support | medium (the 30 % figure is quoted via secondary sources) |
 | Weights 25/20/15/15/15/10, thresholds A ≥ 3.4 / B ≥ 2.8 / C ≥ 2.2 | **author's choice, uncalibrated**; fragility checked with `scoring.py --sensitivity` | low until tested on real cases |
 | Rate one criterion across all ideas; reverse-order re-read | LLM-as-judge literature: position bias and self-preference bias are documented (e.g. ACL/IJCNLP 2025 systematic study; "consistency–bias paradox": reproducible scores can still be biased) | medium (mitigation reduces, does not remove) |
 | ADHD-friendly output: bottom line first, one small next action, time-boxes, external memory, parking list, short feedback loops | Executive-function model of ADHD (Barkley) and dual-pathway model with delay aversion (Sonuga-Barke) support externalizing working memory and short reward loops; practitioner sources on time-boxing and activation energy | **medium-low: derived from theory and practitioner advice; the skill itself has not been tested with ADHD users** |
@@ -22,6 +27,8 @@ Maintainer document (not loaded by the skill). It records which design decisions
 - No outcome data: the skill has not been checked against how ideas actually performed.
 - ADHD benefit is a design hypothesis. Ask users with ADHD for feedback and adjust (length, wording, number of choices).
 - Sources were read as web summaries, not always the primary books or papers.
+
+- Planning/red-team skills: the multipliers, the 0.6-0.7 focus factor and the caps (max 3 findings, "Today" <= 3 tasks) are design defaults, not research results.
 
 ## Next research steps
 Collect real evaluation cases and outcomes to calibrate weights; test the output with ADHD users; read primary sources (Cooper 2008 *Perspective: Stage-Gate*, Bland & Osterwalder 2019, Savoia 2019, Fitzpatrick 2013).
@@ -35,3 +42,8 @@ Collect real evaluation cases and outcomes to calibrate weights; test the output
 - ADHD: Barkley executive-function theory; Sonuga-Barke dual-pathway model (via Frontiers in Psychology and PMC articles); practitioner sources on task initiation and externalizing memory
 - LLM judges: Systematic Study of Position Bias in LLM-as-a-Judge (ACL Anthology 2025); Measuring Self-Preference in LLM Judgments (arXiv 2506.02592); Reliability without Validity (arXiv)
 - BLS Business Employment Dynamics survival data
+- Planning fallacy and reference-class forecasting: Buehler/Griffin/Ross; Lovallo & Kahneman; PMI article on reference class forecasting
+- Implementation intentions: Gollwitzer & Sheeran 2006 and follow-up reviews (Taylor & Francis, Whiterose)
+- Shape Up: basecamp.com/shapeup (Set Boundaries, The Betting Table, Glossary)
+- Pre-mortem and devil's advocacy: Mitchell/Russo/Pennington 1989; Klein; AOM and ScienceDirect studies on devil's advocacy and dialectical inquiry
+- ADHD time perception and task management: PMC review on time perception in adult ADHD; Guilford ADHD Hub; practitioner sources

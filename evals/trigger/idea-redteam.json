@@ -1,0 +1,34 @@
+[
+ {
+  "query": "Stress-test my plan to open a coffee cart downtown. What are the biggest weaknesses?",
+  "should_trigger": true
+ },
+ {
+  "query": "Do a pre-mortem on my startup idea: it's a year from now and it failed. Why?",
+  "should_trigger": true
+ },
+ {
+  "query": "Play devil's advocate on my decision to quit my job and go full-time on my app.",
+  "should_trigger": true
+ },
+ {
+  "query": "Ich bin überzeugt von meiner Idee. Kannst du sie auseinandernehmen, bevor ich Geld investiere?",
+  "should_trigger": true
+ },
+ {
+  "query": "Help me choose between my three business ideas, which one first?",
+  "should_trigger": false
+ },
+ {
+  "query": "Write me a four-week to-do list for my side project.",
+  "should_trigger": false
+ },
+ {
+  "query": "Review this pull request for bugs and style problems.",
+  "should_trigger": false
+ },
+ {
+  "query": "Run a red team exercise on our web server to find SQL injection vulnerabilities.",
+  "should_trigger": false
+ }
+]

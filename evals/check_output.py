@@ -7,8 +7,8 @@ words = len(text.split())
 fails = []
 if mode == "quick":
     if words > 450: fails.append(f"too long: {words} words (max ~450)")
-    for need in ("Next", "Revisit"):
-        if need.lower() not in text.lower(): fails.append(f"missing '{need}'")
+    for need, alts in (("Next", ("next", "nächst")), ("Revisit", ("revisit", "wiedervorlage"))):  # English or German labels
+        if not any(a in text.lower() for a in alts): fails.append(f"missing '{need}'")
     rows = [l for l in text.splitlines() if l.startswith("|") and not re.match(r"\|[-| ]+\|$", l.strip())]
     if len(rows) > 9: fails.append(f"table too long: {len(rows) - 1} rows (max 8)")
     if rows and max(l.count("|") for l in rows) - 1 > 6: fails.append("table has more than 6 columns")

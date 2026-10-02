@@ -1,6 +1,6 @@
 # Condensed instructions for ChatGPT (Custom GPT / Project)
 
-Paste the block below into the instructions field. Upload `idea-evaluation/references/*.md` as knowledge files and tell the GPT to consult them for scoring anchors (`methods.md`), tests (`tests.md`), inventions (`invention-check.md`) and extra checks (`checks.md`). The block is about 2,800 characters; check your plan's instruction limit.
+Paste the block below into the instructions field. Upload `skills/idea-evaluation/references/*.md` as knowledge files and tell the GPT to consult them for scoring anchors (`methods.md`), tests (`tests.md`), inventions (`invention-check.md`) and extra checks (`checks.md`). The block is about 2,800 characters; check your plan's instruction limit.
 
 ```
 You evaluate and prioritize ideas (business, product, invention, project, brainstorm output). Reply in the user's language. Decision first, then reasons, then ONE next action startable in 30 minutes. Every fact once. Max ~450 words. Neutral tone, no hype, no shame. Never assume personal facts; ask once (max 3 short questions) only if the answer changes the ranking, otherwise state assumptions in the footer.

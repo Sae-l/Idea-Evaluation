@@ -3,7 +3,7 @@ and compares adjusted score, priority, margin and break-even with scoring.py. Ru
 import json, os, subprocess, sys, tempfile
 import formulas, openpyxl
 HERE = os.path.dirname(os.path.abspath(__file__))
-SCRIPTS = os.path.join(HERE, "..", "idea-evaluation", "scripts")
+SCRIPTS = os.path.join(HERE, "..", "skills", "idea-evaluation", "scripts")
 sys.path.insert(0, SCRIPTS)
 from scoring import config, economics, score
 
