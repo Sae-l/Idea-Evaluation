@@ -1,4 +1,4 @@
-# Idea Evaluation
+# Idea Evaluation v2.1
 
 A portable, user-neutral skill that evaluates and prioritizes ideas (business, product, invention, project, brainstorm output) and answers three questions: **what to start first, what to park, and the cheapest test for each.**
 
@@ -8,7 +8,7 @@ A portable, user-neutral skill that evaluates and prioritizes ideas (business, p
 - No personal assumptions: time, budget, currency and goals are asked once (max 3 questions) or labelled as assumptions.
 
 ## Method (in short)
-Viability gate (desirability / feasibility / viability) → six-criterion weighted score → **evidence adjustment** (opinion < behavior < commitment, E0–E4) → priority A–D → riskiest assumption → cheapest test with numeric pass threshold → unit economics, base rate, pre-mortem. Technology readiness level and prior-art check for inventions. Details load on demand from `references/` to save tokens.
+Viability gate (desirability / feasibility / viability) → six-criterion weighted score → **goal-specific evidence adjustment** (E0–E4 for prioritization, not a replacement for project evidence classes) → priority A–D → riskiest assumption → cheapest test with numeric pass threshold → unit economics, base rate, pre-mortem. Technology readiness level and prior-art check for inventions. Details load on demand from `references/` to save tokens.
 
 ## Layout
 ```
@@ -26,6 +26,7 @@ idea-evaluation/
 ## Install
 - **Claude (Claude Code, claude.ai):** copy `idea-evaluation/` to `~/.claude/skills/` (or `.claude/skills/` in a project), or zip the folder as `idea-evaluation.skill` and upload it under Skills.
 - **VS Code / GitHub Copilot (agent skills):** copy to `.github/skills/idea-evaluation/` (also read from `.claude/skills/` and `.agents/skills/`).
+- **Codex:** install the `idea-evaluation/` folder using the skill installer.
 - **ChatGPT / other chat tools:** paste `SKILL.md` into a Custom GPT's or Project's instructions and upload the `references/` files as knowledge.
 
 ## Use
@@ -37,4 +38,10 @@ idea-evaluation/
 ## Sources behind the method
 Desirability/Viability/Feasibility (IDEO), Stage-Gate (Cooper), Assumption Mapping (Bland & Osterwalder, *Testing Business Ideas*), Lean Startup, Jobs-to-be-Done, The Mom Test, Pretotyping, Effectuation (Sarasvathy), Pre-mortem (Klein), reference-class forecasting (Kahneman), ICE/RICE/WSJF, TRL. Base-rate example: US BLS Business Employment Dynamics.
 
-Estimates produced by the skill are rough (±50 %) and not professional advice.
+Scores, evidence factors and priority bands are configurable heuristics, not calibrated success probabilities. Interpret demand and evidence relative to profit, impact, research or learning. State uncertainty from available evidence rather than assigning a universal percentage. Preliminary prior-art searches do not establish freedom to operate.
+
+CSV and XLSX classify unrounded scores, then display one decimal. Formula-looking CSV text is prefixed with an apostrophe; XLSX text stays literal. Workbooks contain formulas that recalculate in Excel or another compatible application; the exporter does not calculate formula caches. Editing weights or thresholds does not automatically re-sort rows; use sorting in the spreadsheet application.
+
+## Verification
+Install `openpyxl` for XLSX export and run `python -m unittest discover -s tests -v`. CSV has no third-party runtime dependency. Tests cover score boundaries, missing evidence, stopped/incomplete ideas, input validation, literal text, decimal break-even calculations, and generated workbook formulas. The workflow uses these tests instead of Django scaffolding.
+

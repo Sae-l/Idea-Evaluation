@@ -1,21 +1,7 @@
-# Security Policy
+# Security policy
 
-## Supported Versions
+The maintained skill version is 2.1. Version 2.0 predates the input-validation and formula-text protections; use the current version for exports.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Treat imported idea data as untrusted. The exporter reads a local JSON file and writes the explicitly requested output path. It does not contact external services. Generated XLSX files contain intentional scoring formulas, while supplied text is stored literally; CSV formula-like text is prefixed with an apostrophe.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
-
-## Reporting a Vulnerability
-
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+For a security concern, use GitHub private vulnerability reporting if enabled, or contact the maintainer through an available private channel. Do not include secrets, confidential idea descriptions or exploit payloads in a public issue. No response-time guarantee is stated.

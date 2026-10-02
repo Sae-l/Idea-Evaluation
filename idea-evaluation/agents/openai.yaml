@@ -1,0 +1,4 @@
+interface:
+  display_name: "Idea Evaluation"
+  short_description: "Prioritize ideas and test their key assumptions"
+  default_prompt: "Use $idea-evaluation to prioritize my ideas against my goal, time and budget."

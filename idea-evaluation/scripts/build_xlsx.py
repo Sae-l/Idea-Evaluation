@@ -7,6 +7,7 @@ ideas.json schema (all fields optional except "idea"):
 {
   "time_budget_h_week": 8,
   "currency": "EUR",
+  "goal": "profit",
   "weights": {"upside": .25, "demand": .20, "feasibility": .15, "cost": .15, "speed": .15, "fit": .10},
   "evidence_factors": {"E0": .80, "E1": .85, "E2": .90, "E3": .95, "E4": 1.0},
   "thresholds": {"A": 3.4, "B": 2.8, "C": 2.2},
@@ -18,27 +19,93 @@ ideas.json schema (all fields optional except "idea"):
     "cost_to_mvp": "low", "riskiest_assumption": "...", "test": "...", "pass_threshold": "...",
     "price": 20, "variable_cost": 5, "fixed_costs": 600, "premortem": "...", "notes": ""
   }],
-  "notes": ["All values are rough estimates (+/-50 %)."]
+  "notes": ["Estimates are assumptions; state their basis and uncertainty."]
 }
 Scores are recomputed in the sheet from weights, evidence factors and thresholds (yellow cells are editable).
 """
 import csv, json, sys
+import math
+from decimal import Decimal
+
+
+def numeric(value, label, lo=0, hi=None):
+    if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+        raise ValueError(f"{label} must be a finite number")
+    if value < lo or (hi is not None and value > hi):
+        raise ValueError(f"{label} is outside its allowed range")
+
+
+def checked_update(defaults, supplied, label):
+    if not isinstance(supplied, dict) or set(supplied) - set(defaults):
+        raise ValueError(f"{label}: unknown keys or invalid object")
+    return dict(defaults, **supplied)
+
+
+def safe_csv(value):
+    if isinstance(value, str) and value.lstrip(' \t\r\n').startswith(('=', '+', '-', '@')):
+        return "'" + value
+    return value
 
 args = [a for a in sys.argv[1:] if not a.startswith("--")]
 as_csv = "--csv" in sys.argv
 if len(args) != 2:
     sys.exit(__doc__)
-data = json.load(open(args[0], encoding="utf-8"))
+with open(args[0], encoding="utf-8") as source:
+    data = json.load(source)
+if not isinstance(data, dict):
+    sys.exit("Input must be a JSON object")
 out = args[1]
 
 W = {"upside": .25, "demand": .20, "feasibility": .15, "cost": .15, "speed": .15, "fit": .10}
-W.update(data.get("weights", {}))
+W = checked_update(W, data.get("weights", {}), "weights")
 EF = {"E0": .80, "E1": .85, "E2": .90, "E3": .95, "E4": 1.0}
-EF.update(data.get("evidence_factors", {}))
+EF = checked_update(EF, data.get("evidence_factors", {}), "evidence_factors")
 TH = {"A": 3.4, "B": 2.8, "C": 2.2}
-TH.update(data.get("thresholds", {}))
+TH = checked_update(TH, data.get("thresholds", {}), "thresholds")
 CRIT = list(W)
 ideas = data.get("ideas", [])
+for key, value in W.items():
+    numeric(value, key, 0, 1)
+if abs(sum(W.values()) - 1) > 1e-9:
+    raise ValueError("weights must sum to 1")
+for key, value in EF.items():
+    numeric(value, key, 0, 1)
+if list(EF.values()) != sorted(EF.values()):
+    raise ValueError("evidence factors must be nondecreasing")
+for key, value in TH.items():
+    numeric(value, key, 0, 5)
+if not TH["A"] > TH["B"] > TH["C"]:
+    raise ValueError("thresholds must satisfy A > B > C")
+numeric(data.get("time_budget_h_week", 8), "time budget")
+if data.get("goal", "profit") not in ("profit", "impact", "research", "learning", "other"):
+    raise ValueError("invalid goal")
+if not isinstance(data.get("currency", ""), str):
+    raise ValueError("currency must be text")
+if not isinstance(data.get("notes", []), list) or any(not isinstance(n, str) for n in data.get("notes", [])):
+    raise ValueError("notes must be a list of strings")
+if not isinstance(ideas, list) or not ideas:
+    raise ValueError("ideas must contain at least one idea")
+for i, d in enumerate(ideas):
+    if not isinstance(d, dict) or not isinstance(d.get("idea"), str) or not d["idea"].strip():
+        raise ValueError(f"idea {i + 1}: nonempty idea text required")
+    for field in ("problem", "cost_to_mvp", "riskiest_assumption", "test", "pass_threshold", "premortem", "notes"):
+        if d.get(field) is not None and not isinstance(d[field], str):
+            raise ValueError(f"{field} must be text")
+    if d.get("id") is not None and (isinstance(d["id"], bool) or not isinstance(d["id"], (str, int))):
+        raise ValueError("id must be text or an integer")
+    for c in CRIT:
+        if d.get(c) is not None:
+            numeric(d[c], c, 1, 5)
+            if int(d[c]) != d[c]:
+                raise ValueError(f"{c} must be a whole-number rating")
+    for g in ("gate_desirability", "gate_feasibility", "gate_viability"):
+        if d.get(g) not in (None, "yes", "no", "unknown"):
+            raise ValueError(f"invalid {g}")
+    if d.get("evidence", "E0") not in EF:
+        raise ValueError("evidence must be E0 through E4")
+    for field in ("hours_week", "weeks_to_first_evidence", "price", "variable_cost", "fixed_costs"):
+        if d.get(field) is not None:
+            numeric(d[field], field)
 
 
 def score(d):
@@ -47,17 +114,18 @@ def score(d):
     vals = [d.get(c) for c in CRIT]
     if any(v is None for v in vals):
         return None, "incomplete"
-    raw = sum(W[c] * d[c] for c in CRIT)
-    adj = raw * EF.get(d.get("evidence", "E0"), EF["E0"])
-    p = "A" if adj >= TH["A"] else "B" if adj >= TH["B"] else "C" if adj >= TH["C"] else "D"
-    return round(adj, 1), p
+    raw = sum(Decimal(str(W[c])) * Decimal(str(d[c])) for c in CRIT)
+    adj = raw * Decimal(str(EF[d.get("evidence", "E0")]))
+    p = next((key for key in ("A", "B", "C") if adj >= Decimal(str(TH[key]))), "D")
+    return float(adj), p
 
 
 def econ(d):
     try:
-        m = d["price"] - d["variable_cost"]
-        return m, (-(-d["fixed_costs"] // m) if m > 0 else None)
-    except (KeyError, TypeError):
+        m = Decimal(str(d["price"])) - Decimal(str(d["variable_cost"]))
+        be = math.ceil(Decimal(str(d["fixed_costs"])) / m) if m > 0 else None
+        return float(m), be
+    except (KeyError, TypeError, ArithmeticError):
         return None, None
 
 
@@ -68,15 +136,18 @@ if as_csv:
         w = csv.writer(f); w.writerow(cols)
         for d in ideas:
             s, p = score(d); m, be = econ(d)
-            w.writerow([d.get("id"), d.get("idea"), d.get("problem")] + [d.get(c) for c in CRIT] +
-                       [d.get("evidence"), s, p, d.get("hours_week"), d.get("weeks_to_first_evidence"),
-                        d.get("riskiest_assumption"), d.get("test"), d.get("pass_threshold"), m, be])
+            row = [d.get("id"), d.get("idea"), d.get("problem")] + [d.get(c) for c in CRIT] + \
+                  [d.get("evidence", "E0"), round(s, 1) if s is not None else None, p,
+                   d.get("hours_week"), d.get("weeks_to_first_evidence"), d.get("riskiest_assumption"),
+                   d.get("test"), d.get("pass_threshold"), m, be]
+            w.writerow([safe_csv(v) for v in row])
     print("saved:", out); sys.exit()
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter as L
 from openpyxl.worksheet.datavalidation import DataValidation
+from openpyxl.formatting.rule import CellIsRule
 
 F = Font(name="Arial", size=10); HF = Font(name="Arial", size=10, bold=True, color="FFFFFF")
 HFILL = PatternFill("solid", fgColor="1F4E78"); IN = PatternFill("solid", fgColor="FFF2CC")
@@ -99,7 +170,12 @@ for r in (1, 10):
 for r in list(range(2, 8)) + list(range(11, 16)) + [18, 19, 20, 22]: st[f"B{r}"].fill = IN
 for r in range(2, 9): st[f"B{r}"].number_format = "0%"
 st.column_dimensions["A"].width = 42; st.column_dimensions["B"].width = 12
-GATE_ROWS = None
+st["A24"] = "Goal"; st["B24"] = data.get("goal", "profit")
+st["A25"] = "Scoring settings valid"
+st["B25"] = '=AND(COUNT(B2:B7)=6,ABS(SUM(B2:B7)-1)<0.000000001,MIN(B2:B7)>=0,MAX(B2:B7)<=1,COUNT(B11:B15)=5,MIN(B11:B15)>=0,MAX(B11:B15)<=1,B11<=B12,B12<=B13,B13<=B14,B14<=B15,COUNT(B18:B20)=3,B18>B19,B19>B20,B20>=0,B18<=5)'
+st["A27"] = "Scores are heuristic preferences, not success probabilities."
+st["A28"] = "Interpret demand and evidence relative to the goal."
+
 
 cols = [("ID", "id", 5), ("Idea", "idea", 30), ("Problem / who / today solved by", "problem", 34),
         ("Gate: desirability", "gate_desirability", 11), ("Gate: feasibility", "gate_feasibility", 11),
@@ -123,10 +199,10 @@ def fx(key, r):
     if key == "=raw":
         refs = [c(x) for x in CRIT]
         w = "+".join(f"{x}*Settings!$B${i}" for i, x in enumerate(refs, 2))
-        return f'=IF(COUNT({refs[0]}:{refs[-1]})<{len(CRIT)},"",ROUND({w},2))'
+        return f'=IF(COUNT({refs[0]}:{refs[-1]})<{len(CRIT)},"",{w})'
     if key == "=adj":
-        return (f'=IF({c("=raw")}="","",IF(OR({gates[0]}="no",{gates[1]}="no",{gates[2]}="no"),"",'
-                f'ROUND({c("=raw")}*IFERROR(VLOOKUP({c("evidence")},Settings!$A$11:$B$15,2,FALSE),Settings!$B$11),1)))')
+        return (f'=IF(OR({c("=raw")}="",NOT(Settings!$B$25)),"",IF(OR({gates[0]}="no",{gates[1]}="no",{gates[2]}="no"),"",'
+                f'{c("=raw")}*IFERROR(VLOOKUP({c("evidence")},Settings!$A$11:$B$15,2,FALSE),Settings!$B$11)))')
     if key == "=prio":
         return (f'=IF(OR({gates[0]}="no",{gates[1]}="no",{gates[2]}="no"),"Stopped",IF({c("=adj")}="","incomplete",'
                 f'IF({c("=adj")}>=Settings!$B$18,"A",IF({c("=adj")}>=Settings!$B$19,"B",IF({c("=adj")}>=Settings!$B$20,"C","D")))))')
@@ -140,22 +216,32 @@ order = {"A": 0, "B": 1, "C": 2, "D": 3}
 ideas_sorted = sorted(ideas, key=lambda d: (order.get(score(d)[1], 4), -(score(d)[0] or 0)))
 for r, d in enumerate(ideas_sorted, 2):
     for j, (_, k, _) in enumerate(cols, 1):
-        cell = ws.cell(r, j, fx(k, r) if k.startswith("=") else d.get(k))
+        cell = ws.cell(r, j, fx(k, r) if k.startswith("=") else d.get(k, "E0" if k == "evidence" else None))
+        if not k.startswith("=") and isinstance(cell.value, str):
+            cell.data_type = "s"
+        if k in ("=raw", "=adj"):
+            cell.number_format = "0.0"
         cell.font = F; cell.border = BD; cell.alignment = Alignment(wrap_text=True, vertical="top")
         if k in CRIT or k in ("evidence", "hours_week", "price", "variable_cost", "fixed_costs") or k.startswith("gate_"):
             cell.fill = IN
-    p = score(d)[1]
-    if p in PRIO: ws[f"{K['=prio']}{r}"].fill = PatternFill("solid", fgColor=PRIO[p])
+
 last = len(ideas_sorted) + 1
+for p, color in PRIO.items():
+    ws.conditional_formatting.add(f"{K['=prio']}2:{K['=prio']}{last}", CellIsRule(operator="equal", formula=[f'"{p}"'], fill=PatternFill("solid", fgColor=color)))
 dv = DataValidation(type="list", formula1='"yes,no,unknown"', allow_blank=True); ws.add_data_validation(dv)
+dv.showErrorMessage = True; dv.errorStyle = "stop"
 dv.add(f"{K['gate_desirability']}2:{K['gate_viability']}{last}")
 dv2 = DataValidation(type="whole", operator="between", formula1="1", formula2="5", allow_blank=True); ws.add_data_validation(dv2)
+dv2.showErrorMessage = True; dv2.errorStyle = "stop"
 dv2.add(f"{K[CRIT[0]]}2:{K[CRIT[-1]]}{last}")
 dv3 = DataValidation(type="list", formula1='"E0,E1,E2,E3,E4"', allow_blank=True); ws.add_data_validation(dv3)
+dv3.showErrorMessage = True; dv3.errorStyle = "stop"
 dv3.add(f"{K['evidence']}2:{K['evidence']}{last}")
 ws.freeze_panes = "C2"; ws.auto_filter.ref = f"A1:{L(len(cols))}{last}"
 for k, t in enumerate(["Notes:", "Yellow cells are inputs; scores and priorities recalculate from the Settings sheet."] + data.get("notes", [])):
-    ws.cell(last + 2 + k, 2, t).font = Font(name="Arial", size=10, bold=(k == 0), italic=(k > 0))
+    cell = ws.cell(last + 2 + k, 2, t)
+    cell.data_type = "s"
+    cell.font = Font(name="Arial", size=10, bold=(k == 0), italic=(k > 0))
 
 # Capacity
 cp = wb.create_sheet("Capacity")

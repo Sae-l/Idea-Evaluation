@@ -12,8 +12,9 @@ Always set before running: **time-box, numeric pass threshold, kill criterion.**
 | Wizard of Oz (fake automation) | usability and value | 1–2 weeks | task completed, repeated use |
 | Paper / clickable mock-up | comprehension | 1–3 days | users complete the main task unaided |
 | Technical spike | feasibility of the hardest part | 1–5 days | works at minimum required quality |
-| Prior-art search | novelty / freedom to operate | hours | no blocking existing claims found |
+| Preliminary prior-art search | identify relevant documents and novelty questions; cannot establish FTO | hours | documented search scope and relevant documents for specialist review |
 | Single-feature MVP or paid pilot | retention and economics | 2–6 weeks | repeat use, margin > 0 |
 | Crowdfunding / waitlist with price | scaled demand | 2–4 weeks | target reached or conversion threshold met |
 
-Rules: one assumption per test; a test that cannot fail is not a test; record the result as an evidence level (E0–E4) and re-score in Update mode.
+Thresholds in this table are illustrative, not universal benchmarks; adapt and set them before the test. Business commitments do not replace technical acceptance criteria. Rules: one assumption per test; a test that cannot fail is not a test; record the result as an evidence level (E0–E4) and re-score in Update mode.
+
