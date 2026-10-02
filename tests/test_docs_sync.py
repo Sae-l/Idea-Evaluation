@@ -29,6 +29,11 @@ CONTRACT = {
         (r"at most 3 short questions", "question cap"), (r"explicit request and after confirmation", "calendar confirmation"),
         (r"continue if.{1,5}pivot if.{1,5}stop if", "gate wording"), (r"median", "median multiplier"), (r"Analyze", "Analyze mode"),
     ],
+    "idea-market-check": [
+        (r"600 words", "600 words"), (r"6 searches", "6 searches"), (r"not demand", "desk research is not demand"),
+        (r"[Nn]ot found", "not found is a result"), (r"E0", "evidence levels"), (r"verify locally", "verify locally"),
+        (r"too few", "too few prices"), (r"[Pp]rice position", "price position"), (r"2 short questions", "question cap"),
+    ],
     "idea-redteam": [
         (r"550 words", "quick 550 words"), (r"650 words", "full 650 words"), (r"70 words", "70 words per finding"),
         (r"fatal", "severity fatal"), (r"major", "severity major"), (r"minor", "severity minor"),

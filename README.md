@@ -10,10 +10,11 @@ Three small, portable, user-neutral skills for going from a pile of ideas to a d
 | [`idea-evaluation`](skills/idea-evaluation) | you have one or many ideas and need to know what to start, park or stop | ranked table, top-3 tests, next action (≤~450 words) |
 | [`idea-to-plan`](skills/idea-to-plan) | you picked an idea and need analysis, MVP cut, milestones with gates and a realistic to-do list, or a weekly check-in | verdict, milestones, one task list (★ = today), review date |
 | [`idea-redteam`](skills/idea-redteam) | you want an idea or plan attacked before committing time or money | Proceed / Fix first / Stop, max 3 weaknesses with a cheap test each |
+| [`idea-market-check`](skills/idea-market-check) (optional, needs web search) | you want competitor prices, a claim or a statistic checked for one idea | named alternatives with price per unit, price position, claim check; never changes the evidence level |
 
 How it differs from similar skills (and where those are stronger): [docs/COMPETITIVE-ANALYSIS.md](docs/COMPETITIVE-ANALYSIS.md).
 
-Flow: `idea-evaluation` → `idea-to-plan` → `idea-redteam` → (after results) `idea-evaluation` again. Each skill works alone; they hand over a small [Idea Card](docs/idea-card.md). Skills do not reliably call each other, so each ends with a "Next step" line and you invoke the next one.
+Flow: `idea-evaluation` → `idea-to-plan` → `idea-redteam` → (after results) `idea-evaluation` again; `idea-market-check` is an optional side trip for one idea. Each skill works alone; they hand over a small [Idea Card](docs/idea-card.md). Skills do not reliably call each other, so each ends with a "Next step" line and you invoke the next one.
 
 ## Method (in short)
 Viability gate (desirability / feasibility / viability) → six-criterion weighted score → **evidence adjustment** (opinion < behavior < commitment, E0–E4) → priority A–D → riskiest assumption → cheapest test with numeric pass threshold → unit economics, base rate, pre-mortem. Technology readiness level and prior-art check for inventions. Details load on demand from `references/` to save tokens.
