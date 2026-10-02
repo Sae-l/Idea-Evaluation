@@ -25,7 +25,7 @@ Viability gate (desirability / feasibility / viability) → six-criterion weight
 skills/<skill>/SKILL.md          core instructions (loaded when the skill triggers)
 skills/<skill>/references/       details, loaded only when needed (idea-card.md and tests.md are identical copies)
 skills/idea-evaluation/scripts/  scoring.py (logic + sensitivity check), build_xlsx.py (spreadsheet/CSV export)
-docs/                            idea-card.md, RESEARCH.md, COMPETITIVE-ANALYSIS.md, RELEASING.md, chatgpt-<skill>.md
+docs/                            idea-card.md, RESEARCH.md, COMPETITIVE-ANALYSIS.md, COMPARISON.md, RELEASING.md, chatgpt-<skill>.md
 tests/                           unit tests, spreadsheet-formula cross-check, skills-in-sync check
 evals/                           eval cases, results (RESULTS.md), output checkers, trigger/ query sets
 dist/                            packaged <skill>.skill files (rebuilt by tools/build_packages.py, checked in CI)
@@ -36,12 +36,13 @@ SECURITY.md · CONTRIBUTING.md · CODE_OF_CONDUCT.md · LICENSE · docs/RELEASIN
 ```
 
 ## Install
+- **Download:** each [release](https://github.com/Sae-l/Idea-Evaluation/releases) has one `<skill>.skill` file per skill plus `SHA256SUMS` (check with `sha256sum -c SHA256SUMS`). Use the newest release; `v3.1.0-beta.1` was published without package files.
 - **Claude (Claude Code, claude.ai):** copy the skill folders to `~/.claude/skills/` (or `.claude/skills/` in a project), or upload `dist/<skill>.skill` under Skills.
 - **VS Code / GitHub Copilot (agent skills):** copy to `.github/skills/<skill>/` (according to the VS Code documentation, `.claude/skills/` and `.agents/skills/` are read too; not tested by this project).
 - **ChatGPT / other chat tools:** paste `docs/chatgpt-<skill>.md` into a Custom GPT or Project and upload that skill's `references/` files as knowledge.
 
 ## Use
-"Evaluate these ideas …", "which idea should I start with?" → `idea-evaluation`. "Plan this idea", "make me a realistic to-do list", "check in on my project" → `idea-to-plan`. "Red-team this", "what could go wrong?" → `idea-redteam`.
+"Evaluate these ideas …", "which idea should I start with?" → `idea-evaluation`. "Plan this idea", "make me a realistic to-do list", "check in on my project" → `idea-to-plan`. "Red-team this", "what could go wrong?" → `idea-redteam`. "Check the market for this idea", "are there competitors?" (needs web search) → `idea-market-check`. Example output: [skills/idea-evaluation/references/example.md](skills/idea-evaluation/references/example.md).
 
 ## Export
 `python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header.
