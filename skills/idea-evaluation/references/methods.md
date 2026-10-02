@@ -15,7 +15,19 @@ Clear "no" = Stopped. "Unknown" = becomes the riskiest assumption. Stage-gate lo
 | **Cost to MVP** (vs user's money ceiling) | < 5 % of ceiling | ~ 50 % | exceeds ceiling |
 | **Speed to first evidence** (first real signal, not finished product) | ≤ 1 week | ≤ 1–2 months | > 6 months |
 | **Personal fit** (skills, access, sustained interest) | strong on all three | some | weak |
-Use 2 and 4 as in-betweens. If no ceiling is known, assume a small personal budget and say so.
+Use 2 and 4 as in-betweens.
+
+## Path sets the bar for Upside (state it; default `bootstrap`/`side-project` unless the user says otherwise)
+| Path | Upside 5 means | Typical consequence |
+|---|---|---|
+| bootstrap / side-project | covers a meaningful part of the user's income goal within ~12 months at the stated hours, no outside money | small niches can score well |
+| venture | credible route to a very large market with repeatable growth and a defensible edge; outside funding plausible | most lifestyle ideas drop to 2–3; Demand evidence and moat matter more |
+| non-profit / impact | many people reached x depth x durability, funding model identified | skip profit economics, check funding |
+| research / learning | novelty or skill gained per hour, publishable or portfolio-worthy | Cost and Speed dominate |
+The same idea can be A as bootstrap and D as venture. Say which path was used in the footer.
+
+## Knockout floor (fatal weaknesses are not averaged away)
+Demand = 1 (no one visibly wants it), Feasibility = 1 (needs the unproven or forbidden) or Cost = 1 (exceeds the ceiling) caps the priority at C and the reason is named in the table row or Parked line. A high average never overrides it. If no ceiling is known, assume a small personal budget and label it as an assumption in the footer.
 
 ## Jobs-to-be-Done (internal)
 Who, in what situation, wants what progress, and what do they "hire" today (including doing nothing)? Opportunity = high importance + low satisfaction with today's solution.
@@ -30,7 +42,7 @@ Opinions and compliments are weak; past behavior is stronger; money, time or com
 `margin = price − variable cost`; `break-even customers = fixed costs ÷ margin`; reachable customers in 12 months = realistic channel reach × conversion, not total market size. If break-even exceeds reachable, say it plainly.
 
 ## Base rates (outside view)
-Name the reference class (e.g. new employer businesses, consumer apps, hardware startups). Example reliable anchor: US BLS data show roughly 78 % of new employer establishments survive year 1 and about 51 % reach year 5; sector and country differ. Quote numbers only with such sourcing; otherwise qualitative. Adjust the inside view toward the base rate.
+Name the reference class (e.g. new employer businesses, consumer apps, hardware startups). Quote a number only with its source, year and country (for example official business-survival statistics of the user's country); otherwise stay qualitative ("most fail without an existing audience"). Adjust the inside view toward the base rate.
 
 ## Pre-mortem (Klein)
 Assume failure after 12 months; list the most likely cause. If it is fixable cheaply, add the fix to the test.

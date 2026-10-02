@@ -1,0 +1,9 @@
+{"currency":"EUR","time_budget_h_week":6,"ideas":[
+{"id":1,"idea":"Course","upside":4,"demand":4,"feasibility":4,"cost":4,"speed":3,"fit":4,"evidence":"E2","hours_week":5,"price":40,"variable_cost":3,"fixed_costs":600},
+{"id":2,"idea":"Newsletter","upside":3,"demand":3,"feasibility":5,"cost":5,"speed":5,"fit":4,"evidence":"E0","hours_week":3},
+{"id":3,"idea":"Device","upside":4,"demand":3,"feasibility":2,"cost":2,"speed":2,"fit":3,"evidence":"E0","hours_week":8},
+{"id":4,"idea":"Marketplace","upside":5,"demand":3,"feasibility":3,"cost":2,"speed":2,"fit":3,"evidence":"E0"},
+{"id":5,"idea":"Blocked","upside":5,"demand":5,"feasibility":5,"cost":5,"speed":5,"fit":5,"evidence":"E4","gate_viability":"no"},
+{"id":6,"idea":"Partial","upside":3,"demand":3},
+{"id":7,"idea":"Floor","upside":5,"demand":1,"feasibility":5,"cost":5,"speed":5,"fit":5,"evidence":"E4"}
+]}

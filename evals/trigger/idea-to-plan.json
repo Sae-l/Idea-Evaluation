@@ -1,0 +1,34 @@
+[
+ {
+  "query": "I've decided to build a habit-tracking app as my side project. Break it down into milestones and a realistic weekly to-do list, I only have evenings.",
+  "should_trigger": true
+ },
+ {
+  "query": "Check in on my project: I planned 6 tasks last week and finished 3. What should I change for next week?",
+  "should_trigger": true
+ },
+ {
+  "query": "Turn my chosen idea, an online yoga course, into an MVP scope and a step-by-step plan with deadlines.",
+  "should_trigger": true
+ },
+ {
+  "query": "Ich möchte meine Geschäftsidee endlich starten. Mach mir einen realistischen Projektplan mit kleinen Aufgaben, ich habe ADHS und bin schnell überfordert.",
+  "should_trigger": true
+ },
+ {
+  "query": "Rank my 6 startup ideas and tell me which one I should do first.",
+  "should_trigger": false
+ },
+ {
+  "query": "What could go wrong with my plan? Stress test it and tell me the weak points.",
+  "should_trigger": false
+ },
+ {
+  "query": "Give me a packing checklist for a 3-day hiking trip in autumn.",
+  "should_trigger": false
+ },
+ {
+  "query": "Fix the failing unit test in my React project, it throws a TypeError in useEffect.",
+  "should_trigger": false
+ }
+]

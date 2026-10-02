@@ -1,0 +1,26 @@
+name: Usability feedback (especially ADHD / neurodivergent users)
+description: Tell us what was helpful, overwhelming, too long, or unclear. This is the evidence the project is missing.
+labels: [feedback]
+body:
+  - type: markdown
+    attributes:
+      value: "Optional and private by choice (you do not need to disclose any diagnosis). Concrete observations help most."
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Which skill?
+      options: [idea-evaluation, idea-to-plan, idea-redteam]
+    validations: {required: true}
+  - type: textarea
+    id: worked
+    attributes:
+      label: What helped you start or decide?
+  - type: textarea
+    id: hard
+    attributes:
+      label: What was too long, too many choices, or hard to act on?
+  - type: dropdown
+    id: followed
+    attributes:
+      label: Did you do the suggested first step?
+      options: ["Yes", "Partly", "No", "Not applicable"]

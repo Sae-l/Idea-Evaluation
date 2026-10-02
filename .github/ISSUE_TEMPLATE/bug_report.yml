@@ -1,0 +1,30 @@
+name: Bug report
+description: A skill gave a wrong, too long, or confusing answer, or a script failed.
+labels: [bug]
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Which skill or file?
+      options: [idea-evaluation, idea-to-plan, idea-redteam, scripts / spreadsheet export, docs, other]
+    validations: {required: true}
+  - type: input
+    id: client
+    attributes:
+      label: Where did you use it? (client and model, e.g. Claude Code, VS Code Copilot, ChatGPT)
+    validations: {required: true}
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Your prompt (remove private details)
+    validations: {required: true}
+  - type: textarea
+    id: details
+    attributes:
+      label: For script or spreadsheet problems, the Python version, command and full error message
+      render: shell
+  - type: textarea
+    id: expected
+    attributes:
+      label: What happened, and what did you expect?
+    validations: {required: true}
