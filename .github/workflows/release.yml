@@ -1,13 +1,20 @@
 name: Release
-# Run by pushing a tag like v3.1.0 or v3.1.0-beta.1 that points at a commit on main.
-# Job 1 verifies and builds with read-only rights; job 2 only publishes the already-built files.
+# Run from Actions > Release > Run workflow on branch main, with the version (for example 3.1.0 or 3.1.0-beta.2).
+# Job 1 verifies and builds with read-only rights; job 2 creates a DRAFT release with the files attached.
+# You review the draft under Releases and press Publish (this creates the tag). With immutable releases, files
+# cannot be added after publishing, which is why the files are attached to the draft first.
 on:
-  push:
-    tags: ["v[0-9]*.[0-9]*.[0-9]*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version without the leading v, for example 3.1.0-beta.2"
+        required: true
+        type: string
 permissions:
   contents: read
 jobs:
   verify:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -15,17 +22,18 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Check tag format and branch
+      - name: Check version format and that the tag is free
         env:
-          TAG: ${{ github.ref_name }}
+          VERSION: ${{ inputs.version }}
         run: |
-          [[ "$TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$ ]] || { echo "tag '$TAG' is not a semantic version"; exit 1; }
-          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "tag must point at a commit on main"; exit 1; }
+          [[ "$VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$ ]] || { echo "'$VERSION' is not a semantic version"; exit 1; }
+          git rev-parse -q --verify "refs/tags/v${VERSION}" >/dev/null && { echo "tag v${VERSION} already exists (tags of published releases cannot be reused)"; exit 1; }
+          echo "ok: v${VERSION} will be created from $GITHUB_SHA"
       - name: Extract release notes from CHANGELOG
         env:
-          TAG: ${{ github.ref_name }}
+          VERSION: ${{ inputs.version }}
         run: |
-          version="${TAG#v}"
+          version="$VERSION"
           if grep -qF -- "## ${version} (unreleased)" CHANGELOG.md; then echo "CHANGELOG still says '(unreleased)' for ${version}"; exit 1; fi
           awk -v v="## ${version}" 'index($0,v)==1 && (length($0)==length(v) || substr($0,length(v)+1,1)==" ") {f=1; next} /^## / && f {exit} f' CHANGELOG.md > notes.md
           test -s notes.md || { echo "no CHANGELOG section '## ${version}'"; exit 1; }
@@ -56,11 +64,13 @@ jobs:
       - uses: actions/download-artifact@v8
         with:
           name: release
-      - name: Create GitHub release
+      - name: Create draft release with files attached
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
+          VERSION: ${{ inputs.version }}
         run: |
           flags=""
-          case "$TAG" in *-*) flags="--prerelease";; esac
-          gh release create "$TAG" release/* --repo "$GITHUB_REPOSITORY" --title "$TAG" --notes-file notes.md --verify-tag $flags
+          case "$VERSION" in *-*) flags="--prerelease";; esac
+          gh release create "v${VERSION}" release/* --repo "$GITHUB_REPOSITORY" --title "v${VERSION}" --notes-file notes.md --target "$GITHUB_SHA" --draft $flags
+          echo "Draft created. Open Releases, check the files, then press Publish."
+
