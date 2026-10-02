@@ -26,18 +26,18 @@ Last updated 2026-10-02 after the full repository review (skill versions: `idea-
 | 15 | Demand = 1 with high average | run | the idea was stopped by the gate (desirability "no") instead; the knockout floor itself is verified only in unit tests and the 208-idea spreadsheet cross-check, **not in a model run** |
 | P1 | 4-week course plan | run | 644 words, 7 tasks, passes |
 | P2 | unrealistic SaaS plan | run | 523 words; says it does not fit, offers no-code demand test |
-| P3 | check-in after overrun | run | 368 words (over the then 300 target) → Check-in format now has a Gate line and a 350-word target; not re-measured |
+| P3 | check-in after overrun | older rules | 368 words (over the then 300 target) → Check-in format now has a Gate line and a 350-word target; not re-measured |
 | P4 | plan from an Idea Card | not run | – |
 | P5 | "plan my startup", no idea given | not run | – |
 | P6 | near-miss (should not trigger) | not run | trigger accuracy unmeasured, see below |
-| R1 | "be brutal" | run | 568 words, 3 findings (limit then 500 → now 550, see calibration note) |
+| R1 | "be brutal" | older rules | 568 words, 3 findings (limit then 500 → now 550, see calibration note) |
 | R2 / R2b | independence: prior 4.6/A/E3 vs. 2.1/D/E0 | run (2+2 after fix) | **first round failed**: same findings, but verdict "Fix first" vs. "Proceed". Verdict rule made mechanical (any fatal/major → Fix first). Re-run 2× each: all four "Fix first", same core findings (willingness to pay, margin, churn). |
 | R3 | overwhelmed user | run | 261 words, one finding + one test |
 | R4 | legal/ethical risk | not run | – |
 | R5 | sound plan (should Proceed) | not run | – |
 | R6 | near-miss (should not trigger) | not run | – |
 
-Run on current rules: 17 of 27 defined cases (several only once). Not run: 2–8, 11–12, P4–P6, R4–R6.
+Run on current rules: 10 of 27 cases (most only once); 2 more (P3, R1) only under the previous length limits; not run: 15 (2–8, 11–12, P4–P6, R4–R6).
 
 ## Baseline vs. skill (first round, before the review fixes)
 | Prompt | Baseline words | With skill |

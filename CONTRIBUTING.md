@@ -3,7 +3,7 @@
 Thanks for helping. This is a small project with strict goals: **short outputs, honest limits, neutral and portable skills.**
 
 ## Principles (check every change against these)
-1. **Token budget.** `SKILL.md` stays small (target ≤ ~1,000 words; details go to `references/`, loaded only when needed). Adding text means removing text.
+1. **Token budget.** `SKILL.md` stays small (target about 1,000 words or less; details go to `references/`, loaded only when needed). Adding text means removing text.
 2. **No personal assumptions.** No fixed budgets, hours, currencies, countries or employers. Collect inputs or label assumptions.
 3. **No invented facts.** Numbers need a source or the label `assumption`. State where something is a design default, not research.
 4. **Test before you claim.** A behavior change needs an eval case (`evals/`) and, if it is computational, a unit test (`tests/`). Report results honestly, including cases where the skill made no difference.

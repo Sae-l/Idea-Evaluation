@@ -24,7 +24,7 @@
 | Gap in this suite | Seen in | Change in v3.1 |
 |---|---|---|
 | Additive score can average away a fatal weakness | EmanuelVogt, idea-validation-agents, validator hard gates | **Knockout floor:** Demand, Feasibility or Cost rated 1 caps priority at C and names the reason (`scoring.py`, Excel, tests) |
-| One success bar for all ventures | validator capital paths | **Path** (bootstrap / venture / side-project / non-profit / research) sets the Upside bar (`methods.md`); a lifestyle business may be A as bootstrap and D as venture |
+| One success bar for all ventures | validator capital paths | **Path** (bootstrap / venture / side-project / non-profit / research) sets the Upside bar (`methods.md`); a lifestyle business may be A as bootstrap and D as venture (eval 13: not yet demonstrated, see `evals/RESULTS.md`) |
 | Claims and numbers not clearly tagged | EmanuelVogt | Light tags: user claims are hypotheses; numbers carry `fact (source)` / `assumption` / `unchecked` (evaluation); red team already did |
 | Negative verdicts without a way forward | EmanuelVogt, validator salvage plan | Recycle/Stop must name **one escape route**; B ideas get a one-line "lift to A" |
 | No memory across sessions | founder skills, idea-validation-agents | Optional **state file**: Idea Cards kept in `ideas.md` when files can be written and the user agrees (in `idea-card.md`) |

@@ -23,7 +23,7 @@ First public beta of the suite. Skill versions: `idea-evaluation` 3.1, `idea-to-
 - Workflows: least privilege, timeouts, release split into verify and publish, semantic-version tags on `main` only, literal changelog check; current action major versions.
 - Tests: boundaries, knockout floor, invalid input, injection, 208-idea spreadsheet cross-check, docs-sync and repository-metadata checks.
 
-**Known limits (beta)**: weights, thresholds and time multipliers are uncalibrated defaults; trigger accuracy of the skill descriptions is unmeasured; 10 of 27 eval cases have not been run; no head-to-head comparison with similar skills; usefulness for people with ADHD is a design hypothesis, not tested with users; run-to-run score variation of about ±0.5 observed. See `evals/RESULTS.md`.
+**Known limits (beta)**: weights, thresholds and time multipliers are uncalibrated defaults; trigger accuracy of the skill descriptions is unmeasured; 15 of 27 eval cases have not been run; no head-to-head comparison with similar skills; usefulness for people with ADHD is a design hypothesis, not tested with users; run-to-run score variation of about ±0.5 observed. See `evals/RESULTS.md`.
 
 ## Earlier internal versions
 - 2.1: Capture mode, Recycle verdict, checks reference, XYZ tests, scoring module and tests, evals, packaging.

@@ -28,13 +28,12 @@ Maintainer document (not loaded by the skill). It records which design decisions
 - No outcome data: the skill has not been checked against how ideas actually performed.
 - ADHD benefit is a design hypothesis. Ask users with ADHD for feedback and adjust (length, wording, number of choices).
 - Sources were read as web summaries, not always the primary books or papers.
-
-- Planning/red-team skills: the multipliers, the 0.6-0.7 focus factor and the caps (max 3 findings, "Today" <= 3 tasks) are design defaults, not research results.
+- Planning/red-team skills: the multipliers, the 70 % usable load and the caps (max 3 findings, ≤3 starred tasks) are design defaults, not research results.
 
 ## Next research steps
 Collect real evaluation cases and outcomes to calibrate weights; test the output with ADHD users; read primary sources (Cooper 2008 *Perspective: Stage-Gate*, Bland & Osterwalder 2019, Savoia 2019, Fitzpatrick 2013).
 
-## Sources
+## Sources (accessed 2026-10-02; read mostly via secondary summaries)
 - Agent Skills format and VS Code/Copilot locations: agentskills.io; Visual Studio Magazine and Microsoft Learn skill guides
 - Assumption mapping: Strategyzer library; Google Design Sprint Kit
 - Pretotyping / XYZ hypothesis: albertosavoia.com materials, *The Right It*
