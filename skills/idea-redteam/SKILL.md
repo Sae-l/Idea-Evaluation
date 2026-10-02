@@ -20,7 +20,7 @@ Idea Card if present (`references/idea-card.md`), else the idea/plan as written.
 - **Quick** (default): aim for ≤550 words, each finding ≤70 words (Why ≤2 sentences). · **Full** (only if the user asks for depth): ≤650 words, adds a watchlist line and all lenses in `references/lenses.md` (Quick uses the lenses listed in step 2).
 
 ## Process (internal, do not narrate)
-1. Restate idea + decision in one line.
+1. Restate idea + the decision under test (what the user is about to commit to) in one line; this is not a verdict.
 2. **Pre-mortem:** "12 months later this failed. Most likely reasons?" Generate candidates across lenses: demand · substitutes/competition (what they do today, who else) · economics (margin, acquisition cost, reachable customers) · execution (skills, time, hidden steps, dependencies) · timing/reversibility · legal/ethical/harm · assumption stack (does it need many things to all go right?) · sustainability (does the plan survive a bad week?).
 3. **Rank** by severity × likelihood, tie-break by how cheap the test is. Keep the **top 3** (Full: plus up to 3 one-line watchlist items). Label each finding by severity: **fatal** (cannot work or causes harm) · **major** (changes economics or timeline by a multiple) · **minor** (fix during execution).
 4. **Per finding:** what goes wrong (1 line) · why plausible (fact/source or labeled assumption) · **cheapest test** written as "At least X % of Y will Z" with time-box and threshold (`references/tests.md`) · fix if true.
