@@ -106,8 +106,10 @@ def fx(key, r):
         return (f'=IF({c("=raw")}="","",IF(OR({gates[0]}="no",{gates[1]}="no",{gates[2]}="no"),"",'
                 f'ROUND({c("=raw")}*IFERROR(VLOOKUP({c("evidence")},Settings!$A$11:$B$15,2,FALSE),Settings!$B$11),1)))')
     if key == "=prio":
+        letter = (f'IF({c("=adj")}>=Settings!$B$18,"A",IF({c("=adj")}>=Settings!$B$19,"B",IF({c("=adj")}>=Settings!$B$20,"C","D")))')
+        floor = f'MIN({c("demand")},{c("feasibility")},{c("cost")})<=1'
         return (f'=IF(OR({gates[0]}="no",{gates[1]}="no",{gates[2]}="no"),"Stopped",IF({c("=adj")}="","incomplete",'
-                f'IF({c("=adj")}>=Settings!$B$18,"A",IF({c("=adj")}>=Settings!$B$19,"B",IF({c("=adj")}>=Settings!$B$20,"C","D")))))')
+                f'IF(AND({floor},OR({letter}="A",{letter}="B")),"C",{letter})))')
     if key == "=margin":
         return f'=IF(COUNT({c("price")},{c("variable_cost")})=2,{c("price")}-{c("variable_cost")},"")'
     if key == "=be":
@@ -132,7 +134,7 @@ dv2.add(f"{K[CRIT[0]]}2:{K[CRIT[-1]]}{last}")
 dv3 = DataValidation(type="list", formula1='"E0,E1,E2,E3,E4"', allow_blank=True); ws.add_data_validation(dv3)
 dv3.add(f"{K['evidence']}2:{K['evidence']}{last}")
 ws.freeze_panes = "C2"; ws.auto_filter.ref = f"A1:{L(len(cols))}{last}"
-for k, t in enumerate(["Notes:", "Yellow cells are inputs; scores and priorities recalculate from the Settings sheet."] + data.get("notes", [])):
+for k, t in enumerate(["Notes:", "Yellow cells are inputs; scores and priorities recalculate from the Settings sheet. Knockout floor: a rating of 1 for demand, feasibility or cost caps the priority at C."] + data.get("notes", [])):
     ws.cell(last + 2 + k, 2, t).font = Font(name="Arial", size=10, bold=(k == 0), italic=(k > 0))
 
 # Capacity

@@ -14,7 +14,7 @@ description: Use when the user wants an idea, plan or decision stress-tested bef
 - Web search only if available and only for facts that change a finding (competitors/substitutes, regulation). Name what was found; otherwise label "unchecked".
 
 ## Inputs
-Idea Card if present (`references/idea-card.md`), else the idea/plan as written. Also: **what is at stake** (time, money, reputation) and **the decision** (start / continue / scale). Ask ≤2 short questions only if the answer changes the verdict; else assume and list assumptions.
+Idea Card if present (`references/idea-card.md`), else the idea/plan as written. Also: **what is at stake** (time, money, reputation) and **the decision** (start / continue / scale). Ask ≤2 short questions only if the answer changes the verdict (never if the user says to assume); else assume and list assumptions.
 
 ## Modes
 - **Quick** (default): aim for ≤500 words, each finding ≤70 words (Why ≤2 sentences). · **Full**: ≤600 words, adds watchlist and lens details (`references/lenses.md`).

@@ -22,6 +22,8 @@ Maintainer document (not loaded by the skill). It records which design decisions
 | ADHD-friendly output: bottom line first, one small next action, time-boxes, external memory, parking list, short feedback loops | Executive-function model of ADHD (Barkley) and dual-pathway model with delay aversion (Sonuga-Barke) support externalizing working memory and short reward loops; practitioner sources on time-boxing and activation energy | **medium-low: derived from theory and practitioner advice; the skill itself has not been tested with ADHD users** |
 | WIP limit of one or two active ideas | general work-in-progress principle; plausible for attention constraints | medium |
 
+| Knockout floor (Demand/Feasibility/Cost = 1 caps at C), path-specific Upside bar, escape routes | gaps found in the competitive analysis (`docs/COMPETITIVE-ANALYSIS.md`): fatal weaknesses must not be averaged away, success bars differ by capital path | medium (practice in comparable tools; the exact cap rule is the author's design) |
+
 ## Known limitations
 - Scores come from an LLM's judgment of text the user supplies; they are structured opinions, not forecasts.
 - No outcome data: the skill has not been checked against how ideas actually performed.

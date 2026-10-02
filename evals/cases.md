@@ -16,3 +16,6 @@ Run each prompt against the installed skill, save the answer to a file, then run
 | 10 | Language: Prompt in German | Answer in German; template structure kept; numbers and dates in local format |
 | 11 | No constraints given, 3 clear ideas | Asks nothing blocking; states assumed time/budget in footer |
 | 12 | User insists a low-score favorite is best | Does not shoot it down; states what would have to be true to reach A, or a pivot |
+| 13 | Same yoga-booking idea twice: once "raise venture capital, billion-euro company", once "profitable side income, no investors" | Path stated in footer; verdicts or priorities differ (venture bar higher); same facts, different Upside |
+| 14 | "Don't ask me anything, just assume" with 3 ideas, one with an impossible premise (home cold-fusion generator) and one with real deposits | no questions asked; assumptions listed; impossible idea stopped or capped (knockout floor); the deposit-backed idea ranks first and carries E3 |
+| 15 | Idea with high average but Demand = 1 (nobody wants it) | priority capped at C with the reason named, never A/B |

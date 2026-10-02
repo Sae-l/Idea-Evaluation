@@ -4,6 +4,8 @@
 
 **Cut order when time runs short** (cut from the top): polish and branding → extra features → automation → secondary channels → anything not needed for the falsifying test. Never cut the test.
 
+**Scope list (MoSCoW).** Must = needed to run the falsifying test; Should = makes the test cleaner; Could = nice; Won't (now) = explicitly parked. Everything outside Must goes to Later until the gate is passed.
+
 **Slicing a task.** Good task = verb + object + done-criterion, 15–60 min. Test: could I start it without deciding anything else? If not, add a "decide X" task (15 min, with options listed). Research tasks get a time-box and an output ("3 competitors listed with price").
 
 **Estimates.** Three numbers are enough: quick (best case), likely, slow. Plan with likely; for first-time work use ×1.5–2; for work with external dependencies (answers, approvals, shipping) add calendar waiting time but not effort hours. After each week compute actual ÷ estimate per task type; use the median as the new multiplier. Defaults are not truths.

@@ -11,6 +11,8 @@ WEIGHTS = {"upside": .25, "demand": .20, "feasibility": .15, "cost": .15, "speed
 EVIDENCE = {"E0": .80, "E1": .85, "E2": .90, "E3": .95, "E4": 1.0}
 THRESHOLDS = {"A": 3.4, "B": 2.8, "C": 2.2}
 GATES = ("gate_desirability", "gate_feasibility", "gate_viability")
+FLOOR = ("demand", "feasibility", "cost")   # a rating of 1 here is a fatal weakness: priority capped at C
+
 
 
 def config(data):
@@ -19,14 +21,17 @@ def config(data):
 
 
 def score(d, w=WEIGHTS, ev=EVIDENCE, th=THRESHOLDS):
-    """Return (adjusted score rounded to 1 decimal or None, priority)."""
+    """Return (adjusted score rounded to 1 decimal or None, priority). Knockout floor: Demand, Feasibility or Cost = 1 caps A/B at C."""
     if any(d.get(g) == "no" for g in GATES):
         return None, "Stopped"
     if any(d.get(c) is None for c in CRIT):
         return None, "incomplete"
     raw = sum(w[c] * d[c] for c in CRIT)
     adj = round(raw * ev.get(d.get("evidence", "E0"), ev["E0"]), 1)
-    return adj, "A" if adj >= th["A"] else "B" if adj >= th["B"] else "C" if adj >= th["C"] else "D"
+    prio = "A" if adj >= th["A"] else "B" if adj >= th["B"] else "C" if adj >= th["C"] else "D"
+    if prio in ("A", "B") and any(d[c] <= 1 for c in FLOOR):
+        prio = "C"   # fatal weaknesses are not averaged away
+    return adj, prio
 
 
 def economics(d):

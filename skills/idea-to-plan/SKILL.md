@@ -8,7 +8,7 @@ description: Use when the user has chosen an idea or project and wants it analyz
 **Smallest plan that tests the riskiest assumption. Realistic beats ambitious. Fixed time, variable scope.** Works for any user, domain and currency; never assume personal facts, collect them or label assumptions. Reply in the user's language, neutral and encouraging, no shame. Output must be short and scannable (ADHD-friendly): decision first, one starting step, small tasks.
 
 ## Inputs (one pass)
-Idea Card if present (`references/idea-card.md`), else: what the idea is and who it is for; **hours per week**, **money ceiling**, **horizon/deadline**. Ask once (max 3 short questions) only if the answer changes the plan; otherwise assume (default horizon 4 weeks) and list assumptions in the footer.
+Idea Card if present (`references/idea-card.md`), else: what the idea is and who it is for; **hours per week**, **money ceiling**, **horizon/deadline**. Ask once (max 3 short questions) only if the answer changes the plan; if the user says to assume or not to ask, never ask. Otherwise assume (default horizon 4 weeks) and list assumptions in the footer.
 
 ## Modes
 - **Plan** (default): Reality check → Analysis → Milestones → To-do. One answer, aim for ≤650 words.

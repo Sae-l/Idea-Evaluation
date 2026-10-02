@@ -4,5 +4,6 @@
 {"id":3,"idea":"Device","upside":4,"demand":3,"feasibility":2,"cost":2,"speed":2,"fit":3,"evidence":"E0","hours_week":8},
 {"id":4,"idea":"Marketplace","upside":5,"demand":3,"feasibility":3,"cost":2,"speed":2,"fit":3,"evidence":"E0"},
 {"id":5,"idea":"Blocked","upside":5,"demand":5,"feasibility":5,"cost":5,"speed":5,"fit":5,"evidence":"E4","gate_viability":"no"},
-{"id":6,"idea":"Partial","upside":3,"demand":3}
+{"id":6,"idea":"Partial","upside":3,"demand":3},
+{"id":7,"idea":"Floor","upside":5,"demand":1,"feasibility":5,"cost":5,"speed":5,"fit":5,"evidence":"E4"}
 ]}

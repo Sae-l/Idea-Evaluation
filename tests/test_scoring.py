@@ -16,6 +16,8 @@ assert score(by["Device"], w, ev, th) == (2.2, "C")
 assert score(by["Marketplace"], w, ev, th) == (2.6, "C")
 assert score(by["Blocked"], w, ev, th) == (None, "Stopped")   # gate "no" overrides everything
 assert score(by["Partial"], w, ev, th) == (None, "incomplete")
+# knockout floor: raw 4.2 x 1.0 = 4.2 would be A, but demand = 1 caps it at C
+assert score(by["Floor"], w, ev, th) == (4.2, "C")
 assert economics(by["Course"]) == (37, 17)                    # 600 / 37 = 16.2 -> 17 customers
 assert economics(by["Newsletter"]) == (None, None)
 assert abs(sum(w.values()) - 1) < 1e-9
