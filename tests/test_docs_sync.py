@@ -24,13 +24,13 @@ CONTRACT = {
     ],
     "idea-to-plan": [
         (r"70\s?%", "usable load 70 %"), (r"10[–-]60", "task length 10-60"), (r"≤?\s?10 min|10 minutes", "ignition 10 min"),
-        (r"1\.5[–-]2", "multiplier 1.5-2"), (r"650 words", "plan 650 words"), (r"300 words", "check-in 300 words"),
+        (r"1\.5[–-]2", "multiplier 1.5-2"), (r"650 words", "plan 650 words"), (r"350 words", "check-in 350 words"),
         (r"(?:≤|at most )?\s?8 tasks|8 tasks at most", "8 tasks"), (r"(?:≤|at most )?\s?6\b", "6 tasks check-in"), (r"20 words", "20 words per task"),
         (r"at most 3 short questions", "question cap"), (r"explicit request and after confirmation", "calendar confirmation"),
         (r"continue if.{1,5}pivot if.{1,5}stop if", "gate wording"), (r"median", "median multiplier"), (r"Analyze", "Analyze mode"),
     ],
     "idea-redteam": [
-        (r"500 words", "quick 500 words"), (r"650 words", "full 650 words"), (r"70 words", "70 words per finding"),
+        (r"550 words", "quick 550 words"), (r"650 words", "full 650 words"), (r"70 words", "70 words per finding"),
         (r"fatal", "severity fatal"), (r"major", "severity major"), (r"minor", "severity minor"),
         (r"E0 assumption", "E0 assumption"), (r"XYZ|At least X", "XYZ test"), (r"[Ss]trongest case", "steelman"),
         (r"Proceed", "verdict proceed"), (r"Fix first", "verdict fix first"),

@@ -17,11 +17,8 @@ Thanks for helping. This is a small project with strict goals: **short outputs, 
 ## Checks (run before every PR)
 ```bash
 pip install -r requirements-dev.txt
-python tests/test_scoring.py
-python tests/test_skills_in_sync.py
-python tests/check_xlsx_formulas.py
-python tools/build_packages.py          # rebuild dist/*.skill, commit the result
-python tools/build_packages.py --check
+python tools/build_packages.py          # rebuild dist/*.skill after changing skills/, commit the result
+python tests/run_all.py                 # all tests, docs sync, metadata, package check
 ```
 Shared files must be identical across skills (`references/idea-card.md`, `references/tests.md`): edit `docs/idea-card.md` or one copy, then copy to the others; `test_skills_in_sync.py` verifies.
 

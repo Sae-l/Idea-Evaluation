@@ -5,7 +5,7 @@ text = open(sys.argv[1], encoding="utf-8").read()
 mode = sys.argv[sys.argv.index("--mode") + 1] if "--mode" in sys.argv else "plan"
 TOLERANCE = 1.1  # word limits are soft targets; allow +10 %
 words, fails = len(text.split()), []
-if words > TOLERANCE * (300 if mode == "checkin" else 650): fails.append(f"too long: {words} words")
+if words > TOLERANCE * (350 if mode == "checkin" else 650): fails.append(f"too long: {words} words")
 
 def minutes(line):
     m = re.search(r"(\d+)\s*[-–]\s*(\d+)\s*min", line)          # range: take upper bound

@@ -1,6 +1,6 @@
 # Idea Card (shared handoff format)
 
-Plain `key: value` lines, all fields optional. Skills read a card if present; otherwise they ask for the minimum (max 3 questions) or mark assumptions. Each skill ships an identical copy at `references/idea-card.md` (checked by `tests/test_cards_in_sync.py`).
+Plain `key: value` lines, all fields optional. Skills read a card if present; otherwise they ask for the minimum (max 3 questions) or mark assumptions. Each skill ships an identical copy at `references/idea-card.md`.
 
 ```
 ## Idea Card

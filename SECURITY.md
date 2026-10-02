@@ -8,7 +8,7 @@ This repository contains plain-text instructions for AI assistants (`skills/*/SK
 - **Wrong or invented facts** (statistics, laws, prices). The skills require labeling numbers as `fact (source)`, `assumption` or `unchecked` and say "verify locally" for legal topics. They are not professional, legal, financial or medical advice.
 - **Malicious changes to skill files** (supply chain). If you install skills from a copy of this repository, compare with the official release and review `SKILL.md` changes before use: instructions in a skill steer the assistant's behavior and tool use.
 - **Optional state file `ideas.md`** is written only if the user agrees; it contains whatever the user typed. Keep it out of public repositories if it contains private plans.
-- **Spreadsheet output:** `build_xlsx.py` writes user-supplied text into cells. Text beginning with `=`, `+`, `-` or `@` may be interpreted as a formula by spreadsheet software; open exported files from untrusted sources with care.
+- **Spreadsheet output:** `build_xlsx.py` validates its input and stores every user-supplied value (idea texts, notes, currency, settings) as text, so text beginning with `=`, `+`, `-` or `@` is not run as a formula; in CSV such values are prefixed with `'` (visible in the cell). Open exported files from untrusted sources with care anyway.
 
 ## Supported versions
 Only the latest release receives fixes.

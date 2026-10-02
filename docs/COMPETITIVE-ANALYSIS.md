@@ -13,10 +13,10 @@
 | [startup-skill](https://github.com/ferdinandobons/startup-skill) (MIT) | Startup design, competitors, positioning, pitch | "30+ structured deliverables"; positioning (April Dunford); real reviews/forums as input | states it can consume many tokens; go/no-go logic undefined; no tests |
 
 ## Where this suite is different (honest claim)
-1. **Portfolio prioritization with capacity**: ranks several ideas against stated hours and a work-in-progress limit; most others validate one idea.
-2. **Evidence-adjusted scoring** (E0–E4) that visibly changes ranks, plus sensitivity and order-bias checks. Closest rival feature: the validator's evidence hierarchy.
+1. **Portfolio prioritization with capacity**: ranks several ideas against stated hours and a work-in-progress limit. In the pages I read, the validators score one idea at a time (the larger collections contain many skills, but their validation skill is single-idea).
+2. **Evidence-adjusted scoring** (E0–E4), plus sensitivity and order-bias checks. In one eval an idea with deposits (E3) outranked an assumption-only idea; whether this changes ranks in practice is not measured. Closest rival feature: the validator's evidence hierarchy.
 3. **Evaluate → plan → red-team as separate, independent, small skills** with a shared Idea Card; red team ignores prior scores.
-4. **Low token footprint** (SKILL.md 600–990 words, references on demand; no mandatory web research).
+4. **Small instruction files** (SKILL.md about 700–1,000 words, references on demand; no mandatory web research). Token use was not measured against the other tools.
 5. **Neutral and portable** (no fixed budget/locale; ChatGPT instructions per skill; any goal type incl. non-profit, research, inventions).
 6. **ADHD-oriented output design** (a hypothesis, untested with users).
 

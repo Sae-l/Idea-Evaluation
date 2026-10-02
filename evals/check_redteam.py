@@ -5,7 +5,7 @@ text = open(sys.argv[1], encoding="utf-8").read()
 mode = sys.argv[sys.argv.index("--mode") + 1] if "--mode" in sys.argv else "quick"
 TOLERANCE = 1.1  # word limits are soft targets; allow +10 %
 words, fails = len(text.split()), []
-if words > TOLERANCE * (650 if mode == "full" else 500): fails.append(f"too long: {words} words")
+if words > TOLERANCE * (650 if mode == "full" else 550): fails.append(f"too long: {words} words")
 if not re.search(r"verdict", text, re.I) or not re.search(r"proceed|fix first|stop", text, re.I): fails.append("no verdict")
 findings = [l for l in text.splitlines() if re.match(r"\s*(\*\*)?\s*\d\.\s", l)]
 if len(findings) > 3: fails.append(f"{len(findings)} numbered findings (max 3)")

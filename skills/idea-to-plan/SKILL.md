@@ -13,7 +13,7 @@ Idea Card if present (`references/idea-card.md`), else the idea, who it is for, 
 ## Modes
 - **Plan** (default): Reality check → Analysis → Milestones → To-do. One answer, aim for ≤650 words.
 - **Analyze**: only the analysis block, Analyze format below.
-- **Check-in**: user reports planned vs. done, actual hours, test results → use the Check-in format, aim for ≤300 words.
+- **Check-in**: user reports planned vs. done, actual hours, test results → use the Check-in format, aim for ≤350 words.
 
 ## Process (internal, do not narrate)
 1. **Reality check first.** Usable load = **70 % of stated hours** (default). If the goal does not fit time, skills or money, say so in one sentence and offer the fitting version (smaller scope or longer horizon); never silently stretch the plan.
@@ -63,6 +63,7 @@ Compare done vs. planned and actual vs. estimated hours → new multiplier (medi
 ```
 **Verdict:** Continue | Pivot | Stop, one line why against the gate. [One factual line on what went well.]
 **Numbers:** done X/Y · hours planned vs. actual · multiplier (median actual ÷ estimate) · evidence now E_
+**Gate:** [the pass/stop criterion for the current test; if none exists, propose one and mark it assumed]
 **Next week** (load ≈ N h of M h): ★-marked task list as above, scope cut first if behind.
 **Parked:** (new ideas, unfinished leftovers)  **Review:** [date]
 ```

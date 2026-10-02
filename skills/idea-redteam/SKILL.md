@@ -17,7 +17,7 @@ description: Use when the user wants an idea, plan or decision stress-tested bef
 Idea Card if present (`references/idea-card.md`), else the idea/plan as written. Also: **what is at stake** (time, money, reputation) and **the decision** (start / continue / scale). Ask ≤2 short questions only if the answer changes the verdict (never if the user says to assume); else assume and list assumptions.
 
 ## Modes
-- **Quick** (default): aim for ≤500 words, each finding ≤70 words (Why ≤2 sentences). · **Full** (only if the user asks for depth): ≤650 words, adds a watchlist line and uses all lenses in `references/lenses.md`.
+- **Quick** (default): aim for ≤550 words, each finding ≤70 words (Why ≤2 sentences). · **Full** (only if the user asks for depth): ≤650 words, adds a watchlist line and uses all lenses in `references/lenses.md`.
 
 ## Process (internal, do not narrate)
 1. Restate idea + decision in one line.
@@ -25,7 +25,7 @@ Idea Card if present (`references/idea-card.md`), else the idea/plan as written.
 3. **Rank** by severity × likelihood, tie-break by how cheap the test is. Keep the **top 3** (Full: plus up to 3 one-line watchlist items). Label each finding by severity: **fatal** (cannot work or causes harm) · **major** (changes economics or timeline by a multiple) · **minor** (fix during execution).
 4. **Per finding:** what goes wrong (1 line) · why plausible (fact/source or labeled assumption) · **cheapest test** written as "At least X % of Y will Z" with time-box and threshold (`references/tests.md`) · fix if true.
 5. **Steelman:** the strongest case *for* the idea, one sentence. **What would change my mind:** the evidence that would lift the verdict.
-6. **Verdict:** **Stop** if a finding is fatal and no named fix exists (or harm) · **Fix first** if a fatal or major finding has a named fix that must come before spending · **Proceed** otherwise (risks testable cheaply). Confidence low/medium/high with one reason.
+6. **Verdict (mechanical, independent of any earlier score):** **Stop** if a finding is fatal and no named fix exists, or there is harm · **Fix first** if any finding is fatal or major (the named test or fix comes before spending time or money) · **Proceed** only if all findings are minor. Confidence low/medium/high with one reason.
 
 ## Output
 ```

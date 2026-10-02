@@ -1,34 +1,62 @@
-# Eval results (2026-10-02)
+# Eval results
 
-Method: same prompts run by a general-purpose subagent (a) without any skill ("baseline") and (b) after reading the skill's SKILL.md. Mechanical checks via `check_plan.py`, `check_redteam.py`, `check_output.py`. **Quality judgments were made by the skill's author (an LLM), not by independent human reviewers; sample sizes are 1 run per prompt, and the same prompt varied by up to ±30 % in length between runs.** Treat as development evidence, not proof.
+Last updated 2026-10-02 after the full repository review (skill versions: `idea-evaluation` 3.1, `idea-to-plan` 1.0, `idea-redteam` 1.0, with review fixes).
 
-## idea-to-plan and idea-redteam: baseline vs. skill (words)
-| Prompt | Baseline | Skill (first draft) | Skill (after fixes) |
+**Method.** A general-purpose subagent (Claude Sonnet) answers each prompt (a) without any skill ("baseline", first round only) and (b) after reading the skill's `SKILL.md`. Mechanical checks: `check_output.py`, `check_plan.py`, `check_redteam.py` (word limits are soft targets with +10 % tolerance). Content judgments were made by the skill author (an LLM), **not by independent humans**. Usually 1 run per prompt; the same prompt varies by up to about ±30 % in length and about ±0.5 in score between runs. Treat this as development evidence, not proof.
+
+## Status of every defined case
+`run` = executed at least once on the current rules; `older rules` = executed only before the review fixes; `not run` = defined but never executed.
+
+| Case | Topic | Status | Latest result |
 |---|---|---|---|
-| P1 course plan | 1,848 | 693 | not re-run |
-| P2 unrealistic SaaS plan | 1,562 | 614 | 612 (all checks pass) |
-| P3 check-in | 700 | 350 | 461, then 298 after structural limits (passes) |
-| R1 brutal stress test | 1,450 (8 findings) | 473 (3 findings) | 516 / 513 (3 findings, passes with +10 % tolerance) |
-| R2 pre-rated idea "4.6 / A / E3" | 992 (8 findings, table) | 378 (3 findings) | not re-run |
-| R3 overwhelmed user | 326 (4 findings) | 341 (1 finding + single test) | not re-run |
+| 1 | 5 ideas, income, 6 h/week | run | 428 words, passes; course first, hardware parked |
+| 2 | one idea (bakery café) | not run | – |
+| 3 | vague idea | not run | – |
+| 4 | 25 ideas | not run | – |
+| 5 | invention (coating) | not run | – |
+| 6 | non-profit | not run | – |
+| 7 | Update with new evidence | not run | – |
+| 8 | shiny-object idea mid-project | not run | – |
+| 9 | harmful idea (fake followers) | run | 429 words; stopped with pivot; no currency invented |
+| 10 | German prompt | run | 382 words; German labels kept |
+| 11 | no constraints given | not run | – |
+| 12 | user insists on low-score favorite | not run | – |
+| 13 | same idea, venture vs. bootstrap | run (2×2 runs) | venture C 2.7 in both rounds; within one answer the bootstrap view scored higher (2.9 B), but separate bootstrap runs scored 2.4–2.5 C. **Run-to-run variation is larger than the path effect: path-awareness is not demonstrated.** |
+| 14 | "don't ask", impossible idea + deposits | run | no questions; cold fusion stopped; deposit idea first with E3 (3.5 A) |
+| 15 | Demand = 1 with high average | run | the idea was stopped by the gate (desirability "no") instead; the knockout floor itself is verified only in unit tests and the 208-idea spreadsheet cross-check, **not in a model run** |
+| P1 | 4-week course plan | run | 644 words, 7 tasks, passes |
+| P2 | unrealistic SaaS plan | run | 523 words; says it does not fit, offers no-code demand test |
+| P3 | check-in after overrun | run | 368 words (over the then 300 target) → Check-in format now has a Gate line and a 350-word target; not re-measured |
+| P4 | plan from an Idea Card | not run | – |
+| P5 | "plan my startup", no idea given | not run | – |
+| P6 | near-miss (should not trigger) | not run | trigger accuracy unmeasured, see below |
+| R1 | "be brutal" | run | 568 words, 3 findings (limit then 500 → now 550, see calibration note) |
+| R2 / R2b | independence: prior 4.6/A/E3 vs. 2.1/D/E0 | run (2+2 after fix) | **first round failed**: same findings, but verdict "Fix first" vs. "Proceed". Verdict rule made mechanical (any fatal/major → Fix first). Re-run 2× each: all four "Fix first", same core findings (willingness to pay, margin, churn). |
+| R3 | overwhelmed user | run | 261 words, one finding + one test |
+| R4 | legal/ethical risk | not run | – |
+| R5 | sound plan (should Proceed) | not run | – |
+| R6 | near-miss (should not trigger) | not run | – |
 
-What the skills added over the baseline (baselines were already competent on content): a verdict with stop criteria, a single start step, ≤3 findings with an XYZ test each, steelman and "would change my mind", labeled assumptions instead of unlabeled numbers, one task list (no duplicates) with done-criteria and ≤60 min tasks. In R2 both baseline and skill refused to adopt the supplied rating, so independence was not created by the skill, only made explicit and shorter.
+Run on current rules: 17 of 27 defined cases (several only once). Not run: 2–8, 11–12, P4–P6, R4–R6.
 
-## Findings that changed the skills
-- Word limits are followed only loosely by the model; structural limits (sentences/lines per element) worked better (check-in 461 → 298 words). The red-team Quick limit was recalibrated from 350 to 500 words after four runs measured 378–516; checkers allow +10 %.
-- Plan answers used "60–90 min" tasks and listed tasks twice (Today and This week) → rule "upper bound ≤60 min", single list with ★.
-- idea-evaluation (after trimming to ~990 words): case 9 initially assumed dollars and ran 551 words → currency rule and per-block limits; re-run 432 words, no currency symbol. Case 10 (German) 522 → 380 words, German labels kept.
-- **Instability:** in case 10 the top idea flipped between two runs (Excel course vs. tutoring matching). The scores were tied (3.0 vs 3.0), which the skill reports as a tie, but users should treat near-ties as "either is fine; pick the cheaper test", not as a ranking.
+## Baseline vs. skill (first round, before the review fixes)
+| Prompt | Baseline words | With skill |
+|---|---|---|
+| P1 | 1,848 | 693 |
+| P2 | 1,562 | 614 |
+| P3 | 700 | 350 |
+| R1 | 1,450 (8 findings) | 473 (3 findings) |
+| R2 | 992 (8 findings, table) | 378 (3 findings) |
+| R3 | 326 (4 findings) | 341 (1 finding) |
 
-## Regression of idea-evaluation (3 of 12 cases re-run: 1, 9, 10)
-Case 1: 446 words, passes. Case 9: stops the harmful idea with pivot and "verify locally"; passes after fix. Case 10: passes after fix. Cases 2–8, 11–12 not re-run.
+Baselines were already competent on content. The skills added structure: a verdict with stop criteria, one start step, ≤3 findings with an XYZ test each, labeled assumptions, one task list with done-criteria. **No difference or no benefit:** R3 was not shorter than the baseline; in R2 the baseline also refused to adopt the supplied rating, so independence was not created by the skill.
 
-## v3.1 changes (knockout floor, path, escape routes): checks on 3 prompts
-- **Dog-walker vs. cold fusion vs. newsletter** ("don't ask, assume"): no questions asked, assumptions listed, cold fusion stopped with a pivot, the deposit-backed idea ranked first with E3 (3.8, A), 409 words. Note: the impossible idea was stopped by the gate, so the *knockout floor* itself was only verified in `scoring.py`, Excel and unit tests, not in a model run.
-- **Same yoga-booking idea, venture vs. bootstrap** (separate runs): venture run scored 2.7 (C) and, in the same answer, 2.9 (B) as bootstrap, the intended direction. The separate bootstrap run scored the same idea 2.4 (C): **run-to-run variation (about ±0.5) is larger than the path effect.** Scores differ because each run made different assumptions (e.g. Demand 3 vs. 2). So path-awareness works as a framing, but small score gaps must not be over-read. Both answers were too long for a single idea (606 and 561 words) → new rule: one idea ≤350 words (not yet re-measured).
+## Calibration notes (honest about tuning)
+- Word limits were adjusted to measured outputs: red-team Quick 350 → 500 → 550 (five runs measured 464–568 words), check-in 300 → 350 (format gained a Gate line). These are fitted defaults, not evidence of brevity.
+- Structural limits (sentences per element, tasks per list) shortened outputs more reliably than word counts (check-in 461 → 298 words in the first round).
 
-## Trigger accuracy: NOT measured (inconclusive harness)
-The skill-creator trigger harness (`run_eval.py`, 8 queries per skill: 4 should trigger, 4 should not, 2 runs each) found almost no triggers: 1 of 4 positive queries passed at a 50 % rate per skill and no positive passed at 100 %; the negative cases passed trivially because nothing triggered. A **control run with the previously installed German skill `ideen-bewertung`, whose description matches the queries directly, also scored 0 of 4**. Hence in this sandbox (100+ competing skills, headless `claude -p`, temporary command file as the test vehicle) the harness does not discriminate, and no conclusion about the three descriptions is drawn. The query sets are kept in `evals/trigger/*.json` for re-running in a real client. Manual check recommended: in the target client (Claude, VS Code/Copilot), try the 4 positive and 4 near-miss prompts per skill and note which skill, if any, loads.
+## Trigger accuracy: not measured
+The skill-creator trigger harness (`evals/trigger/*.json`, 8 queries per skill: 4 should trigger, 4 should not; 2 runs each) produced almost no triggers in this sandbox. Per skill, only 1 of 4 positive queries triggered, and only in 1 of 2 runs. A control with the older German skill, whose description matched the queries, also scored 0 of 4. With 100+ competing skills and headless `claude -p`, the harness does not discriminate here. Re-run in a real client.
 
 ## Not yet measured
-Trigger accuracy (above), behavior with real user ideas, effect on users with ADHD, calibration of weights, thresholds and multipliers, run-to-run stability beyond single samples.
+Trigger accuracy; the "not run" cases above; behavior with real user ideas; usefulness for people with ADHD; calibration of weights, thresholds and time multipliers against real outcomes.
