@@ -20,7 +20,7 @@ Idea Card if present (`references/idea-card.md`), else idea, customer, intended 
 ## Process (internal, do not narrate)
 1. **Who and what today:** the customer's real alternatives, including free and do-it-yourself. Up to 5 named competitors or substitutes with price **per the user's unit** (per portion, per month, per project) and a link.
 2. **Price position:** the user's price ÷ the typical found price, written as a ratio from the found prices only ("about 2× the 4 prices found"). Fewer than 3 prices found = "too few to compare".
-3. **Claim check:** the 1–2 claims the idea leans on (a statistic, "huge market", "everyone needs it"): found / not found / contradicted, with source. Top-down market size is background, not evidence.
+3. **Claim check:** the 1–2 claims the idea leans on (a statistic, "huge market", "everyone needs it"): found / not found / contradicted, with source ("not found" only after searching; otherwise "unchecked"). Top-down market size is background, not evidence.
 4. **Affordability:** the price as a share of the customer's typical budget or income, if findable (estimate, with how).
 5. **Rules that gate the idea:** one line (registration, licence, ingredient or data rules) with the official source, "verify locally".
 6. **What changes:** at most one change to the plan (price, segment, test or stop condition), phrased as a test "At least X % of Y will Z" if it is a test.
@@ -31,7 +31,7 @@ Idea Card if present (`references/idea-card.md`), else idea, customer, intended 
 | Alternative | Price (per unit) | Source type | Link |
 |---|---|---|---|
 **Price position:** … **Affordability:** …
-**Claims:** "…" → found | not found | contradicted (source)
+**Claims:** "…" → found | not found | contradicted (source) | unchecked (no search)
 **Rules:** … (verify locally)   **Change:** [one change or "none"]
 *Desk research is not demand: evidence level unchanged. Searches: N, as of [date]. Assumed: … Continue with: `idea-evaluation` (re-rank) · `idea-redteam`.*
 ```
