@@ -14,7 +14,7 @@ Reply in the user's language (this file is English only). Neutral, concrete, no 
 ## Modes
 | Mode | When | Output |
 |---|---|---|
-| **Quick** (default) | one or more ideas | template below, max ~350 words |
+| **Quick** (default) | one or more ideas | template below, max ~450 words |
 | **Update** | new idea(s) or new evidence for known ideas | re-score only what changed, show rank movement, max 120 words per idea |
 | **Deep** | "details on X" | one-idea dossier: assumptions map, unit economics, 3 tests, kill criteria |
 | **Export** | user wants a spreadsheet/file | `scripts/build_xlsx.py` (or CSV fallback), see bottom |
@@ -31,7 +31,7 @@ Reply in the user's language (this file is English only). Neutral, concrete, no 
    **Priority on Adjusted:** A ≥ 3.4 · B ≥ 2.8 · C ≥ 2.2 · D below. Show one decimal only (no false precision). Override only with a half-sentence reason.
    Ties (within 0.3): prefer the cheaper, faster test.
 6. **Capacity.** Recommend **one active idea, two at most** (work-in-progress limit). Everything else is parked with a revisit date. Compare required hours to the user's stated time.
-7. **Top 3 only:**
+7. **Top 3 only** (up to three A/B ideas; fewer if fewer qualify):
    - *Riskiest assumption* (user, problem, solution, business, feasibility, adoption): the one that kills the idea if false = high importance, no evidence.
    - *Cheapest test* from `references/tests.md`: time-boxed, with a numeric pass/fail threshold set **before** running it.
    - *Unit economics* if money is involved: `price − variable cost = margin; break-even = fixed costs ÷ margin`, plus customers realistically reachable in 12 months (not total market).
@@ -82,7 +82,7 @@ Reply in the user's language (this file is English only). Neutral, concrete, no 
 ## Boundaries and token budget
 - This skill **converges** (judges, decides). Generating or widening ideas belongs to a brainstorming step; do that only if asked.
 - Frameworks are internal tools: never explain them unless asked.
-- No web search unless a single fact could change the ranking. Load a `references/` file only when its topic applies. Run the script only on request. Prefer Update over re-evaluating from scratch.
+- No web search unless a single fact could change the ranking. Load a `references/` file only when its topic applies (`example.md` only to check format). Run the script only on request. Prefer Update over re-evaluating from scratch.
 
 ## Export
 Write JSON (schema in `scripts/build_xlsx.py` header), then:

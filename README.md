@@ -2,7 +2,7 @@
 
 A portable, user-neutral skill that evaluates and prioritizes ideas (business, product, invention, project, brainstorm output) and answers three questions: **what to start first, what to park, and the cheapest test for each.**
 
-- Decision first, one concrete next action, ≤ ~350-word output, same layout every time.
+- Decision first, one concrete next action, ≤ ~450-word output, same layout every time.
 - Designed to be low-friction for people with ADHD (and everyone else): bottom line up front, one next step, work-in-progress limit, "park, never delete" with revisit dates, time-boxed tests, pre-agreed kill criteria.
 - Replies in the user's language; the skill itself is written in English.
 - No personal assumptions: time, budget, currency and goals are asked once (max 3 questions) or labelled as assumptions.
@@ -19,6 +19,7 @@ idea-evaluation/
   references/invention-check.md   TRL scale, prior-art/patent search
   references/legal-flags.md   jurisdiction-neutral regulatory flags
   references/environment.md   cheapest build route by idea type
+  references/example.md       worked example (format and length check)
   scripts/build_xlsx.py       optional spreadsheet/CSV export (openpyxl)
 ```
 
