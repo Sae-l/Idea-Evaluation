@@ -35,9 +35,20 @@ Criterion pattern over all cases: S1 scored highest on **actionability** (4.5–
 |---|---|---|
 | Plain-language answer first, E-levels glossed on first use (+≈30 words in `idea-evaluation`) | Judges' main complaint about S1 | **Adopted, re-tested.** Re-run S1b vs S1: sum 19 vs 18 (A1), 19 vs 16 (A2), 21 vs 18 (B); S1b ranked first in B, second in A1/A2. One run per case, so weak evidence; word count 570–910, no regression. Jargon is still the top complaint. |
 | "Decision under test, not a verdict" wording in `idea-redteam` | Red team said "decision = start" while the evaluation said Park | Adopted (wording only, not separately tested) |
-| Market check with web search (competitor prices, claim check, affordability) | Clear added facts in 2 of 2 web runs | **Not adopted into the core.** Already available "on request". Candidate for an optional separate skill (`idea-market-check`); needs its own test and your decision. |
+| Market check with web search (competitor prices, claim check, affordability) | Clear added facts in 2 of 2 web runs | **Built as a separate optional skill `idea-market-check`** (not in the core); tested, see follow-up below. |
 | Scenario economics (LTV/CAC, three cases) | Judged deeper, also longer and more guesswork ("invented scenario numbers") | Not adopted (cost, speculation) |
 | Hard research gates, PDF/HTML dossiers, `verdict.json` | Not run / not measured | Not adopted |
 
+## Follow-up: `idea-market-check` (optional skill, built after this comparison)
+Built because web research was the one thing the rivals clearly added. Test on A1 with web search, 1 blind LLM judge, 3 answers (this skill vs `validate-idea` and `grill-my-idea` with web):
+
+| | market facts | honesty | decision clarity | low overwhelm | actionability | sum /25 | words |
+|---|---|---|---|---|---|---|---|
+| `idea-market-check` | 4 | 5 | 3 | 5 | 4 | **21** | 529 |
+| `validate-idea` + web | 4 | 3 | 5 | 2 | 4 | 18 | 1,434 |
+| `grill-my-idea` + web | 4 | 4 | 4 | 2 | 4 | 18 | 1,372 |
+
+Same market-facts score at about 37 % of the length. **Caveats:** one run, one judge; the new skill was asked only to "check the market" while the rivals were asked "should I do it?", which favors the narrower skill on length and overwhelm; it loses on decision clarity (it gives facts and one change, not a verdict, by design). Two more runs: without web search (M2) it invented nothing and marked all rows "unchecked"; on a translator payment-reminder idea (M3) it found free competing tools and that the "30 days" statistic does not describe translators, both mechanical checks passed. Cases: `evals/cases-market.md`.
+
 ## Still open
-Jargon-free output, a fair test of the optional market check, and a blind test by a real user (3 minutes: `evals/comparison/cases.md` plus any two outputs). Trigger accuracy and the 15 unrun eval cases are listed in `evals/RESULTS.md`.
+Jargon-free output, a repeat of the market-check test with more cases and human judges, and a blind test by a real user (3 minutes: `evals/comparison/cases.md` plus any two outputs). Trigger accuracy and the 15 unrun eval cases are listed in `evals/RESULTS.md`.

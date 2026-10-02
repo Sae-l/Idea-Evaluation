@@ -61,5 +61,8 @@ The skill-creator trigger harness (`evals/trigger/*.json`, 8 queries per skill: 
 ## Head-to-head with similar skills
 See `docs/COMPARISON.md`: 3 cases x 3-4 systems, blind LLM judges. No sign that the suite beats a skill-less baseline; better on one concrete first step, worse on plain-language clarity and depth. After the comparison, `idea-evaluation` puts a plain-language answer first (re-run on 3 cases: sum score +1, +3, +3 out of 25, one run each, weak evidence).
 
+## idea-market-check (cases M1-M3, `evals/cases-market.md`)
+M1 (web) 529 words, 6 searches, mechanical checks pass; blind judge: 21/25 vs 18 and 18 for the two rivals with web (1 run, 1 judge, narrower prompt, see `docs/COMPARISON.md`). M2 (no web): nothing invented, rows "unchecked"; the first run wrote "not found (not checked)", so the labels were tightened and not re-run. M3 (web): found free competing tools and a translator-specific counter-fact; checker false positive fixed. Trigger accuracy: not measured.
+
 ## Not yet measured
 Trigger accuracy; the "not run" cases above; behavior with real user ideas; usefulness for people with ADHD; calibration of weights, thresholds and time multipliers against real outcomes.
