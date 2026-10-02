@@ -1,24 +1,24 @@
 # Changelog
 
-## 3.1 (unreleased)
-- Competitive analysis of six related skill collections (`docs/COMPETITIVE-ANALYSIS.md`), done after the fact; drove the changes below.
-- Knockout floor in scoring (Demand, Feasibility or Cost = 1 caps priority at C) in Python, Excel and tests.
-- Path (bootstrap, venture, side-project, non-profit, research) sets the Upside bar; Idea Card gets `path` and `escape_route`; optional `ideas.md` state file; no-questions mode; escape routes for Recycle/Stop and "lifts to A" for B; optional market check; MoSCoW scope list in `idea-to-plan`.
-- `idea-evaluation` kept lean (~940 words) while adding these.
+Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
-## 3.0 (unreleased)
-- Monorepo: `skills/idea-evaluation`, new `skills/idea-to-plan` (analysis, milestones with gates, realistic to-do list, check-in), new `skills/idea-redteam` (independent pre-mortem, max 3 findings, Proceed / Fix first / Stop).
-- Shared Idea Card handoff format (`docs/idea-card.md`), kept identical across skills by `tests/test_skills_in_sync.py`.
-- `idea-evaluation` trimmed from 1,350 to ~930 words; description now says only when to use it.
-- Evals with baseline-vs-skill runs for the new skills (`evals/RESULTS.md`), new checkers `check_plan.py` and `check_redteam.py`.
-- ChatGPT instructions per skill (`docs/chatgpt-<skill>.md`); packages `dist/<skill>.skill`.
+## 3.1.0-beta.1 (unreleased)
+First public beta of the suite. Skill versions: `idea-evaluation` 3.1, `idea-to-plan` 1.0, `idea-redteam` 1.0.
 
-## 2.1
-- Added Capture mode, Recycle verdict, edge-case rules, shiny-object rule.
-- Added `references/checks.md` (reversibility, affordable loss, timing, advantage, portfolio, ethics, non-commercial goals, sensitivity, ranking bias).
-- Tests are written as XYZ hypotheses with skin in the game.
-- Scoring logic moved to `scripts/scoring.py` with `--sensitivity`; unit tests in `tests/`; Excel formulas cross-checked against Python.
-- Added `evals/` (12 cases + mechanical output checker), `docs/RESEARCH.md`, ChatGPT instructions, packaged `dist/idea-evaluation.skill`.
+**Skills**
+- `idea-evaluation`: gate, six-criterion score with evidence adjustment (E0–E4), knockout floor (Demand, Feasibility or Cost = 1 caps priority at C), path-specific Upside bar, work-in-progress limit, escape routes, Capture/Update/Export modes, optional `ideas.md` state file, no-questions mode, optional market check.
+- `idea-to-plan` (new): reality check, riskiest-assumption test, milestones with gates, one realistic to-do list (tasks ≤60 min, ≤3 starred for today, load ≤70 % of hours), if-then start cue, check-in mode.
+- `idea-redteam` (new): independent pre-mortem, max 3 findings with a cheap XYZ test each, steelman, Proceed / Fix first / Stop.
+- Shared Idea Card handoff format (`docs/idea-card.md`).
 
-## 2.0
-- Full rewrite in English, user-neutral, evidence-adjusted scoring, ADHD-friendly output, references on demand.
+**Tooling and project**
+- `scripts/scoring.py` (logic, sensitivity check), `scripts/build_xlsx.py` (spreadsheet/CSV, formula-injection safe), unit tests, spreadsheet-formula cross-check, skills-in-sync check, reproducible packages (`tools/build_packages.py`).
+- Evals and honest results (`evals/`), research notes (`docs/RESEARCH.md`), competitive analysis (`docs/COMPETITIVE-ANALYSIS.md`), ChatGPT instructions per skill.
+- MIT license, security policy, contributing guide, code of conduct, CI, CodeQL, release workflow, issue and PR templates, Dependabot.
+
+**Known limits (beta)**: weights, thresholds and time multipliers are uncalibrated defaults; trigger accuracy of the skill descriptions is unmeasured; no head-to-head comparison with similar skills; usefulness for people with ADHD is a design hypothesis, not tested with users; run-to-run score variation of about ±0.5 observed. See `evals/RESULTS.md`.
+
+## Earlier internal versions
+- 2.1: Capture mode, Recycle verdict, checks reference, XYZ tests, scoring module and tests, evals, packaging.
+- 2.0: rewrite in English, user-neutral, evidence-adjusted scoring, ADHD-friendly output.
+- 1.x: original German single skill.

@@ -1,5 +1,8 @@
 # Idea Evaluation Suite
 
+> **Status: public beta** · MIT licensed · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
+> Weights and thresholds are uncalibrated defaults, skill triggering is unmeasured, and the ADHD-friendly design is a hypothesis not yet tested with users. See [evals/RESULTS.md](evals/RESULTS.md) and [docs/RESEARCH.md](docs/RESEARCH.md).
+
 Three small, portable, user-neutral skills for going from a pile of ideas to a decision, a realistic plan and a stress test. Built to be low-friction for people with ADHD (and everyone else): verdict first, one small next action, work-in-progress limit, "park, never delete", time-boxed tests with stop criteria agreed in advance. Replies follow the user's language; the skills are written in English.
 
 | Skill | Use it when | Output |
@@ -23,7 +26,10 @@ skills/idea-evaluation/scripts/  scoring.py (logic + sensitivity check), build_x
 docs/                            idea-card.md, RESEARCH.md (sources, confidence, limits), chatgpt-<skill>.md
 tests/                           unit tests, spreadsheet-formula cross-check, skills-in-sync check
 evals/                           eval cases and mechanical output checkers
-dist/                            packaged <skill>.skill files
+dist/                            packaged <skill>.skill files (rebuilt by tools/build_packages.py, checked in CI)
+tools/                           build_packages.py
+.github/                         CI, CodeQL, release workflow, issue/PR templates, Dependabot
+SECURITY.md · CONTRIBUTING.md · CODE_OF_CONDUCT.md · LICENSE · docs/RELEASING.md
 ```
 
 ## Install
@@ -38,9 +44,11 @@ dist/                            packaged <skill>.skill files
 `python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header.
 
 ## Quality
-See `docs/RESEARCH.md` for sources, confidence per design decision and known limits (weights are uncalibrated; ADHD benefit is a design hypothesis, not yet tested with users; trigger accuracy of the descriptions is untested, see `evals/RESULTS.md`). Run `python tests/test_scoring.py` and `python tests/test_skills_in_sync.py` after changes; `evals/` holds eval cases and checkers (`check_output.py`, `check_plan.py`, `check_redteam.py`) and `evals/RESULTS.md` the latest measured results.
+See `docs/RESEARCH.md` for sources, confidence per design decision and known limits (weights are uncalibrated; ADHD benefit is a design hypothesis, not yet tested with users; trigger accuracy of the descriptions is untested, see `evals/RESULTS.md`). Run `pip install -r requirements-dev.txt && python tests/run_all.py` after changes (CI does the same); `evals/` holds eval cases and checkers (`check_output.py`, `check_plan.py`, `check_redteam.py`) and `evals/RESULTS.md` the latest measured results.
 
 ## Sources behind the method
 Desirability/Viability/Feasibility (IDEO), Stage-Gate (Cooper), Assumption Mapping (Bland & Osterwalder, *Testing Business Ideas*), Lean Startup, Jobs-to-be-Done, The Mom Test, Pretotyping, Effectuation (Sarasvathy), Pre-mortem (Klein), reference-class forecasting (Kahneman), ICE/RICE/WSJF, TRL. Base-rate example: US BLS Business Employment Dynamics.
 
-Estimates produced by the skill are rough (±50 %) and not professional advice.
+Estimates produced by the skills are rough (±50 %) and not professional, legal, financial or medical advice. Feedback from real use, especially from people with ADHD, is the most useful contribution: see the issue templates.
+
+License: [MIT](LICENSE).

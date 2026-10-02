@@ -37,4 +37,13 @@ with tempfile.TemporaryDirectory() as d:
     wb = openpyxl.load_workbook(os.path.join(d, "o.xlsx"))
     assert wb.sheetnames == ["Comparison", "Settings", "Capacity"]
     assert wb["Settings"]["B2"].value == 0.25 and wb["Settings"]["B18"].value == 3.4
-    print("build ok")
+        # formula injection: user text starting with = + - @ must stay text
+    inj = {"ideas": [{"idea": "=HYPERLINK(\"http://x\")", "problem": "@SUM(1)", "upside": 3, "demand": 3, "feasibility": 3, "cost": 3, "speed": 3, "fit": 3}]}
+    jp = os.path.join(d, "inj.json"); json.dump(inj, open(jp, "w"))
+    for fmt, name in (("--csv", "i.csv"), ("", "i.xlsx")):
+        r = subprocess.run([sys.executable, os.path.join(SCRIPTS, "build_xlsx.py"), jp, os.path.join(d, name)] + ([fmt] if fmt else []), capture_output=True, text=True)
+        assert r.returncode == 0, r.stderr
+    cell = openpyxl.load_workbook(os.path.join(d, "i.xlsx"))["Comparison"]["B2"]
+    assert cell.data_type == "s", cell.data_type
+    assert open(os.path.join(d, "i.csv"), encoding="utf-8").read().splitlines()[1].split(",")[1].startswith("\"'=") or "'=HYPERLINK" in open(os.path.join(d, "i.csv"), encoding="utf-8").read()
+    print("build ok; injection neutralized")

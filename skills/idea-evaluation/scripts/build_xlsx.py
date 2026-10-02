@@ -39,6 +39,14 @@ ideas = data.get("ideas", [])
 score = lambda d: _score(d, W, EF, TH)
 
 
+DANGEROUS = ("=", "+", "-", "@", "\t", "\r")
+
+
+def safe_csv(v):
+    """Neutralize spreadsheet formula injection in text cells (OWASP: prefix with a single quote)."""
+    return "'" + v if isinstance(v, str) and v.startswith(DANGEROUS) else v
+
+
 if as_csv:
     cols = ["id", "idea", "problem"] + CRIT + ["evidence", "adjusted_score", "priority", "hours_week",
             "weeks_to_first_evidence", "riskiest_assumption", "test", "pass_threshold", "margin", "breakeven_customers"]
@@ -46,9 +54,9 @@ if as_csv:
         w = csv.writer(f); w.writerow(cols)
         for d in ideas:
             s, p = score(d); m, be = econ(d)
-            w.writerow([d.get("id"), d.get("idea"), d.get("problem")] + [d.get(c) for c in CRIT] +
-                       [d.get("evidence"), s, p, d.get("hours_week"), d.get("weeks_to_first_evidence"),
-                        d.get("riskiest_assumption"), d.get("test"), d.get("pass_threshold"), m, be])
+            w.writerow([safe_csv(v) for v in [d.get("id"), d.get("idea"), d.get("problem")] + [d.get(c) for c in CRIT] +
+                        [d.get("evidence"), s, p, d.get("hours_week"), d.get("weeks_to_first_evidence"),
+                         d.get("riskiest_assumption"), d.get("test"), d.get("pass_threshold"), m, be]])
     print("saved:", out); sys.exit()
 
 from openpyxl import Workbook
@@ -121,6 +129,8 @@ ideas_sorted = sorted(ideas, key=lambda d: (order.get(score(d)[1], 4), -(score(d
 for r, d in enumerate(ideas_sorted, 2):
     for j, (_, k, _) in enumerate(cols, 1):
         cell = ws.cell(r, j, fx(k, r) if k.startswith("=") else d.get(k))
+        if not k.startswith("=") and isinstance(cell.value, str) and cell.value.startswith(DANGEROUS):
+            cell.data_type = "s"   # user text is never a formula
         cell.font = F; cell.border = BD; cell.alignment = Alignment(wrap_text=True, vertical="top")
         if k in CRIT or k in ("evidence", "hours_week", "price", "variable_cost", "fixed_costs") or k.startswith("gate_"):
             cell.fill = IN

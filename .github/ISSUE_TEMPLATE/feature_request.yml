@@ -1,0 +1,17 @@
+name: Feature or improvement
+description: Suggest a change. Please say what it would remove or shorten as well, the token budget is tight.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What problem does this solve, and for whom?
+    validations: {required: true}
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed change (and what it replaces or cuts)
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence (source, comparison with another tool, or an example prompt)
