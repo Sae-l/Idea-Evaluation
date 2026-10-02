@@ -9,10 +9,10 @@
 | Execution | Which step needs a skill, permission, partner or supplier the user does not have? Which hidden task is biggest? |
 | Timing / reversibility | Is there a window? What is irreversible (contract, public disclosure, spend)? Can the first step be undone? |
 | Legal / ethical / harm | Which rule, license, claim limit or safety duty might apply (verify locally)? Who could be hurt or misled? |
-| Assumption stack | How many independent things must be true? Multiply plausible odds. A long stack is fragile even if each step looks likely. |
+| Assumption stack | How many independent conditions must all hold? Count them; do not compute a probability. A long stack is fragile even if each step looks likely. |
 | Sustainability | Does the plan assume steady energy and uninterrupted weeks? What happens after a missed week? Is there a slack buffer? |
 | Single point of failure | One supplier, platform, person, channel, algorithm? What if it disappears? |
 
 Cognitive traps to check in the user's own reasoning: planning fallacy (inside view), survivorship bias (only successes cited), confirmation bias (only friendly feedback), sunk cost (continuing because of past spend), anchoring on an earlier score.
 
-Severity guide: fatal = idea cannot work or causes harm; major = changes economics or timeline by a multiple; minor = fix during execution.
+Severity guide: fatal = cannot work or causes harm (→ Stop, or Fix first if a named fix exists); major = changes economics or timeline by a multiple (→ Fix first); minor = fix during execution (→ Proceed).

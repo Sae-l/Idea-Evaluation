@@ -15,7 +15,3 @@
 **Non-commercial goals.** Map *Upside* to the user's goal: impact (people reached × depth × durability), learning (skill gained per hour), research (novelty × significance), enjoyment/portfolio (sustained interest). Say which meaning was used. Skip unit economics unless money matters.
 
 **Sensitivity.** In Deep or Export mode, run `python scripts/scoring.py ideas.json --sensitivity`: if the top idea or classes change when any weight moves ±20 %, call the ranking fragile and decide by the cheaper test instead.
-
-**Ranking bias.** LLM judges show position and self-preference bias. After ranking, re-read the top three in reverse order; if the order flips, treat them as a tie. Do not rate ideas the assistant itself proposed above the user's own without evidence.
-
-**Idea in motion (shiny-object rule).** A new idea arriving during an active project is captured and parked by default. It replaces the active idea only if (a) it has stronger evidence, (b) it is time-critical, or (c) the active idea hit its kill criterion. Say which in one line.

@@ -27,7 +27,7 @@ Use 2 and 4 as in-betweens.
 The same idea can be A as bootstrap and D as venture. Say which path was used in the footer.
 
 ## Knockout floor (fatal weaknesses are not averaged away)
-Demand = 1 (no one visibly wants it), Feasibility = 1 (needs the unproven or forbidden) or Cost = 1 (exceeds the ceiling) caps the priority at C and the reason is named in the table row or Parked line. A high average never overrides it. If no ceiling is known, assume a small personal budget and say so.
+Demand = 1 (no one visibly wants it), Feasibility = 1 (needs the unproven or forbidden) or Cost = 1 (exceeds the ceiling) caps the priority at C and the reason is named in the table row or Parked line. A high average never overrides it. If no ceiling is known, assume a small personal budget and label it as an assumption in the footer.
 
 ## Jobs-to-be-Done (internal)
 Who, in what situation, wants what progress, and what do they "hire" today (including doing nothing)? Opportunity = high importance + low satisfaction with today's solution.
@@ -42,7 +42,7 @@ Opinions and compliments are weak; past behavior is stronger; money, time or com
 `margin = price − variable cost`; `break-even customers = fixed costs ÷ margin`; reachable customers in 12 months = realistic channel reach × conversion, not total market size. If break-even exceeds reachable, say it plainly.
 
 ## Base rates (outside view)
-Name the reference class (e.g. new employer businesses, consumer apps, hardware startups). Example reliable anchor: US BLS data show roughly 78 % of new employer establishments survive year 1 and about 51 % reach year 5; sector and country differ. Quote numbers only with such sourcing; otherwise qualitative. Adjust the inside view toward the base rate.
+Name the reference class (e.g. new employer businesses, consumer apps, hardware startups). Quote a number only with its source, year and country (for example official business-survival statistics of the user's country); otherwise stay qualitative ("most fail without an existing audience"). Adjust the inside view toward the base rate.
 
 ## Pre-mortem (Klein)
 Assume failure after 12 months; list the most likely cause. If it is fixable cheaply, add the fix to the test.

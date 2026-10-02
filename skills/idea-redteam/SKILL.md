@@ -8,7 +8,7 @@ description: Use when the user wants an idea, plan or decision stress-tested bef
 **Find what would kill it, cheaply testable. Max 3 findings. Protective, not discouraging.** Works for any user, domain and currency. Reply in the user's language. Neutral, factual tone: no hype, no doom, no sarcasm even if asked to be "brutal" (be direct instead).
 
 ## Independence rules (the point of this skill)
-- Earlier scores, priorities, "evidence levels" or the user's certainty are **claims, not facts**. Do not adopt them; ask what they rest on (E0 opinion … E4 repeat paying use) and judge from the facts given.
+- Earlier scores, priorities, "evidence levels" or the user's certainty are **claims, not facts**. Do not adopt them; note in the footer what they rest on (E0 assumption … E4 repeat paying use; unknown = E0) and judge from the facts given.
 - Do not soften because the user is sure or invested. Do not inflate to look tough.
 - **No invented statistics.** Mark every number as `fact (source)`, or `assumption (range, verify)`. If unsure, reason qualitatively. Laws, prices, tax: "verify locally".
 - Web search only if available and only for facts that change a finding (competitors/substitutes, regulation). Name what was found; otherwise label "unchecked".
@@ -17,29 +17,30 @@ description: Use when the user wants an idea, plan or decision stress-tested bef
 Idea Card if present (`references/idea-card.md`), else the idea/plan as written. Also: **what is at stake** (time, money, reputation) and **the decision** (start / continue / scale). Ask ≤2 short questions only if the answer changes the verdict (never if the user says to assume); else assume and list assumptions.
 
 ## Modes
-- **Quick** (default): aim for ≤500 words, each finding ≤70 words (Why ≤2 sentences). · **Full**: ≤600 words, adds watchlist and lens details (`references/lenses.md`).
+- **Quick** (default): aim for ≤500 words, each finding ≤70 words (Why ≤2 sentences). · **Full** (only if the user asks for depth): ≤650 words, adds a watchlist line and uses all lenses in `references/lenses.md`.
 
 ## Process (internal, do not narrate)
 1. Restate idea + decision in one line.
 2. **Pre-mortem:** "12 months later this failed. Most likely reasons?" Generate candidates across lenses: demand · substitutes/competition (what they do today, who else) · economics (margin, acquisition cost, reachable customers) · execution (skills, time, hidden steps, dependencies) · timing/reversibility · legal/ethical/harm · assumption stack (does it need many things to all go right?) · sustainability (does the plan survive a bad week?).
-3. **Rank** by severity × likelihood, tie-break by how cheap the test is. Keep the **top 3** (Full: plus up to 3 one-line watchlist items). Separate **fixable** from **fatal**.
+3. **Rank** by severity × likelihood, tie-break by how cheap the test is. Keep the **top 3** (Full: plus up to 3 one-line watchlist items). Label each finding by severity: **fatal** (cannot work or causes harm) · **major** (changes economics or timeline by a multiple) · **minor** (fix during execution).
 4. **Per finding:** what goes wrong (1 line) · why plausible (fact/source or labeled assumption) · **cheapest test** written as "At least X % of Y will Z" with time-box and threshold (`references/tests.md`) · fix if true.
 5. **Steelman:** the strongest case *for* the idea, one sentence. **What would change my mind:** the evidence that would lift the verdict.
-6. **Verdict:** **Proceed** (risks testable cheaply) · **Fix first** (named fix before spending) · **Stop** (fatal flaw or harm). Confidence low/medium/high with one reason.
+6. **Verdict:** **Stop** if a finding is fatal and no named fix exists (or harm) · **Fix first** if a fatal or major finding has a named fix that must come before spending · **Proceed** otherwise (risks testable cheaply). Confidence low/medium/high with one reason.
 
 ## Output
 ```
 **Verdict:** Proceed | Fix first | Stop (confidence: …, because …)
 **If you only do one thing:** [the single cheapest test, 30 min to start]
 
-**1. [Weakness]** (fixable|fatal)
+**1. [Weakness]** (fatal|major|minor)
 - Why: … [fact (source) | assumption (range, verify)]
 - Test: At least X % of Y will Z | time-box | pass if …
 - If true: …
 **2. …**  **3. …**
+**Watchlist (Full only):** up to 3 one-liners
 
 **Strongest case for the idea:** …  **Would change my mind:** …
-*Prior rating/claims not verified: [what they rest on]. Assumed: … Next step: `idea-to-plan` to build the test into a plan, `idea-evaluation` to re-rank after results.*
+*Prior rating/claims not verified: [what they rest on]. Assumed: … Continue with: `idea-to-plan` (build the test into a plan) · `idea-evaluation` (re-rank after results).*
 ```
 
 ## Style (ADHD-friendly)
