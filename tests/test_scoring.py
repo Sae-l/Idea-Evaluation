@@ -122,7 +122,7 @@ with tempfile.TemporaryDirectory() as d:
 
     # CSV export: all columns, sorted like the sheet, BOM, injection neutralized, input never overwritten
     inj = {"currency": "=CUR", "ideas": [idea(idea="=HYPERLINK(\"http://x\")", problem="@SUM(1)", notes="-cmd", gate_viability="yes",
-                                               price=10, variable_cost=12, fixed_costs=100),
+                                               price=10, variable_cost=12, fixed_costs=100, cost_to_mvp="low"),
                                           idea(idea="b", upside=5, demand=5, feasibility=5, cost=5, speed=5, fit=5, evidence="E4")]}
     json.dump(inj, open(p("inj.json"), "w"))
     run(os.path.join(SCRIPTS, "build_xlsx.py"), p("inj.json"), p("i.csv"), "--csv")
@@ -133,6 +133,7 @@ with tempfile.TemporaryDirectory() as d:
     other = rows[1]
     assert other["idea"].startswith("'=") and other["problem"].startswith("'@") and other["notes"].startswith("'-"), other
     assert other["gate_viability"] == "yes" and other["breakeven_customers"] == "no margin", other
+    assert other["cost_to_mvp"] == "low", other   # accepted input field must not be dropped from the export
     run(os.path.join(SCRIPTS, "build_xlsx.py"), p("inj.json"), p("inj.json"), "--csv", expect=2)      # same in/out path
     run(os.path.join(SCRIPTS, "build_xlsx.py"), p("bad.json"), p("x.csv"), "--csv", expect=2)          # invalid input
     json.dump({"ideas": []}, open(p("empty.json"), "w"))

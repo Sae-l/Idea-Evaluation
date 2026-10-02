@@ -56,7 +56,7 @@ def safe_csv(v):
 
 if as_csv:
     cols = (["id", "idea", "problem", "gate_desirability", "gate_feasibility", "gate_viability"] + CRIT +
-            ["evidence", "adjusted_score", "priority", "hours_week", "weeks_to_first_evidence", "riskiest_assumption",
+            ["evidence", "adjusted_score", "priority", "cost_to_mvp", "hours_week", "weeks_to_first_evidence", "riskiest_assumption",
              "test", "pass_threshold", "price", "variable_cost", "fixed_costs", "margin", "breakeven_customers",
              "premortem", "notes"])
     with open(out, "w", newline="", encoding="utf-8-sig") as f:   # BOM so spreadsheet software reads UTF-8
@@ -107,7 +107,7 @@ cols = [("ID", "id", 5), ("Idea", "idea", 30), ("Problem / who / today solved by
         ("Gate: desirability", "gate_desirability", 11), ("Gate: feasibility", "gate_feasibility", 11),
         ("Gate: viability", "gate_viability", 11)] + [(c.capitalize() + " (1-5)", c, 9) for c in CRIT] + \
        [("Evidence (E0-E4)", "evidence", 9), ("Raw score", "=raw", 8), ("Adjusted score", "=adj", 9),
-        ("Priority", "=prio", 8), ("Hours/week", "hours_week", 8), ("Weeks to first evidence", "weeks_to_first_evidence", 10),
+        ("Priority", "=prio", 8), ("Cost to MVP", "cost_to_mvp", 10), ("Hours/week", "hours_week", 8), ("Weeks to first evidence", "weeks_to_first_evidence", 10),
         ("Riskiest assumption", "riskiest_assumption", 32), ("Cheapest test", "test", 36), ("Pass threshold", "pass_threshold", 24),
         (f"Price {cur}".strip(), "price", 8), (f"Variable cost {cur}".strip(), "variable_cost", 10),
         (f"Fixed costs {cur}".strip(), "fixed_costs", 10), ("Margin", "=margin", 8), ("Break-even customers", "=be", 10),

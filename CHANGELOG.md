@@ -2,7 +2,7 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
-## 3.1.0-beta.1 (unreleased)
+## 3.1.0-beta.1 (2026-10-02)
 First public beta of the suite. Skill versions: `idea-evaluation` 3.1, `idea-to-plan` 1.0, `idea-redteam` 1.0, `idea-market-check` 1.0 (optional).
 
 **Skills**
@@ -10,6 +10,7 @@ First public beta of the suite. Skill versions: `idea-evaluation` 3.1, `idea-to-
 - `idea-to-plan` (new): reality check, riskiest-assumption test, milestones with gates, one realistic to-do list (tasks ≤60 min, ≤3 starred for today, load ≤70 % of hours), if-then start cue, check-in mode.
 - `idea-redteam` (new): independent pre-mortem, max 3 findings with a cheap XYZ test each, steelman, Proceed / Fix first / Stop.
 - `idea-market-check` (new, optional, needs web search): named competitors/substitutes with price per unit and links, price ratio from found prices, claim check, affordability, one change to the plan; never raises the evidence level; says "unchecked" instead of guessing when it cannot search.
+- Exports (CSV/XLSX) now include the accepted `cost_to_mvp` field; CodeQL workflow grants `actions: read` (needed on some repositories).
 - Shared Idea Card handoff format (`docs/idea-card.md`).
 - After a blind head-to-head ([docs/COMPARISON.md](docs/COMPARISON.md)): `idea-evaluation` now answers the user's question in plain words first and glosses E-levels; `idea-redteam` labels the "decision under test" so it is not read as a second verdict.
 
