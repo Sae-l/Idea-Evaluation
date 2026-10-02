@@ -37,4 +37,4 @@
 Mandatory deep web research (cost, freshness risk), HTML/PDF dossiers, pitch/fundraising/GTM generation, dated market-data files that need upkeep. They fit a "validate one startup" product; this suite optimizes cheap decisions across many ideas.
 
 ## Still unknown
-Whether this suite is *better* than any of the above on real ideas. Needs a head-to-head on the same 5–10 ideas with blind judging.
+Whether this suite is *better* than any of the above on real ideas. A small head-to-head (3 cases, blind LLM judges) is in [COMPARISON.md](COMPARISON.md): no sign of superiority, and no better results from the baseline either beyond noise. A test with real ideas and human judges is still missing.

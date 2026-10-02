@@ -58,5 +58,8 @@ Baselines were already competent on content. The skills added structure: a verdi
 ## Trigger accuracy: not measured
 The skill-creator trigger harness (`evals/trigger/*.json`, 8 queries per skill: 4 should trigger, 4 should not; 2 runs each) produced almost no triggers in this sandbox. Per skill, only 1 of 4 positive queries triggered, and only in 1 of 2 runs. A control with the older German skill, whose description matched the queries, also scored 0 of 4. With 100+ competing skills and headless `claude -p`, the harness does not discriminate here. Re-run in a real client.
 
+## Head-to-head with similar skills
+See `docs/COMPARISON.md`: 3 cases x 3-4 systems, blind LLM judges. No sign that the suite beats a skill-less baseline; better on one concrete first step, worse on plain-language clarity and depth. After the comparison, `idea-evaluation` puts a plain-language answer first (re-run on 3 cases: sum score +1, +3, +3 out of 25, one run each, weak evidence).
+
 ## Not yet measured
 Trigger accuracy; the "not run" cases above; behavior with real user ideas; usefulness for people with ADHD; calibration of weights, thresholds and time multipliers against real outcomes.
