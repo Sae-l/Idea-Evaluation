@@ -23,4 +23,4 @@ body:
     id: followed
     attributes:
       label: Did you do the suggested first step?
-      options: [yes, partly, no, not applicable]
+      options: ["Yes", "Partly", "No", "Not applicable"]

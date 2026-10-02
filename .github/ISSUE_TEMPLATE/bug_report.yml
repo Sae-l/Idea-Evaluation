@@ -19,6 +19,11 @@ body:
       label: Your prompt (remove private details)
     validations: {required: true}
   - type: textarea
+    id: details
+    attributes:
+      label: For script or spreadsheet problems, the Python version, command and full error message
+      render: shell
+  - type: textarea
     id: expected
     attributes:
       label: What happened, and what did you expect?
