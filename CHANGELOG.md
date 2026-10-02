@@ -2,6 +2,11 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
+## 3.1.0-beta.2 (2026-10-02)
+Documentation and release process only; the skills are unchanged. `v3.1.0-beta.1` was published by hand without the `.skill` package files and, as an immutable release, cannot be amended: use this release for the packages.
+- README status block and skill count fixed; CodeQL is skipped for Dependabot runs (read-only token).
+- Release workflow now starts from Actions > Release > Run workflow and creates a draft release with the files attached; the maintainer publishes it.
+
 ## 3.1.0-beta.1 (2026-10-02)
 First public beta of the suite. Skill versions: `idea-evaluation` 3.1, `idea-to-plan` 1.0, `idea-redteam` 1.0, `idea-market-check` 1.0 (optional).
 

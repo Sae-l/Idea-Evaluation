@@ -1,9 +1,10 @@
 # Idea Evaluation Suite
 
 > **Status: public beta** · MIT licensed · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
+>
 > Weights and thresholds are uncalibrated defaults, skill triggering is unmeasured, and the ADHD-friendly design is a hypothesis not yet tested with users. See [evals/RESULTS.md](evals/RESULTS.md) and [docs/RESEARCH.md](docs/RESEARCH.md).
 
-Three small, portable, user-neutral skills for going from a pile of ideas to a decision, a realistic plan and a stress test. Designed with ADHD-friendly principles (not yet tested with users): verdict first, one small next action, work-in-progress limit, "park, never delete", time-boxed tests with stop criteria agreed in advance. Replies follow the user's language; the skills are written in English.
+Three core skills (plus one optional, `idea-market-check`), small, portable and user-neutral, for going from a pile of ideas to a decision, a realistic plan and a stress test. Designed with ADHD-friendly principles (not yet tested with users): verdict first, one small next action, work-in-progress limit, "park, never delete", time-boxed tests with stop criteria agreed in advance. Replies follow the user's language; the skills are written in English.
 
 | Skill | Use it when | Output |
 |---|---|---|
