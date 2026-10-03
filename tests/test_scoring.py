@@ -94,6 +94,11 @@ X = idea(idea="X knockout", upside=5, demand=1, feasibility=5, cost=5, speed=5, 
 Y = idea(idea="Y solid", upside=4, demand=4, feasibility=4, cost=4, speed=4, fit=4, evidence="E4")
 assert score(X, w, ev, th) == (4.2, "C") and score(Y, w, ev, th) == (4.0, "A")
 assert sensitivity([X, Y], w, ev, th)["top"] == ["Y solid"], sensitivity([X, Y], w, ev, th)
+# ideas whose displayed score is equal (3.75 and 3.8 both show 3.8/A) are a tie, as in the export
+P = idea(idea="P", upside=3, demand=4, feasibility=4, cost=4, speed=4, fit=4, evidence="E4")
+Q = idea(idea="Q", upside=4, demand=3, feasibility=4, cost=4, speed=4, fit=4, evidence="E4")
+assert score(P, w, ev, th) == (3.8, "A") and score(Q, w, ev, th) == (3.8, "A")
+assert sensitivity([P, Q], w, ev, th)["top"] == ["P", "Q"], sensitivity([P, Q], w, ev, th)
 print("scoring ok;", s)
 
 # --- command line and spreadsheet export

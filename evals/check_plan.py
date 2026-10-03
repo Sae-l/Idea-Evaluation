@@ -35,5 +35,5 @@ if mode == "plan" and latin:
         if not re.search(pat, text, re.I): fails.append(f"missing {need}")
 elif latin and mode != "plan":
     if not re.search(r"continue|pivot|stop", text, re.I): fails.append("no verdict")
-print(f"{words} words, {len(tasks)} tasks{'' if latin else ' (non-Latin text: label checks skipped)'};", "FAIL: " + "; ".join(fails) if fails else "mechanical checks passed")
+print(f"{words} words, {len(tasks)} tasks{'' if latin else ' (non-Latin text: label checks NOT RUN)'};", "FAIL: " + "; ".join(fails) if fails else "mechanical checks passed")
 sys.exit(1 if fails else 0)

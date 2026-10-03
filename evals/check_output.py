@@ -20,5 +20,5 @@ else:
     if words > 120 * 3 * scale: fails.append(f"update too long: {words} words")
 if latin and re.search(r"\b(I have used the skill|I used the skill|as a language model)\b", text, re.I):
     fails.append("contains preamble about the skill")
-print(f"{words} words{'' if latin else ' (non-Latin text: label checks skipped)'};", "FAIL: " + "; ".join(fails) if fails else "mechanical checks passed")
+print(f"{words} words{'' if latin else ' (non-Latin text: label checks NOT RUN)'};", "FAIL: " + "; ".join(fails) if fails else "mechanical checks passed")
 sys.exit(1 if fails else 0)
