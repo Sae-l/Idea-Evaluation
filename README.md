@@ -2,11 +2,14 @@
 
 [![CI](https://github.com/Sae-l/Idea-Evaluation/actions/workflows/ci.yml/badge.svg)](https://github.com/Sae-l/Idea-Evaluation/actions/workflows/ci.yml) [![CodeQL](https://github.com/Sae-l/Idea-Evaluation/actions/workflows/codeql.yml/badge.svg)](https://github.com/Sae-l/Idea-Evaluation/actions/workflows/codeql.yml) [![License: MIT](https://img.shields.io/github/license/Sae-l/Idea-Evaluation)](LICENSE) [![Release](https://img.shields.io/github/v/release/Sae-l/Idea-Evaluation?include_prereleases)](https://github.com/Sae-l/Idea-Evaluation/releases)
 
-> **Status: public beta** · MIT licensed · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
+> [!NOTE]
+> **Public beta** · MIT licensed · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
 >
-> Weights and thresholds are uncalibrated defaults, skill triggering is unmeasured, and the ADHD-friendly design is a hypothesis not yet tested with users. See [evals/RESULTS.md](evals/RESULTS.md) and [docs/RESEARCH.md](docs/RESEARCH.md).
+> Read [What we know so far](#what-we-know-so-far) before relying on the scores. Measured results: [evals/RESULTS.md](evals/RESULTS.md); sources and limits: [docs/RESEARCH.md](docs/RESEARCH.md).
 
 **Decide which idea to start, plan it realistically, and try to break it before you spend time or money.**
+
+[Who it is for](#who-it-is-for) · [Example](#example) · [Install](#install) · [Use](#use) · [Limits](#what-we-know-so-far) · [Contribute](CONTRIBUTING.md)
 
 ## Who it is for
 - You have more ideas than time (side projects, a small business, inventions, a non-profit, research) and want **one next action** instead of a long report.
@@ -91,7 +94,14 @@ Tips: say your hours per week, money and goal; say "assume, don't ask me questio
 `python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header.
 
 ## Method (in short)
-Viability gate (desirability / feasibility / viability) → six-criterion weighted score → **evidence adjustment** (opinion < behavior < commitment, E0–E4) → priority A–D → riskiest assumption → cheapest test with numeric pass threshold → unit economics, base rate, pre-mortem. Technology readiness level and prior-art check for inventions. Details load on demand from `references/` to save tokens.
+1. **Gate:** desirability, feasibility, viability. A clear "no" stops the idea.
+2. **Score:** six weighted criteria, rated 1-5, one criterion across all ideas at a time.
+3. **Evidence adjustment:** opinion < behavior < commitment (E0-E4) lowers or keeps the score.
+4. **Priority A-D** and a verdict (start, recycle, park, stop) within your weekly hours.
+5. **Riskiest assumption** and the cheapest test with a numeric pass threshold.
+6. **Unit economics, base rate and a pre-mortem** for the top idea; technology readiness and prior-art check for inventions.
+
+Details load on demand from `references/` to save tokens.
 
 ## Layout
 | Path | What it is |
@@ -112,13 +122,16 @@ Viability gate (desirability / feasibility / viability) → six-criterion weight
 Measure trigger accuracy in real clients, run a blind test with real users, calibrate weights and thresholds from real outcomes, and fix the jargon that testers name most. Details and open gaps: [evals/RESULTS.md](evals/RESULTS.md).
 
 ## Quality
-See `docs/RESEARCH.md` for sources, confidence per design decision and known limits (weights are uncalibrated; ADHD benefit is a design hypothesis, not yet tested with users; trigger accuracy of the descriptions is untested, see `evals/RESULTS.md`). Run `pip install -r requirements-dev.txt && python tests/run_all.py` after changes (CI does the same); `evals/` holds eval cases and checkers (`check_output.py`, `check_plan.py`, `check_redteam.py`) and `evals/RESULTS.md` the latest measured results.
+- **Sources and confidence per design decision:** [docs/RESEARCH.md](docs/RESEARCH.md).
+- **Measured results and open gaps:** [evals/RESULTS.md](evals/RESULTS.md) (eval cases and checkers live in `evals/`).
+- **Run the checks after changes:** `pip install -r requirements-dev.txt && python tests/run_all.py` (CI does the same).
 
 ## Sources behind the method
 Desirability/Viability/Feasibility (IDEO), Stage-Gate (Cooper), Assumption Mapping (Bland & Osterwalder, *Testing Business Ideas*), Lean Startup, Jobs-to-be-Done, The Mom Test, Pretotyping, Effectuation (Sarasvathy), Pre-mortem (Klein), reference-class forecasting (Kahneman), ICE/RICE/WSJF, TRL. Base-rate example: US BLS Business Employment Dynamics.
 
 Estimates produced by the skills are rough (±50 %) and not professional, legal, financial or medical advice. Feedback from real use, especially from people with ADHD, is the most useful contribution: see the issue templates.
 
-**Privacy:** when you use the skills in a hosted assistant (Claude, ChatGPT, Copilot), your ideas are sent to that provider under its terms. Do not paste secrets or confidential plans you are not allowed to share.
+> [!IMPORTANT]
+> **Privacy:** when you use the skills in a hosted assistant (Claude, ChatGPT, Copilot), your ideas are sent to that provider under its terms. Do not paste secrets or confidential plans you are not allowed to share.
 
 License: [MIT](LICENSE).
