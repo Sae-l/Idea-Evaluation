@@ -19,6 +19,8 @@ Your result is the evidence this project is missing: the skills have not yet bee
 | Which was too long or too confusing? Which words? | | |
 | Overall, which would you use again? | | |
 
+By default the skill shows no numeric scores (say "show scores" to see them). Did you miss the numbers, or was the answer clearer without them?
+
 ## Part 2: does the skill start on its own? (5 minutes)
 In a chat with the skills installed, send these eight sentences one by one, each in a **new chat**, without naming the skill. Note yes or no for "the skill's format appeared" (a ranked table or a Proceed / Fix first / Stop verdict).
 

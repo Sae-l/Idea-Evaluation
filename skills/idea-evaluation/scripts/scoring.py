@@ -120,15 +120,6 @@ def validate(data):
     return errs
 
 
-def exact_scores(d, w, ev):
-    """Return (raw, adjusted) as unrounded floats, or None if ratings are missing."""
-    d = normalize(d)
-    if any(d.get(c) is None for c in CRIT):
-        return None
-    raw = sum(w[c] * d[c] for c in CRIT)
-    return raw, raw * ev.get(d.get("evidence") or "E0", ev["E0"])
-
-
 def score(d, w=WEIGHTS, ev=EVIDENCE, th=THRESHOLDS):
     """Return (adjusted score rounded to 1 decimal or None, priority).
     Priorities: A/B/C/D, 'Stopped' (a gate says no), 'incomplete' (missing ratings).
@@ -169,7 +160,7 @@ def sort_key(d, w=WEIGHTS, ev=EVIDENCE, th=THRESHOLDS):
 def sensitivity(ideas, w, ev, th, delta=.2):
     """Perturb weights (+/-delta, renormalized), evidence factors (+/-0.05) and thresholds (+/-0.1).
     The top idea is chosen like the export orders ideas: priority class first (a knockout idea is capped at C), then the
-    unrounded adjusted score; ideas are identified by position, so duplicate names are fine."""
+    displayed (rounded) adjusted score; ideas are identified by position, so duplicate names are fine."""
     def norm(x):
         t = sum(x.values()); return {k: v / t for k, v in x.items()}
 
@@ -177,14 +168,13 @@ def sensitivity(ideas, w, ev, th, delta=.2):
 
     def run(w_, ev_, th_):
         s = [score(i, w_, ev_, th_) for i in ideas]
-        ex = [exact_scores(i, w_, ev_) if p not in ("Stopped", "incomplete") else None for i, (_, p) in zip(ideas, s)]
-        live = [k for k, e in enumerate(ex) if e]
+        live = [k for k, (sc, p) in enumerate(s) if sc is not None]
         if not live:
             return (), [p for _, p in s]
-        best_class = min(order[s[k][1]] for k in live)          # same order as the export: class first, then score
+        best_class = min(order[s[k][1]] for k in live)          # same order as the export: class first, then displayed score
         pool = [k for k in live if order[s[k][1]] == best_class]
-        best = max(ex[k][1] for k in pool)
-        top = tuple(k for k in pool if best - ex[k][1] < 1e-9)
+        best = max(s[k][0] for k in pool)
+        top = tuple(k for k in pool if s[k][0] == best)         # equal displayed scores are a tie, as in the export
         return top, [p for _, p in s]
 
     w0 = norm(w)

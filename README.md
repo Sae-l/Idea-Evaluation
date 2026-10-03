@@ -50,16 +50,16 @@ flowchart LR
 
 **You get:**
 
-**Start with:** the spreadsheet course. Colleagues already ask for this and have paid for help (E2), so it has the strongest evidence at low cost. **Next, within 30 min:** write a 5-line course outline and send it to the 3 people who asked most recently.
+**Start with:** the spreadsheet course. Colleagues already ask for this and have paid for help, so it has the strongest evidence at low cost. **Next, within 30 min:** write a 5-line course outline and send it to the 3 people who asked most recently.
 
-| # | Idea | Adj. score | Evidence | Cost to MVP | Prio |
-|---|---|---|---|---|---|
-| 1 | Spreadsheet course | 3.5 | E2 | low | A |
-| 2 | Translator newsletter | 3.2 | E0 | very low | B |
+| # | Idea | Priority | Evidence | Cost to MVP |
+|---|---|---|---|---|
+| 1 | Spreadsheet course | A | observed use | low |
+| 2 | Translator newsletter | B | assumption only | very low |
 
 **Test:** at least 5 of 30 people in one role will pre-pay · **Time:** 10 days · **Pass if** ≥5 paid · **Stop if** ≤1
 
-Excerpt with illustrative ratings; the full answer is in [example.md](skills/idea-evaluation/references/example.md).
+Excerpt with illustrative ratings (numbers stay internal; say "show scores" to see them); the full answer is in [example.md](skills/idea-evaluation/references/example.md).
 
 ## Install
 1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v3.1.0-beta.2 or later) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
@@ -74,7 +74,7 @@ Excerpt with illustrative ratings; the full answer is in [example.md](skills/ide
 | You write | Skill | You get |
 |---|---|---|
 | "Rank these ideas ... I have 6 hours a week and EUR 500." | `idea-evaluation` | table, top-3 tests, first step |
-| "Should I do this? ..." (one idea) | `idea-evaluation` | verdict, score, one test with a stop rule |
+| "Should I do this? ..." (one idea) | `idea-evaluation` | verdict, priority, one test with a stop rule |
 | "Plan idea X for 4 weeks" / "check in on my project" | `idea-to-plan` | milestones with gates, a realistic to-do list |
 | "What could go wrong?" / "red-team this plan" | `idea-redteam` | Proceed / Fix first / Stop, up to 3 weaknesses |
 | "Check the market for X" (web search needed) | `idea-market-check` | competitor prices, claim check |
@@ -99,7 +99,7 @@ Tips: say your hours per week, money and goal; say "assume, don't ask me questio
 > - The scripts run locally and make no network calls. Scores are rough estimates, not calibrated, and not professional, legal, financial or medical advice.
 
 ## Export
-`python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header. The Capacity sheet compares your load with 70 % of the hours you state (editable in Settings).
+`python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header. The Capacity sheet compares the hours of all A and B ideas with 70 % of the hours you state (editable in Settings). It does not enforce the limit of two active ideas: choose which ones you actually run.
 
 ## How it works
 1. **Gate:** desirability, feasibility, viability. A clear "no" stops the idea.

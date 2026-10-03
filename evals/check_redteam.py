@@ -18,5 +18,5 @@ for pat, name in (((r"At least \d+(?: ?%| of)", "XYZ test"), (r"strongest case",
 bare = [l for l in text.splitlines() if latin and re.search(r"\d\s?%", l)
         and not re.search(r"assum|fact|verify|source|unchecked|At least|pass if|threshold|stop if|range|estimate|change my mind|strongest case|kill", l, re.I)]
 if bare: fails.append(f"{len(bare)} lines with unlabeled numbers: " + " | ".join(b.strip()[:60] for b in bare[:3]))
-print(f"{words} words, {len(findings)} findings{'' if latin else ' (non-Latin text: label checks skipped)'};", "FAIL: " + "; ".join(fails) if fails else "mechanical checks passed")
+print(f"{words} words, {len(findings)} findings{'' if latin else ' (non-Latin text: label checks NOT RUN)'};", "FAIL: " + "; ".join(fails) if fails else "mechanical checks passed")
 sys.exit(1 if fails else 0)

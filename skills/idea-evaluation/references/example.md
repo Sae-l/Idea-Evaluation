@@ -1,4 +1,4 @@
-# Worked example (load only to check format and length; ratings are illustrative)
+# Worked example (load only to check format and length; ratings are illustrative and stay internal unless the user asks to see them)
 
 **User:** "Rank: (1) spreadsheet course, (2) translator newsletter, (3) pill-reminder device, (4) repair marketplace, (5) rooftop solar tracker. Goal income, 6 h/week, small budget." Assumed: path bootstrap/side-project, no currency given, usable load 70 % = 4.2 h/week.
 
@@ -7,13 +7,13 @@ Internal ratings (Upside/Demand/Feasibility/Cost/Speed/Fit → weighted × evide
 
 **Output:**
 
-**Start with:** the spreadsheet course. Colleagues already ask for this and have paid for help (E2), so it has the strongest evidence at low cost. **Next, within 30 min:** write a 5-line course outline and send it to the 3 people who asked most recently.
+**Start with:** the spreadsheet course. Colleagues already ask for this and have paid for help, so it has the strongest evidence at low cost. **Next, within 30 min:** write a 5-line course outline and send it to the 3 people who asked most recently.
 **Then / later:** the newsletter as a free audience channel once the course test has a result. **Pre-mortem (#1):** people like free tips but will not pay for a structured course.
 
-| # | Idea | Adj. score | Evidence | Cost to MVP | Prio |
-|---|---|---|---|---|---|
-| 1 | Spreadsheet course | 3.5 | E2 | low | A |
-| 2 | Translator newsletter | 3.2 | E0 | very low | B |
+| # | Idea | Priority | Evidence | Cost to MVP |
+|---|---|---|---|---|
+| 1 | Spreadsheet course | A | observed use | low |
+| 2 | Translator newsletter | B | assumption only | very low |
 
 **Parked** (revisit 2026-11-01): translator newsletter (B, no capacity; runs after the course test) · repair marketplace (cold start → fix: one repair type, by hand) · pill-reminder device (hardware cost, regulation) · solar tracker (prior art unknown)
 **Stopped:** none
