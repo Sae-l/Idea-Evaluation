@@ -4,7 +4,7 @@ labels: [feedback]
 body:
   - type: markdown
     attributes:
-      value: "Optional and private by choice (you do not need to disclose any diagnosis). Concrete observations help most."
+      value: "Optional and private by choice (you do not need to disclose any diagnosis). Concrete observations help most. Issues are public: do not paste secrets or confidential ideas."
   - type: dropdown
     id: skill
     attributes:

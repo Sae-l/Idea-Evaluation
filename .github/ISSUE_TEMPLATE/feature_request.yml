@@ -2,6 +2,9 @@ name: Feature or improvement
 description: Suggest a change. Please say what it would remove or shorten as well, the token budget is tight.
 labels: [enhancement]
 body:
+  - type: markdown
+    attributes:
+      value: "Issues are public. Do not paste secrets, personal data or confidential ideas; describe the problem in general terms. Security problems: use the private report link instead."
   - type: textarea
     id: need
     attributes:

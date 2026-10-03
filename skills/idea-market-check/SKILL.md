@@ -12,7 +12,7 @@ description: Use when the user wants one idea checked against the real market wi
 - **Never fill a gap.** "Not found" and "contradicted" are results. No invented numbers; every number is `fact (source, date)` or `estimate (how)`.
 - **Source quality in three words:** official · study · vendor page · blog/forum. Vendor pages are marketing; one blog is not a market.
 - **No web search available:** say so, give the 3 best queries and what to look for, and mark everything else "unchecked". Do not answer from memory as if it were checked.
-- Prices, laws, tax: "verify locally". Personal data about named people: not collected.
+- Prices, laws, tax: "verify locally". Personal data about named people: not collected. Search queries leave the user's machine: use generic terms, never names, secrets or confidential details.
 
 ## Inputs
 Idea Card if present (`references/idea-card.md`), else idea, customer, intended price, region. Ask ≤2 short questions only if the answer changes a search; never if told to assume.

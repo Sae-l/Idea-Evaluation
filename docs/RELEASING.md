@@ -1,7 +1,7 @@
 # Releasing and repository settings
 
 ## One-time GitHub settings (owner only; the assistant cannot set these)
-**Visibility first:** the repository is currently private. A public beta needs Settings → General → Danger Zone → Change visibility. On private repositories several features below (code scanning, secret scanning with push protection, branch protection) depend on the GitHub plan.
+**Visibility:** the repository is public. Several settings below (code scanning, secret scanning with push protection, rulesets) depend on that; on a private repository they depend on the GitHub plan.
 
 Repository → **Settings**:
 1. **General** → Description: "Agent skills for evaluating, planning and stress-testing ideas (Claude, Copilot, ChatGPT)" Topics: `agent-skills`, `claude-skills`, `skill-md`, `idea-validation`, `prioritization`, `product-management`, `github-copilot`, `chatgpt`. (Add an `adhd` topic only once user feedback supports the claim.) Features: enable Issues; Discussions optional; disable Wiki and Projects if unused. Enable **Automatically delete head branches**.
