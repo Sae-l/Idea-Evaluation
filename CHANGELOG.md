@@ -2,7 +2,7 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
-## 3.1.0-beta.3 (unreleased)
+## 3.1.0-beta.3 (2026-10-03)
 Privacy and visitor-facing documentation; scoring and verdict rules are unchanged.
 - `idea-market-check`: search queries must use generic terms (they leave the user's machine). `idea-card.md` (all skills): keep `ideas.md` out of public repositories.
 - `SECURITY.md` states that the web search of `idea-market-check` sends search terms to the provider; issue forms warn that issues are public.
