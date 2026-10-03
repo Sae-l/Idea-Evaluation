@@ -50,5 +50,8 @@ Assume failure after 12 months; list the most likely cause. If it is fixable che
 ## Effectuation (Sarasvathy)
 Start from means (who I am, what I know, whom I know) and affordable loss, not from a perfect plan. Feeds *fit* and the money ceiling.
 
+## Rounding (identical in `scoring.py` and the spreadsheet)
+The weighted raw score is rounded half-up to two decimals, multiplied by the evidence factor, then rounded half-up to one decimal; the priority comes from that one-decimal value.
+
 ## Prioritization cross-checks (optional, Deep mode)
 ICE (impact × confidence × ease) and RICE (reach × impact × confidence ÷ effort) are quick sanity checks; WSJF (cost of delay ÷ size) when timing matters. If they disagree strongly with the main score, re-examine the ratings.

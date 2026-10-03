@@ -27,4 +27,4 @@ Internal ratings (Upside/Demand/Feasibility/Cost/Speed/Fit → weighted × evide
 - **Riskiest assumption** (problem) → **Test:** At least 30 of 1,000 viewers of a sample issue will subscribe | 7 days | pass if ≥30, stop if <10
 
 **Capacity:** the course test needs about 4 h/week of the 4.2 h usable, so run one idea. **Revisit:** 2026-11-01, add the pre-sale result (Update).
-*Estimates ±50 %, unverified. Assumed: bootstrap path, income goal, 6 h/week, small budget, no currency. Continue with: `idea-to-plan` (plan #1) · `idea-redteam` (stress-test #1) · spreadsheet on request.*
+*Rough estimates, not calibrated, unverified. Assumed: bootstrap path, income goal, 6 h/week, small budget, no currency. Continue with: `idea-to-plan` (plan #1) · `idea-redteam` (stress-test #1) · spreadsheet on request.*

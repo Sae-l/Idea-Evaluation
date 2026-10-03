@@ -5,7 +5,7 @@ Always set before running: **time-box, numeric `pass if` threshold and numeric `
 | Test | Proves | Typical effort | Example pass signal |
 |---|---|---|---|
 | Problem interviews (past behavior) | problem is real and costly | 5–10 talks, days | ≥ 6 of 10 describe the problem unprompted and a current workaround |
-| Competitor / price teardown | demand and price range exist | hours | ≥ 3 paid alternatives with visible customers |
+| Competitor / price teardown | context only (alternatives, prices), not demand | hours | ≥ 3 paid alternatives with visible customers |
 | Search / community demand check | people look for a solution | hours | ≥10 distinct questions in 30 days across 3 communities |
 | Smoke test / fake door (landing page + sign-up) | interest in the offer | 1–3 days | ≥ 5 % of targeted visitors leave contact data |
 | Pre-sale / deposit / letter of intent | willingness to pay | 1–2 weeks | ≥ 3 paid commitments or signed LOIs |

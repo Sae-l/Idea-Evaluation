@@ -67,7 +67,7 @@ Excerpt with illustrative ratings; the full answer is in [example.md](skills/ide
    - **Claude (claude.ai):** open the Skills page in Settings and upload the `.skill` file (menu names change from time to time).
    - **Claude Code:** `mkdir -p ~/.claude/skills && unzip idea-evaluation.skill -d ~/.claude/skills/` (a `.skill` file is a zip). In a project, use `.claude/skills/` instead.
    - **VS Code / GitHub Copilot:** `mkdir -p .github/skills && unzip idea-evaluation.skill -d .github/skills/`. VS Code also reads `.claude/skills/` and `.agents/skills/` according to its documentation; not tested by this project.
-   - **ChatGPT / other chat tools:** paste `docs/chatgpt-<skill>.md` into a Custom GPT or Project and upload that skill's `references/` files as knowledge.
+   - **ChatGPT / other chat tools:** paste `docs/chatgpt-<skill>.md` into Custom GPT or Project instructions where your plan allows it (availability changes), otherwise at the start of a chat, and upload that skill's `references/` files as knowledge if your setup supports it.
 3. **Check that it works:** type `Evaluate these ideas: a paid spreadsheet course, a YouTube channel about woodworking. I have 6 hours a week.` You should get a ranked table, a "Start with" line and one first step of 30 minutes or less. In Claude Code, `~/.claude/skills/idea-evaluation/SKILL.md` should exist after step 2. A generic essay means the skill was not used: say `use the idea-evaluation skill`.
 
 ## Use
@@ -96,7 +96,7 @@ Tips: say your hours per week, money and goal; say "assume, don't ask me questio
 > - **`idea-market-check` searches the web:** search terms derived from your idea go to the search provider. The skill is told to use generic terms only.
 > - **Saved files** (`ideas.md`, spreadsheets) contain what you typed. Keep them out of public repositories; this repository's `.gitignore` already excludes them.
 > - **GitHub issues are public:** do not paste private ideas there. Report security problems privately: see [SECURITY.md](SECURITY.md).
-> - The scripts run locally and make no network calls. Scores are rough estimates (±50 %), not professional, legal, financial or medical advice.
+> - The scripts run locally and make no network calls. Scores are rough estimates, not calibrated, and not professional, legal, financial or medical advice.
 
 ## Export
 `python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header. The Capacity sheet compares your load with 70 % of the hours you state (editable in Settings).
