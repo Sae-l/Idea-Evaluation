@@ -16,6 +16,10 @@
   "should_trigger": true
  },
  {
+  "query": "عندي ثلاث أفكار لمشاريع جانبية ووقتي محدود، أي فكرة أبدأ بها أولاً؟",
+  "should_trigger": true
+ },
+ {
   "query": "Make me a detailed 4-week project plan and a daily to-do list for launching my newsletter.",
   "should_trigger": false
  },

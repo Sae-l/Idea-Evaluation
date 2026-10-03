@@ -2,6 +2,11 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
+## 4.0.0-beta.3 (2026-10-03)
+Docs and eval sets only; the skills are unchanged.
+- `docs/TRY-IT.md`: the trigger check no longer looks for a "ranked table"; it names the v4 answer shape, the plan and the red-team verdict.
+- `evals/trigger/idea-evaluation.json`: added an Arabic positive query, because the v4 description lists Arabic phrases. Trigger accuracy is still unmeasured.
+
 ## 4.0.0-beta.2 (2026-10-03)
 Fixes from an external review of 4.0.0-beta.1 (each point checked against the repository first); the 4.0.0-beta.1 draft release was never published, use this one.
 - README example: the user message now contains the evidence the answer relies on (three colleagues asked, two paid), so the example no longer teaches invented evidence.
