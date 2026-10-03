@@ -23,15 +23,16 @@ The user has more ideas than time. Answer one question: **which small commitment
 
 Large or irreversible commitments (signing, hiring, big purchase, quitting a job, publishing an invention): offer `idea-redteam` before acting.
 
-## Output (aim for 150–250 words; never cut something that changes the decision)
+## Output (150–250 words, hard ceiling 300: measured answers ran 320–420 when this was only a target)
 ```
-**[Direct answer to the user's question, one sentence.]**
-**Start with:** [idea], because [max two reasons]. **Today (≤30 min):** [action].
+**[Direct answer, one sentence of at most 20 words.]**
+**Start with:** [idea], because [two reasons, ≤12 words each]. **Today (≤30 min):** [one action].
 **Deciding claim:** [claim]. Evidence: [none / said they would / did it / paid or committed / repeat use] ([source]).
 **Test:** [type]: [what] · [time-box] · pass if … · stop if … · inconclusive → […]
-**Parked** (revisit YYYY-MM-DD): idea (reason) · …   **Stopped:** idea (reason; pivot)
+**Parked** (revisit YYYY-MM-DD): idea (reason, ≤8 words) · …   **Stopped:** idea (reason ≤8 words; pivot)
 *Assumed: […]. Judgment, not a forecast. Next: idea-to-plan · idea-redteam · "show scores"*
 ```
+Keep it short: do not repeat the direct answer inside Start with; one test only (a calculation or a second test is added only if it is itself the deciding claim); constraint checks such as employer approval, permits or prior art go into Today or Assumed, not into extra paragraphs; Parked and Stopped are one line per idea. If the draft passes 250 words, cut Parked reasons, then the second reason, then the pivot, never the pass/stop/inconclusive rule.
 One idea: omit Parked. Capacity: one active idea; a second only if both fit about 70 % of stated hours (a default to adjust from experience).
 
 ## Other modes
