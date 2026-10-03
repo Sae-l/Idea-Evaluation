@@ -4,12 +4,12 @@
 **Visibility first:** the repository is currently private. A public beta needs Settings → General → Danger Zone → Change visibility. On private repositories several features below (code scanning, secret scanning with push protection, branch protection) depend on the GitHub plan.
 
 Repository → **Settings**:
-1. **General** → Description: "Three small, portable AI skills to evaluate ideas, plan them realistically and stress-test them." Topics: `agent-skills`, `claude-skills`, `skill-md`, `idea-validation`, `prioritization`, `product-management`, `github-copilot`, `chatgpt`. (Add an `adhd` topic only once user feedback supports the claim.) Features: enable Issues; Discussions optional; disable Wiki and Projects if unused. Enable **Automatically delete head branches**.
+1. **General** → Description: "Agent skills for evaluating, planning and stress-testing ideas (Claude, Copilot, ChatGPT)" Topics: `agent-skills`, `claude-skills`, `skill-md`, `idea-validation`, `prioritization`, `product-management`, `github-copilot`, `chatgpt`. (Add an `adhd` topic only once user feedback supports the claim.) Features: enable Issues; Discussions optional; disable Wiki and Projects if unused. Enable **Automatically delete head branches**.
 2. **Code security** → enable: *Private vulnerability reporting* (SECURITY.md relies on it), *Dependency graph*, *Dependabot alerts* and *security updates*, *Secret scanning* and *Push protection*, *Code scanning* (the CodeQL workflow uploads results).
 3. **Branches** → add a rule for `main`: require a pull request before merging, require status checks (`checks (3.10)`, `checks (3.12)`, `analyze`), require branches to be up to date, block force pushes and deletions. For a solo maintainer keep "Do not allow bypassing" off if you want to merge your own PRs; require at least 0 or 1 approvals as you prefer.
 4. **Actions → General**: workflow permissions "Read repository contents" (workflows request more only where needed); disable "Allow GitHub Actions to create and approve pull requests" unless wanted.
 5. **Rules** → add a tag ruleset for `v*` so only maintainers can create release tags. The release workflow additionally refuses tags that are not semantic versions or not on `main`, and refuses a CHANGELOG heading still marked "(unreleased)".
-6. **Labels**: create `bug`, `enhancement` and `feedback` (used by the issue forms) if they do not exist.
+6. **Labels**: `bug` and `enhancement` exist by default; create `feedback` (used by the feedback issue form) under Issues → Labels.
 7. **Pages / Sponsors**: not used.
 
 Actions are pinned to major versions (`checkout@v7`, `setup-python@v7`, `codeql-action@v4`, `upload-artifact@v7`, `download-artifact@v8`, checked 2026-10-02); Dependabot proposes updates weekly. Pinning to commit SHAs is stronger and recommended once the workflows have run green.
