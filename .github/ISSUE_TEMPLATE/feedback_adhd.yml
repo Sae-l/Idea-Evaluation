@@ -9,7 +9,7 @@ body:
     id: skill
     attributes:
       label: Which skill?
-      options: [idea-evaluation, idea-to-plan, idea-redteam]
+      options: [idea-evaluation, idea-to-plan, idea-redteam, idea-market-check]
     validations: {required: true}
   - type: textarea
     id: worked
