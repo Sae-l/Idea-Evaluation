@@ -8,6 +8,7 @@ cases = [("check_output.py", "quick_ok.md", [], 0), ("check_output.py", "plan_ba
          ("check_redteam.py", "redteam_calc_ok.md", [], 0),
          ("check_market.py", "market_ok.md", [], 0), ("check_market.py", "market_bad.md", [], 1),
          ("check_output.py", "quick_ar_ok.md", [], 0), ("check_output.py", "quick_ar_bad.md", [], 1),
+         ("check_output.py", "quick_headers_only_bad.md", [], 1), ("check_output.py", "quick_ar_nodecision_bad.md", [], 1),
          ("check_market.py", "market_ar_ok.md", [], 0), ("check_market.py", "market_ar_bad.md", [], 1)]   # non-Latin text: labels skipped, structure checked
 bad = []
 for script, fixture, extra, want in cases:
