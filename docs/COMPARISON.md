@@ -3,6 +3,8 @@
 Short version: **no proof that this suite beats a plain, skill-less answer.** It is better at one concrete first step with a stop criterion; it is about equal at labeling unverified claims; it is worse at plain-language clarity and depth. Rivals with web research add verifiable market facts that this suite deliberately leaves out, at 1.5–2× the length.
 
 ## What was run
+The cases are illustrative examples from the test set, not statements about any region, product or author.
+
 - **Cases** (`evals/comparison/cases.md`): A1 one idea with convincing numbers but weak evidence (night-shift meal-prep box) · A2 one idea with real evidence (4 paid deposits, 3 months of use) · B five ideas, 6 h/week.
 - **Systems:** S0 no skill (baseline) · S1 this suite (`idea-evaluation`; for A1/A2 followed by `idea-redteam`) · S2 `validate-idea` (claude-skills-founder, MIT, 686 words) · S3 `grill-my-idea` (EmanuelVogt, MIT, 2,049 words, "don't ask me anything" mode). S2/S3 ran from their public SKILL.md only, without their other files. `business-idea-validator` (about 8,200 words, mandatory web research, no license found) was **not run**; it is compared by reading only.
 - **Runs:** 11 without web search (S3 skipped for B; S2 on B was asked to cover all five ideas, which it is not built for), 2 with web search (A1, S2 and S3), 3 re-runs of S1 after a change, 1 run per cell. Subagent model: Sonnet. This is 16 system runs; the plan capped the comparison at 13, the 3 extra are the planned re-test after the change.
