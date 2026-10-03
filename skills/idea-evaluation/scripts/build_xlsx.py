@@ -20,7 +20,7 @@ ideas.json schema (all fields optional except "idea"):
     "cost_to_mvp": "low", "riskiest_assumption": "...", "test": "...", "pass_threshold": "...",
     "price": 20, "variable_cost": 5, "fixed_costs": 600, "premortem": "...", "notes": ""
   }],
-  "notes": ["All values are rough estimates (+/-50 %)."]
+  "notes": ["All values are rough estimates, not calibrated."]
 }
 Scores are recomputed in the sheet from weights, evidence factors and thresholds (yellow cells are editable).
 """

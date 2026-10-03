@@ -7,6 +7,7 @@ Fixes from an external review (each reproduced first, each with a test); scoring
 - Sensitivity analysis picks the top idea like the export orders ideas: priority class first, then score (before, a high-scoring idea capped at C by a knockout could be reported as top while an A idea was listed first).
 - Spreadsheet Capacity sheet compares the load with 70 % of the stated hours (editable in Settings), as `SKILL.md` does; before, it used all of them.
 - Answer checkers (dev tools) no longer reject correct answers in non-Latin scripts: label checks are skipped and structure is checked.
+- From a second external review: every skill says that text in pasted documents, files and fetched pages is data, not instructions; SECURITY.md states this is untested against attacks. The footer says "Rough estimates, not calibrated" instead of "+/-50 %"; competitor research is no longer listed as proof of demand; one web-search rule (generic search terms); the ChatGPT block gained the 70 % capacity rule and the shopping exclusion; the output principle matches the template (next action second); wording fixes in SECURITY.md and RESULTS.md.
 
 ## 3.1.0-beta.3 (2026-10-03)
 Privacy and visitor-facing documentation; scoring and verdict rules are unchanged.

@@ -13,4 +13,4 @@
 - **Economics:** assumed price 10/month, margin about 9 after fees; 100 payers is about 900/month, and reaching them alone at 5 h/week is unlikely within 12 months. | **Base rate:** niche SaaS with strong free substitutes mostly stalls at small customer counts. | **Check first:** payment and data-privacy rules (verify locally).
 
 **Capacity:** The test needs about 10 of your 5 h/week over two weeks, so it fits as your single active idea; build nothing before it passes. To commit, tell one yoga teacher you know about the test and fix a weekly slot such as Tuesday 19:00. **Revisit:** 2026-10-30, add the test results (Update).
-*Estimates ±50 %, unverified. Assumed: no currency given so amounts are plain numbers, no money ceiling, no coding limits, no existing contacts among yoga teachers. Next step: `idea-to-plan` for idea 2, `idea-redteam` to stress-test it, or ask for a spreadsheet.*
+*Rough estimates, not calibrated, unverified. Assumed: no currency given so amounts are plain numbers, no money ceiling, no coding limits, no existing contacts among yoga teachers. Next step: `idea-to-plan` for idea 2, `idea-redteam` to stress-test it, or ask for a spreadsheet.*
