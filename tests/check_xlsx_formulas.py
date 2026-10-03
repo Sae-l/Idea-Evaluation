@@ -57,3 +57,21 @@ with tempfile.TemporaryDirectory() as d:
         assert get("Break-even customers") == be, (name, get("Break-even customers"), be)
         checked += 1
 print(f"xlsx formulas match scoring.py for {checked} ideas ({ties} exact x.x5 ties skipped, see is_tie)")
+
+# --- Capacity sheet: the load is measured against 70 % of the stated hours (same rule as SKILL.md), not against all of them
+def capacity_assessment(ideas, budget):
+    with tempfile.TemporaryDirectory() as d:
+        src, out = os.path.join(d, "in.json"), os.path.join(d, "c.xlsx")
+        json.dump({"time_budget_h_week": budget, "ideas": ideas}, open(src, "w"))
+        subprocess.run([sys.executable, os.path.join(SCRIPTS, "build_xlsx.py"), src, out], check=True, capture_output=True)
+        sol = formulas.ExcelModel().loads(out).finish().calculate()
+        return sol["'[c.xlsx]CAPACITY'!B2"].value[0][0], sol["'[c.xlsx]CAPACITY'!B7"].value[0][0]
+
+top = {c: 5 for c in CRIT}
+mid = {c: 3 for c in CRIT}
+usable, verdict = capacity_assessment([{"idea": "a", **top, "evidence": "E4", "hours_week": 5}], 6)
+assert abs(usable - 4.2) < 1e-9 and verdict.startswith("A ideas alone exceed"), (usable, verdict)
+assert capacity_assessment([{"idea": "a", **top, "evidence": "E4", "hours_week": 4}], 6)[1] == "fits"
+assert capacity_assessment([{"idea": "a", **top, "evidence": "E4", "hours_week": 4},
+                            {"idea": "b", **mid, "evidence": "E4", "hours_week": 1}], 6)[1].startswith("Overloaded")
+print("capacity sheet uses 70 % of the stated hours")

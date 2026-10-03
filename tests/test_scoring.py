@@ -89,6 +89,11 @@ s = sensitivity(four, w, ev, th)
 assert s["runs"] == 16 and s["top"] == ["Course"], s
 assert sensitivity([idea(), idea()], w, ev, th)["top"] == ["x", "x"]      # exact tie keeps both
 assert sensitivity([], w, ev, th)["runs"] == 16
+# the "top" idea follows the export order: priority class first (a knockout idea is capped at C), then score
+X = idea(idea="X knockout", upside=5, demand=1, feasibility=5, cost=5, speed=5, fit=5, evidence="E4")
+Y = idea(idea="Y solid", upside=4, demand=4, feasibility=4, cost=4, speed=4, fit=4, evidence="E4")
+assert score(X, w, ev, th) == (4.2, "C") and score(Y, w, ev, th) == (4.0, "A")
+assert sensitivity([X, Y], w, ev, th)["top"] == ["Y solid"], sensitivity([X, Y], w, ev, th)
 print("scoring ok;", s)
 
 # --- command line and spreadsheet export

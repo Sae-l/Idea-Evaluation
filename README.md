@@ -99,7 +99,7 @@ Tips: say your hours per week, money and goal; say "assume, don't ask me questio
 > - The scripts run locally and make no network calls. Scores are rough estimates (±50 %), not professional, legal, financial or medical advice.
 
 ## Export
-`python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header.
+`python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header. The Capacity sheet compares your load with 70 % of the hours you state (editable in Settings).
 
 ## How it works
 1. **Gate:** desirability, feasibility, viability. A clear "no" stops the idea.

@@ -92,14 +92,15 @@ st = wb.active; st.title = "Settings"
 rows = [("Criterion", "Weight")] + [(c.capitalize(), W[c]) for c in CRIT] + [("Sum (must be 100 %)", "=SUM(B2:B7)"),
         (None, None), ("Evidence level", "Factor")] + [(k, EF[k]) for k in ("E0", "E1", "E2", "E3", "E4")] + \
        [(None, None), ("Priority threshold (adjusted score from)", None), ("A", TH["A"]), ("B", TH["B"]), ("C", TH["C"]),
-        (None, None), ("Time budget (hours/week)", float(data.get("time_budget_h_week", 8)))]
+        (None, None), ("Time budget (hours/week)", float(data.get("time_budget_h_week", 8))),
+        ("Usable share of the time budget", 0.7)]
 for r in rows: st.append(r)
 for row in st.iter_rows():
     for c in row: c.font = F
 for r in (1, 10):
     for c in st[r]: c.font = HF; c.fill = HFILL
-for r in list(range(2, 8)) + list(range(11, 16)) + [18, 19, 20, 22]: st[f"B{r}"].fill = IN
-for r in range(2, 9): st[f"B{r}"].number_format = "0%"
+for r in list(range(2, 8)) + list(range(11, 16)) + [18, 19, 20, 22, 23]: st[f"B{r}"].fill = IN
+for r in list(range(2, 9)) + [23]: st[f"B{r}"].number_format = "0%"
 st.column_dimensions["A"].width = 42; st.column_dimensions["B"].width = 12
 GATE_ROWS = None
 
@@ -165,14 +166,15 @@ for k, t in enumerate(["Notes:", "Yellow cells are inputs; scores and priorities
 cp = wb.create_sheet("Capacity")
 rng = lambda col: f"Comparison!${col}$2:${col}${last}"
 pc, hw = K["=prio"], K["hours_week"]
-for row in [("Available hours per week", "=Settings!B22"), ("Hours/week of all A ideas", f'=SUMIF({rng(pc)},"A",{rng(hw)})'),
-            ("Hours/week of all B ideas", f'=SUMIF({rng(pc)},"B",{rng(hw)})'), ("Sum A + B", "=B2+B3"),
-            ("Load", '=IF(B1>0,B4/B1,"")'),
-            ("Assessment", '=IF(B1="","",IF(B2>B1,"A ideas alone exceed capacity: run one at a time",IF(B4>B1,"Overloaded: park B ideas","fits")))')]:
+for row in [("Available hours per week", "=Settings!B22"), ("Usable hours (share set in Settings)", "=B1*Settings!B23"),
+            ("Hours/week of all A ideas", f'=SUMIF({rng(pc)},"A",{rng(hw)})'),
+            ("Hours/week of all B ideas", f'=SUMIF({rng(pc)},"B",{rng(hw)})'), ("Sum A + B", "=B3+B4"),
+            ("Load (of usable hours)", '=IF(B2>0,B5/B2,"")'),
+            ("Assessment", '=IF(B2="","",IF(B3>B2,"A ideas alone exceed the usable hours: run one at a time",IF(B5>B2,"Overloaded: park B ideas","fits")))')]:
     cp.append(row)
 for row in cp.iter_rows():
     for c in row: c.font = F
-cp["B5"].number_format = "0%"; cp.column_dimensions["A"].width = 34; cp.column_dimensions["B"].width = 48
+cp["B6"].number_format = "0%"; cp.column_dimensions["A"].width = 34; cp.column_dimensions["B"].width = 48
 
 wb.save(out)
 print("saved:", out)

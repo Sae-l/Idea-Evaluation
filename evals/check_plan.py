@@ -1,11 +1,13 @@
 """Mechanical checks for idea-to-plan answers. Usage: python check_plan.py answer.md [--mode plan|checkin]"""
 import re, sys
+from lang import LENIENCY, mostly_latin
 
 text = open(sys.argv[1], encoding="utf-8").read()
+latin = mostly_latin(text)   # non-Latin text: duration, done-criterion and label checks are skipped
 mode = sys.argv[sys.argv.index("--mode") + 1] if "--mode" in sys.argv[:-1] else "plan"
 TOLERANCE = 1.1  # word limits are soft targets; allow +10 %
 words, fails = len(text.split()), []
-if words > TOLERANCE * (350 if mode == "checkin" else 650): fails.append(f"too long: {words} words")
+if words > TOLERANCE * (1 if latin else LENIENCY) * (350 if mode == "checkin" else 650): fails.append(f"too long: {words} words")
 
 def minutes(line):
     m = re.search(r"(\d+)\s*[-–]\s*(\d+)\s*min", line)          # range: take upper bound
@@ -17,9 +19,9 @@ def minutes(line):
 
 tasks = [l for l in text.splitlines() if re.match(r"\s*[-*]?\s*\[ \]", l)]
 if mode == "plan" and not tasks: fails.append("no checkbox tasks")
-no_dur = [t for t in tasks if minutes(t) is None]
+no_dur = [t for t in tasks if minutes(t) is None] if latin else []
 too_big = [t for t in tasks if (minutes(t) or 0) > 60]
-no_done = [t for t in tasks if not re.search(r"done when|done:|✓|finished when|pass if", t, re.I)]
+no_done = [t for t in tasks if not re.search(r"done when|done:|✓|finished when|pass if", t, re.I)] if latin else []
 if no_dur: fails.append(f"{len(no_dur)} tasks without duration")
 if too_big: fails.append(f"{len(too_big)} tasks over 60 min")
 if tasks and len(no_done) > len(tasks) * 0.3: fails.append(f"{len(no_done)}/{len(tasks)} tasks lack a done-criterion")
@@ -28,10 +30,10 @@ if stars > 3: fails.append(f"{stars} starred (today) tasks (max 3)")
 if mode == "plan" and stars < 1: fails.append("no starred (today) task")
 names = [re.sub(r"\W+", " ", re.sub(r"\[ \]|★|·.*", "", t)).strip().lower() for t in tasks]
 if len(set(names)) < len(names): fails.append("duplicate tasks listed twice")
-if mode == "plan":
+if mode == "plan" and latin:
     for need, pat in (("gate/stop criterion", r"stop if|stop\b.*if|gate"), ("review date", r"review"), ("if-then cue", r"\bwhen\b.*\bI\b"), ("ignition step", r"start now|ignition|first step|≤ ?10 min")):
         if not re.search(pat, text, re.I): fails.append(f"missing {need}")
-else:
+elif latin and mode != "plan":
     if not re.search(r"continue|pivot|stop", text, re.I): fails.append("no verdict")
-print(f"{words} words, {len(tasks)} tasks;", "FAIL: " + "; ".join(fails) if fails else "mechanical checks passed")
+print(f"{words} words, {len(tasks)} tasks{'' if latin else ' (non-Latin text: label checks skipped)'};", "FAIL: " + "; ".join(fails) if fails else "mechanical checks passed")
 sys.exit(1 if fails else 0)

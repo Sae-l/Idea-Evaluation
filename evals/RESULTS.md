@@ -64,5 +64,8 @@ See `docs/COMPARISON.md`: 3 cases x 3-4 systems, blind LLM judges. No sign that 
 ## idea-market-check (cases M1-M3, `evals/cases-market.md`)
 M1 (web) 529 words, 6 searches, mechanical checks pass; blind judge: 21/25 vs 18 and 18 for the two rivals with web (1 run, 1 judge, narrower prompt, see `docs/COMPARISON.md`). M2 (no web): nothing invented, rows "unchecked"; the first run wrote "not found (not checked)", so the labels were tightened and not re-run. M3 (web): found free competing tools and a translator-specific counter-fact; checker false positive fixed. Trigger accuracy: not measured.
 
+## Checkers and language
+The checkers (`evals/check_*.py`) look for English (quick check: also German) labels. For text that is mostly not Latin script, for example Arabic, they skip the label checks and verify structure only (length with a 25 % allowance, tables, numbered findings, checkbox and starred tasks); those limits are unmeasured. No Arabic skill answer has been run through them yet beyond a hand-made fixture.
+
 ## Not yet measured
 Trigger accuracy; the "not run" cases above; behavior with real user ideas; usefulness for people with ADHD; calibration of weights, thresholds and time multipliers against real outcomes.

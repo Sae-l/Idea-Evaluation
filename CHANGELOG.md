@@ -2,6 +2,12 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
+## 3.1.0-beta.4 (unreleased)
+Fixes from an external review (each reproduced first, each with a test); scoring weights, thresholds and verdict rules are unchanged.
+- Sensitivity analysis picks the top idea like the export orders ideas: priority class first, then score (before, a high-scoring idea capped at C by a knockout could be reported as top while an A idea was listed first).
+- Spreadsheet Capacity sheet compares the load with 70 % of the stated hours (editable in Settings), as `SKILL.md` does; before, it used all of them.
+- Answer checkers (dev tools) no longer reject correct answers in non-Latin scripts: label checks are skipped and structure is checked.
+
 ## 3.1.0-beta.3 (2026-10-03)
 Privacy and visitor-facing documentation; scoring and verdict rules are unchanged.
 - `idea-market-check`: search queries must use generic terms (they leave the user's machine). `idea-card.md` (all skills): keep `ideas.md` out of public repositories.
