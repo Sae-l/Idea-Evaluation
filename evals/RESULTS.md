@@ -1,6 +1,8 @@
 # Eval results
 
-**v4 note (2026-10-03):** the results below were measured on `idea-evaluation` 3.1 and are kept as history. A 3-case, 9-run comparison of v3.1, v4 and a plain prompt exists but has not been scored or recorded here. Length: the first three v4 answers ran 319–418 words against a 150–250 target (two over the 350 tolerance). After adding a hard ceiling of 300 and shorter slots to `SKILL.md`, 9 runs on C1–C3 measured 249–298 words (mean 268; the same cases before: 313–414, mean 347, 6 runs); all pass `check_output.py`. Seven of nine still exceed 250, so the target is met on average only loosely. One model, small sample.
+**v4 note (2026-10-03):** the results below were measured on `idea-evaluation` 3.1 and are kept as history. A 3-case, 9-run comparison of v3.1, v4 and a plain prompt exists but has not been scored or recorded here. Test type (2026-10-03): on the device-switching case (invention, problem known from the job) the test was behavior in 3 of 3 runs before the fix and a performance test in 7 of 9 and a calculation plus prior-art check in 2 of 9 after (two measurement rounds); the datasheet-to-Excel tool (software) stayed behavior in 2 of 3 and 1 of 3 chose performance; the landing-page re-test stayed behavior in 5 of 5. Small samples, one model, not blind.
+
+Length: the first three v4 answers ran 319–418 words against a 150–250 target (two over the 350 tolerance). After adding a hard ceiling of 300 and shorter slots to `SKILL.md`, 9 runs on C1–C3 measured 249–298 words (mean 268; the same cases before: 313–414, mean 347, 6 runs); all pass `check_output.py`. Seven of nine still exceed 250, so the target is met on average only loosely. One model, small sample.
 
 Last updated 2026-10-02 after the full repository review (skill versions: `idea-evaluation` 3.1, `idea-to-plan` 1.0, `idea-redteam` 1.0, with review fixes).
 

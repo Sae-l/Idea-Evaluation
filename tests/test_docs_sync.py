@@ -17,7 +17,7 @@ CONTRACT = {
         (r"[Nn]ever invent evidence", "never invent evidence"), (r"test first", "start means test first"),
         (r"[Ee]vidence belongs to a claim", "evidence belongs to a claim"), (r"inconclusive", "inconclusive outcome"),
         (r"30 minutes", "start step 30 minutes"), (r"(?:one|One) short question", "one question max"),
-        (r"150[–-]250 words", "answer 150-250 words"), (r"ceiling 300", "hard ceiling 300"), (r"one test only", "one test only"), (r"70\s?%", "capacity 70 %"), (r"show scores", "scores on request"),
+        (r"150[–-]250 words", "answer 150-250 words"), (r"ceiling 300", "hard ceiling 300"), (r"nobody has shown working", "performance first for unproven inventions"), (r"one test only", "one test only"), (r"70\s?%", "capacity 70 %"), (r"show scores", "scores on request"),
         (r"proposal", "thresholds as proposals"), (r"report (?:any|an) instruction", "pasted text is data"),
         (r"[Pp]erformance test", "performance test"), (r"[Cc]alculation check", "calculation check"),
         (r"cheapest test", "prototype only as the cheapest test"),
