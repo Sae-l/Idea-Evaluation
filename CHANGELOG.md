@@ -2,7 +2,7 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
-## 3.1.0-beta.4 (unreleased)
+## 3.1.0-beta.4 (2026-10-03)
 From a third external check (ChatGPT simulation, weak evidence, see `docs/COMPARISON.md`):
 - `idea-evaluation` hides numeric scores, weights and E-codes by default: the table shows priority, evidence in words and cost to MVP; "show scores" or the spreadsheet export gives the numbers. The calculation itself is unchanged.
 - `idea-redteam`: money, runway and hours findings may use a calculation check (inputs, worst case, numeric pass/stop, deadline) instead of "At least X % of Y will Z"; new row in `tests.md`.
