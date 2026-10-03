@@ -9,6 +9,8 @@
 
 **Decide which idea to start, plan it realistically, and try to break it before you spend time or money.**
 
+**Quick start:** [try it in ChatGPT](docs/chatgpt-idea-evaluation.md) (paste one block) · [download `idea-evaluation.skill`](https://github.com/Sae-l/Idea-Evaluation/releases) (newest beta) for Claude or Copilot · [pick your tool](#install). Beta: [what we know so far](#what-we-know-so-far).
+
 [Who it is for](#who-it-is-for) · [Example](#example) · [Install](#install) · [Use](#use) · [Limits](#what-we-know-so-far) · [Contribute](CONTRIBUTING.md)
 
 ## Who it is for
@@ -59,13 +61,31 @@ flowchart LR
 
 Excerpt; the full answer is in [example.md](skills/idea-evaluation/references/example.md). Scores are available on request ("show scores").
 
+A technical idea gets a different test type. **You write:** "Should I build a small solar-powered sensor that tells me when my balcony plants need water? I have 5 hours a week and EUR 100." **You get** (shortened from a real run):
+
+**Start with the prototype, as the test: parts for one unit are cheap and known techniques make this a performance question, not a demand question.**
+**Deciding claim:** a cheap sensor reads soil moisture reliably enough to alert you correctly, and a small solar panel keeps it running through a week of poor light. Evidence: none (no measurement yet).
+**Test:** performance test, measurement under your own conditions: one ESP32-type board, one capacitive soil sensor and one small panel on one pot · 2 weeks, about 8–10 hours · pass if alerts matched finger-checks of the soil in at least 8 of 10 checks and the battery never dropped below 30 % · stop if readings drift so much that no threshold works, or power fails twice in a week · inconclusive → extend a week with a power bank and re-check.
+
 ## Install
 1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v4.0.0-beta.4 or later; v4.0.0-beta.1 to beta.3 were never published) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
 2. **Add them to your tool:**
    - **Claude (claude.ai):** open the Skills page in Settings and upload the `.skill` file (menu names change from time to time).
-   - **Claude Code:** `mkdir -p ~/.claude/skills && unzip idea-evaluation.skill -d ~/.claude/skills/` (a `.skill` file is a zip). In a project, use `.claude/skills/` instead.
-   - **VS Code / GitHub Copilot:** `mkdir -p .github/skills && unzip idea-evaluation.skill -d .github/skills/`. VS Code also reads `.claude/skills/` and `.agents/skills/` according to its documentation; not tested by this project.
-   - **ChatGPT / other chat tools:** paste `docs/chatgpt-<skill>.md` into Custom GPT or Project instructions where your plan allows it (availability changes), otherwise at the start of a chat, and upload that skill's `references/` files as knowledge if your setup supports it.
+   - **Claude Code** (macOS/Linux shell; a `.skill` file is a zip; in a project use `.claude/skills/` instead):
+     ```bash
+     mkdir -p ~/.claude/skills && unzip idea-evaluation.skill -d ~/.claude/skills/
+     ```
+     Windows PowerShell (not tested by this project):
+     ```powershell
+     Expand-Archive idea-evaluation.skill -DestinationPath "$HOME\.claude\skills"
+     ```
+     If PowerShell refuses the `.skill` extension, copy the file to `idea-evaluation.zip` first.
+   - **VS Code / GitHub Copilot:**
+     ```bash
+     mkdir -p .github/skills && unzip idea-evaluation.skill -d .github/skills/
+     ```
+     VS Code also reads `.claude/skills/` and `.agents/skills/` according to its documentation; not tested by this project.
+   - **ChatGPT / other chat tools:** paste the block into Custom GPT or Project instructions where your plan allows it (availability changes), otherwise at the start of a chat, and upload that skill's `references/` files as knowledge if your setup supports it. Blocks: [idea-evaluation](docs/chatgpt-idea-evaluation.md) · [idea-to-plan](docs/chatgpt-idea-to-plan.md) · [idea-redteam](docs/chatgpt-idea-redteam.md) · [idea-market-check](docs/chatgpt-idea-market-check.md).
 3. **Check that it works:** type `Evaluate these ideas: a paid spreadsheet course, a YouTube channel about woodworking. I have 6 hours a week.` You should get a "Start with" line, a deciding claim, one test with pass and stop criteria and one first step of 30 minutes or less. In Claude Code, `~/.claude/skills/idea-evaluation/SKILL.md` should exist after step 2. A generic essay means the skill was not used: say `use the idea-evaluation skill`.
 
 ## Use
@@ -104,7 +124,7 @@ Tips: say your hours per week, money and goal; say "assume, don't ask me questio
 2. **Pick:** compare evidence for the deciding claim, cost and speed of the next test and fit with your hours; park the rest. No scores needed (on request: six weighted criteria, E0-E4 evidence factors, priority A-D).
 3. **Deciding claim:** the one claim that, if false, makes the next commitment pointless.
 4. **One test** of the matching type (behavior, performance or calculation) with pass, stop and inconclusive fixed in advance.
-5. **First step** of 30 minutes or less; building needs commitment evidence first.
+5. **First step** of 30 minutes or less; a small prototype is fine when it is the cheapest test, but a full build or launch needs commitment evidence first.
 
 Details load on demand from `references/` to save tokens.
 

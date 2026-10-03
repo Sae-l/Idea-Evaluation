@@ -1,8 +1,29 @@
 # Eval results
 
-**v4 note (2026-10-03):** the results below were measured on `idea-evaluation` 3.1 and are kept as history. A 3-case, 9-run comparison of v3.1, v4 and a plain prompt exists but has not been scored or recorded here. Test type (2026-10-03): on the device-switching case (invention, problem known from the job) the test was behavior in 3 of 3 runs before the fix and a performance test in 7 of 9 and a calculation plus prior-art check in 2 of 9 after (two measurement rounds); the datasheet-to-Excel tool (software) stayed behavior in 2 of 3 and 1 of 3 chose performance; the landing-page re-test stayed behavior in 5 of 5. Small samples, one model, not blind.
+**v4 note (2026-10-03):** the results below were measured on `idea-evaluation` 3.1 and are kept as history. A 3-case, 9-run comparison of v3.1, v4 and a plain prompt exists but has not been scored or recorded here. Development runs of `idea-evaluation` v4 (2026-10-03). Raw answers are kept by the maintainer and not published, because the cases come from the maintainer's own private ideas. Method: `claude -p` with the skill under test, one answer per run, not blind, one model (the CLI default, id not recorded); the same four cases (C1 several side-business ideas with an employer constraint, C2 an early hardware invention whose problem the user knows from work, C3 a weak landing-page re-test, C6 a small consumer gadget). Words are counted as `check_output.py` counts them (whitespace split); figures quoted earlier in `CHANGELOG.md` were counted with `wc -w` and are 6–8 words lower per answer. First-round answers of the performance-first rule (5 runs: 4 performance, 1 calculation plus prior art) were not kept, so they are not in the table.
 
-Length: the first three v4 answers ran 319–418 words against a 150–250 target (two over the 350 tolerance). After adding a hard ceiling of 300 and shorter slots to `SKILL.md`, 9 runs on C1–C3 measured 249–298 words (mean 268; the same cases before: 313–414, mean 347, 6 runs); all pass `check_output.py`. Seven of nine still exceed 250, so the target is met on average only loosely. One model, small sample.
+| Skill text | Case | Runs | Words (min–max, mean) | Over 300 | Test type |
+|---|---|---|---|---|---|
+| beta.2 text (no ceiling) | C1 | 2 | 380–418, 399 | 2 | behavior 2 |
+| beta.2 text (no ceiling) | C2 | 2 | 324–349, 336 | 2 | behavior 2 |
+| beta.2 text (no ceiling) | C3 | 2 | 316–320, 318 | 2 | behavior 2 |
+| beta.3 text (ceiling 300) | C1 | 3 | 257–275, 264 | 0 | behavior 3 |
+| beta.3 text (ceiling 300) | C2 | 3 | 275–305, 292 | 1 | behavior 2, calculation + prior art 1 |
+| beta.3 text (ceiling 300) | C3 | 3 | 261–282, 270 | 0 | behavior 3 |
+| beta.4 text as released | C1 | 3 | 268–321, 286 | 1 | behavior 2, performance 1 |
+| beta.4 text as released | C2 | 4 | 283–335, 299 | 1 | performance 3, calculation + prior art 1 |
+| beta.4 text as released | C3 | 3 | 265–317, 296 | 2 | behavior 3 |
+| beta.4 text as released | C6 | 2 | 286–287, 286 | 0 | behavior 2 |
+| beta.5 candidate A (budgets; 'doubt blocks the next commitment') | C1 | 4 | 252–286, 264 | 0 | behavior 4 |
+| beta.5 candidate A (budgets; 'doubt blocks the next commitment') | C2 | 4 | 235–293, 276 | 0 | behavior 2, calculation + prior art 2 |
+| beta.5 candidate A (budgets; 'doubt blocks the next commitment') | C3 | 4 | 258–277, 269 | 0 | behavior 4 |
+| beta.5 candidate A (budgets; 'doubt blocks the next commitment') | C6 | 2 | 232–257, 244 | 0 | behavior 2 |
+| beta.5 text (budgets; 'next commitment is to build or buy parts') | C1 | 3 | 267–291, 281 | 0 | behavior 3 |
+| beta.5 text (budgets; 'next commitment is to build or buy parts') | C2 | 6 | 251–292, 273 | 0 | calculation + prior art 4, behavior 1, performance 1 |
+| beta.5 text (budgets; 'next commitment is to build or buy parts') | C3 | 3 | 230–273, 255 | 0 | behavior 3 |
+| beta.5 text (budgets; 'next commitment is to build or buy parts') | C6 | 2 | 265–271, 268 | 0 | performance 2 |
+
+Reading: the 300-word ceiling and slot budgets removed answers above 300 words (0 of 15 final runs; the released beta.4 text had 4 of 12 above 300). The performance-first rule works but is sensitive to wording: "doubt blocks the next commitment" gave 0 of 4 performance tests on the hardware case (C2), the released beta.4 text gave 3 of 4, the final beta.5 text gives 1 of 6 performance and 4 of 6 calculation plus prior art (acceptable under the budget fallback, but not the performance test the case asks for) and a performance test on 2 of 2 for the gadget case (C6). Software cases stay on behavior tests. Small samples, one model, not blind; treat as directions.
 
 Last updated 2026-10-02 after the full repository review (skill versions: `idea-evaluation` 3.1, `idea-to-plan` 1.0, `idea-redteam` 1.0, with review fixes).
 

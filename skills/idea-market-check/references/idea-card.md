@@ -8,11 +8,11 @@ idea: <short name>
 problem: <who> has <problem>; today solved by <alternative>
 goal: profit | impact | learning | other
 path: bootstrap | venture | side-project | non-profit | research   (sets the bar for Upside)
-scores: upside 4 · demand 4 · feasibility 4 · cost 4 · speed 3 · fit 4   (1-5, cost/speed: 5 = cheap/fast)
-evidence: E2 · <what the evidence is>   (E0 assumption, E1 stated interest, E2 observed behavior, E3 commitment, E4 repeat paying use)
-adjusted: 3.5 · priority A   (weighted score x evidence factor)
+scores: upside 4 · demand 4 · feasibility 4 · cost 4 · speed 3 · fit 4   (optional: only after "show scores"; 1-5, cost/speed: 5 = cheap/fast)
+evidence: <claim it supports> · E2 · <what the evidence is>   (E0 assumption, E1 stated interest, E2 observed behavior, E3 commitment, E4 repeat paying use; evidence belongs to one claim: a working prototype is not evidence of demand, a payment is not evidence the technology works)
+adjusted: 3.5 · priority A   (optional: only after "show scores"; weighted score x evidence factor)
 riskiest_assumption: <type>: <statement>   (user | problem | solution | business | feasibility | adoption)
-test: At least X% of Y will Z · time-box <n days> · pass if <threshold>
+test: <behavior | performance | calculation>: <what> · time-box <n days> · pass if <threshold> · stop if <threshold> · inconclusive → <one re-run or change>   (behavior: "At least X of Y will Z")
 kill_if: <stop criterion agreed in advance>
 constraints: hours/week <n> · money ceiling <n> <currency> · deadline <date>
 status: start | recycle | park | stop · revisit <YYYY-MM-DD>
