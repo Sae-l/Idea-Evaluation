@@ -1,21 +1,31 @@
-# Test library (cheapest test that can falsify the riskiest assumption)
-Write every test as an **XYZ hypothesis** (Savoia): "At least X % of Y will do Z", where Z carries *skin in the game* (time, money, personal data), not just an opinion.
-Always set before running: **time-box, numeric `pass if` threshold and numeric `stop if` threshold.** Prefer tests that produce behavior or commitment over opinions.
+# Tests (load when designing a test)
 
-| Test | Proves | Typical effort | Example pass signal |
+Pick the type that matches the **deciding claim**. One claim per test. A test that cannot fail is not a test.
+
+## 1. Behavior test: do people act?
+For demand, willingness to pay, adoption, retention. Write it as **"At least X of Y will Z"**, where Z costs them time, money or data (an opinion or a compliment is not Z).
+
+| Test | Shows | Effort | Example pass |
 |---|---|---|---|
-| Problem interviews (past behavior) | problem is real and costly | 5–10 talks, days | ≥ 6 of 10 describe the problem unprompted and a current workaround |
-| Competitor / price teardown | context only (alternatives, prices), not demand | hours | ≥ 3 paid alternatives with visible customers |
-| Search / community demand check | people look for a solution | hours | ≥10 distinct questions in 30 days across 3 communities |
-| Smoke test / fake door (landing page + sign-up) | interest in the offer | 1–3 days | ≥ 5 % of targeted visitors leave contact data |
-| Pre-sale / deposit / letter of intent | willingness to pay | 1–2 weeks | ≥ 3 paid commitments or signed LOIs |
-| Concierge MVP (do it by hand for 1–3 customers) | value of the outcome | 1–2 weeks | ≥2 of 3 customers pay or ask for a second round unprompted |
-| Wizard of Oz (fake automation) | usability and value | 1–2 weeks | ≥70 % complete the task; ≥3 of 5 return within 7 days |
-| Paper / clickable mock-up | comprehension | 1–3 days | ≥4 of 5 users complete the main task unaided |
-| Technical spike | feasibility of the hardest part | 1–5 days | meets the stated minimum (write the number first) in ≥8 of 10 runs |
-| Prior-art search | novelty / freedom to operate | hours | 0 blocking claims found in 3 databases |
-| Single-feature MVP or paid pilot | retention and economics | 2–6 weeks | ≥40 % use it again within 14 days and margin > 0 |
-| Crowdfunding / waitlist with price | scaled demand | 2–4 weeks | ≥X % of waitlist pre-pays (set X first) |
-| Calculation check (runway, budget, hours) | survives a bad case under stated assumptions (not demand) | 20–60 min | cash stays above the reserve you chose first, in the zero-revenue case, until the deadline |
+| Problem talks about past behavior (Mom Test) | the problem is real and costly | days | ≥ 6 of 10 describe it unprompted plus a workaround |
+| Fake door / landing page | interest in the offer | 1–3 days | ≥ 5 % of targeted visitors leave contact data |
+| Pre-sale, deposit, letter of intent | willingness to pay | 1–2 weeks | ≥ 3 paid commitments |
+| Concierge (deliver by hand to 1–3 people) | value of the outcome | 1–2 weeks | ≥ 2 of 3 pay or ask for more |
+| Single-feature pilot | repeat use and margin | 2–6 weeks | ≥ 40 % reuse within 14 days, margin > 0 |
 
-Rules: if the result lands between `pass if` and `stop if`, do one re-run or one pivot, decided before the test; one assumption per test; a test that cannot fail is not a test; record the result as an evidence level (E0–E4) and re-score (`idea-evaluation` Update mode, or the Check-in of `idea-to-plan`).
+## 2. Performance test: does it work?
+For inventions, hardware, algorithms, anything physically or technically uncertain. State **the quantity, the minimum value that makes the idea useful, the conditions, and the number of runs** (example: "detection distance ≥ 30 mm for a 5 mm steel ball at 20 °C, in ≥ 8 of 10 runs"). Prior-art search counts here when novelty is the claim. Demand can wait until it works.
+
+## 3. Calculation check: does it survive a bad case?
+For budget, runway, hours, break-even. Inputs → worst realistic case → reserve chosen first → pass/stop with a deadline. It shows feasibility under assumptions, not demand.
+`margin = price − variable cost`; `break-even = fixed costs ÷ margin`; reachable customers = channel reach × conversion, not market size.
+
+## Thresholds
+Derive them from the smallest result that makes the next commitment worthwhile. The numbers above are starting points, not norms for every market, sample or channel. If the user has not confirmed a threshold, label it a proposal.
+
+## Three outcomes, fixed before running
+- **Pass** → next commitment (build the smallest version, or the next test).
+- **Stop** → park or pivot; name which.
+- **Inconclusive** (between pass and stop) → one re-run or one change, chosen in advance.
+
+**Did the test fail, or the idea?** A wrong sample, an unclear message or a channel that does not reach the audience produces a weak result without disproving the claim. Before stopping, check that the test reached the right people with an understandable offer. Record the result as evidence for that claim only, then use Update mode.

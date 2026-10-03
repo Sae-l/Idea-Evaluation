@@ -2,6 +2,17 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
+## 4.0.0-beta.1 (2026-10-03)
+`idea-evaluation` v4.0: the answer is one decision and one test, not a ranked report. Behavior change; the Idea Card format is unchanged.
+- Core question is "which small commitment now?": Start / Today (≤30 min) / Deciding claim with evidence in words / Test with pass, stop and inconclusive fixed in advance / Parked with revisit date. Target 150–250 words (was ~450).
+- "Start" means test first; building or launching needs commitment evidence for the claim that matters. Never invent evidence; evidence belongs to a claim, not to the idea.
+- Numeric scores, weights, E-factors and thresholds moved to Compare mode (`references/methods.md`, on "show scores" or close options); `scripts/scoring.py` and the spreadsheet export are unchanged.
+- `tests.md` (all skills): behavior, performance and calculation tests, an "inconclusive" outcome, and "did the test fail or the idea?"; thresholds are proposals derived from the decision.
+- At most one question (was three). Description adds German and Arabic phrases and explicit exclusions.
+- `idea-to-plan`: tests the claim that blocks the next commitment first; the time multiplier uses the raw estimate.
+- Docs, ChatGPT block, checkers and fixtures aligned with v4.
+Known limits: v4 was compared with v3.1 and a plain prompt on 3 cases (9 runs, one scorer); the scores are not yet in `evals/RESULTS.md`. The answer checker's 350-word limit is an unmeasured tolerance. Triggering is still unmeasured.
+
 ## 3.1.0-beta.4 (2026-10-03)
 From a third external check (ChatGPT simulation, weak evidence, see `docs/COMPARISON.md`):
 - `idea-evaluation` hides numeric scores, weights and E-codes by default: the table shows priority, evidence in words and cost to MVP; "show scores" or the spreadsheet export gives the numbers. The calculation itself is unchanged.

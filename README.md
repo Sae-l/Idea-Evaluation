@@ -18,7 +18,8 @@
 
 ## What we know so far
 - In a small blind test (3 cases, LLM judges) the suite was **not** better overall than a plain Claude answer. It was stronger on one concrete first step with a stop rule and weaker on plain-language clarity and depth: [docs/COMPARISON.md](docs/COMPARISON.md).
-- Scores are rough: weights and thresholds are uncalibrated, and the same prompt varies by about ±0.5 between runs.
+- Scores are optional ("show scores"): weights and thresholds are uncalibrated, and the same prompt varies by about ±0.5 between runs.
+- v4 (test-first answers) was compared with v3.1 and a plain prompt on 3 cases, 9 runs, by one scorer; that result is not yet recorded in `evals/RESULTS.md`, so v4 ships as a beta.
 - Not measured yet: whether the assistant picks the right skill on its own, and whether the design helps people with ADHD. Your feedback is the missing evidence: the [15-minute test](docs/TRY-IT.md) tells you what to try and where to send it.
 
 ## What the skills do
@@ -26,7 +27,7 @@ Four small, portable, user-neutral skills. Replies follow the user's language; t
 
 | Skill | Use it when | Output |
 |---|---|---|
-| [`idea-evaluation`](skills/idea-evaluation) | you have one or many ideas and need to know what to start, park or stop | ranked table, top-3 tests, next action (≤~450 words) |
+| [`idea-evaluation`](skills/idea-evaluation) | you have one or many ideas and need to know what to start, park or stop | one start-test decision, one test with pass/stop, first step (≈150–250 words) |
 | [`idea-to-plan`](skills/idea-to-plan) | you picked an idea and need analysis, MVP cut, milestones with gates and a realistic to-do list, or a weekly check-in | verdict, milestones, one task list (★ = today), review date |
 | [`idea-redteam`](skills/idea-redteam) | you want an idea or plan attacked before committing time or money | Proceed / Fix first / Stop, max 3 weaknesses with a cheap test each |
 | [`idea-market-check`](skills/idea-market-check) (optional, needs web search) | you want competitor prices, a claim or a statistic checked for one idea | named alternatives with price per unit, price position, claim check; never changes the evidence level |
@@ -50,41 +51,38 @@ flowchart LR
 
 **You get:**
 
-**Start with:** the spreadsheet course. Colleagues already ask for this and have paid for help, so it has the strongest evidence at low cost. **Next, within 30 min:** write a 5-line course outline and send it to the 3 people who asked most recently.
+**Start with the spreadsheet course, as a test, not a launch yet.**
+**Today (≤30 min):** write a 5-line outline for a 3-session group course and send it with a price to the three colleagues.
+**Deciding claim:** people beyond your colleagues pay for a group course. Evidence: paid (2 sessions), but only from people who know you.
+**Test:** behavior: 30 people in one role see the outline and a price · 14 days · pass if ≥ 4 pre-pay · stop if ≤ 1 · inconclusive (2–3) → change the channel once.
+**Parked** (revisit date): newsletter · repair marketplace · pill reminder · solar tracker
 
-| # | Idea | Priority | Evidence | Cost to MVP |
-|---|---|---|---|---|
-| 1 | Spreadsheet course | A | observed use | low |
-| 2 | Translator newsletter | B | assumption only | very low |
-
-**Test:** at least 5 of 30 people in one role will pre-pay · **Time:** 10 days · **Pass if** ≥5 paid · **Stop if** ≤1
-
-Excerpt with illustrative ratings (numbers stay internal; say "show scores" to see them); the full answer is in [example.md](skills/idea-evaluation/references/example.md).
+Excerpt; the full answer is in [example.md](skills/idea-evaluation/references/example.md). Scores are available on request ("show scores").
 
 ## Install
-1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v3.1.0-beta.2 or later) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
+1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v4.0.0-beta.1 or later) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
 2. **Add them to your tool:**
    - **Claude (claude.ai):** open the Skills page in Settings and upload the `.skill` file (menu names change from time to time).
    - **Claude Code:** `mkdir -p ~/.claude/skills && unzip idea-evaluation.skill -d ~/.claude/skills/` (a `.skill` file is a zip). In a project, use `.claude/skills/` instead.
    - **VS Code / GitHub Copilot:** `mkdir -p .github/skills && unzip idea-evaluation.skill -d .github/skills/`. VS Code also reads `.claude/skills/` and `.agents/skills/` according to its documentation; not tested by this project.
    - **ChatGPT / other chat tools:** paste `docs/chatgpt-<skill>.md` into Custom GPT or Project instructions where your plan allows it (availability changes), otherwise at the start of a chat, and upload that skill's `references/` files as knowledge if your setup supports it.
-3. **Check that it works:** type `Evaluate these ideas: a paid spreadsheet course, a YouTube channel about woodworking. I have 6 hours a week.` You should get a ranked table, a "Start with" line and one first step of 30 minutes or less. In Claude Code, `~/.claude/skills/idea-evaluation/SKILL.md` should exist after step 2. A generic essay means the skill was not used: say `use the idea-evaluation skill`.
+3. **Check that it works:** type `Evaluate these ideas: a paid spreadsheet course, a YouTube channel about woodworking. I have 6 hours a week.` You should get a "Start with" line, a deciding claim, one test with pass and stop criteria and one first step of 30 minutes or less. In Claude Code, `~/.claude/skills/idea-evaluation/SKILL.md` should exist after step 2. A generic essay means the skill was not used: say `use the idea-evaluation skill`.
 
 ## Use
 | You write | Skill | You get |
 |---|---|---|
-| "Rank these ideas ... I have 6 hours a week and EUR 500." | `idea-evaluation` | table, top-3 tests, first step |
+| "Rank these ideas ... I have 6 hours a week and EUR 500." | `idea-evaluation` | which to test first, one test, first step (scores on request) |
 | "Should I do this? ..." (one idea) | `idea-evaluation` | verdict, priority, one test with a stop rule |
 | "Plan idea X for 4 weeks" / "check in on my project" | `idea-to-plan` | milestones with gates, a realistic to-do list |
 | "What could go wrong?" / "red-team this plan" | `idea-redteam` | Proceed / Fix first / Stop, up to 3 weaknesses |
 | "Check the market for X" (web search needed) | `idea-market-check` | competitor prices, claim check |
 
-Tips: say your hours per week, money and goal; say "assume, don't ask me questions" to skip questions; after you run a test, say "update: here is the result" and it re-scores only what changed.
+Tips: say your hours per week, money and goal; say "assume, don't ask me questions" to skip questions; after you run a test, say "update: here is the result" and it changes only what the result touches.
 
 <details><summary>Troubleshooting and FAQ</summary>
 
 - **The skill does not start:** name it in the request ("use the idea-evaluation skill"). Triggering is not measured yet.
-- **Too long:** ask for the "Quick" version.
+- **Too long:** ask for a shorter answer; the default is about 150–250 words.
 - **Where do results go:** into an Idea Card ([format](docs/idea-card.md)); if files can be written, an `ideas.md` keeps your cards between sessions.
 - **Spreadsheet:** see [Export](#export).
 - **Privacy:** see [Privacy and safety](#privacy-and-safety).
@@ -103,11 +101,10 @@ Tips: say your hours per week, money and goal; say "assume, don't ask me questio
 
 ## How it works
 1. **Gate:** desirability, feasibility, viability. A clear "no" stops the idea.
-2. **Score:** six weighted criteria, rated 1-5, one criterion across all ideas at a time.
-3. **Evidence adjustment:** opinion < behavior < commitment (E0-E4) lowers or keeps the score.
-4. **Priority A-D** and a verdict (start, recycle, park, stop) within your weekly hours.
-5. **Riskiest assumption** and the cheapest test with a numeric pass threshold.
-6. **Unit economics, base rate and a pre-mortem** for the top idea; technology readiness and prior-art check for inventions.
+2. **Pick:** compare evidence for the deciding claim, cost and speed of the next test and fit with your hours; park the rest. No scores needed (on request: six weighted criteria, E0-E4 evidence factors, priority A-D).
+3. **Deciding claim:** the one claim that, if false, makes the next commitment pointless.
+4. **One test** of the matching type (behavior, performance or calculation) with pass, stop and inconclusive fixed in advance.
+5. **First step** of 30 minutes or less; building needs commitment evidence first.
 
 Details load on demand from `references/` to save tokens.
 
