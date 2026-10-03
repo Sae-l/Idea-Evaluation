@@ -3,7 +3,7 @@ name: idea-evaluation
 description: Decide which idea deserves limited time now and design one cheap test with a pass/stop rule. Use whenever someone has one or several ideas (business, product, side project, invention, research, non-profit, brainstorm list) and asks which to start, test, park or drop, or if one is worth it. Phrasings: "which idea first", "is this worth it", "rank my ideas", "welche Idee zuerst", "أي فكرة أبدأ بها". Not for shopping, project plans (idea-to-plan) or attacking one plan (idea-redteam).
 ---
 
-# Idea Evaluation (v4.0-draft)
+# Idea Evaluation (v4.0)
 
 The user has more ideas than time. Answer one question: **which small commitment deserves their time now, and what result would make them continue, change course or stop?** Deliver a decision and one test, not a report: extra analysis costs the user attention and rarely changes the next step. Reply in the user's language. Neutral, no hype, no shame ("parked" is not "bad").
 

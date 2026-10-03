@@ -18,7 +18,8 @@
 
 ## What we know so far
 - In a small blind test (3 cases, LLM judges) the suite was **not** better overall than a plain Claude answer. It was stronger on one concrete first step with a stop rule and weaker on plain-language clarity and depth: [docs/COMPARISON.md](docs/COMPARISON.md).
-- Scores are rough: weights and thresholds are uncalibrated, and the same prompt varies by about ±0.5 between runs.
+- Scores are optional ("show scores"): weights and thresholds are uncalibrated, and the same prompt varies by about ±0.5 between runs.
+- v4 (test-first answers) was compared with v3.1 and a plain prompt on 3 cases, 9 runs, by one scorer; that result is not yet recorded in `evals/RESULTS.md`, so v4 ships as a beta.
 - Not measured yet: whether the assistant picks the right skill on its own, and whether the design helps people with ADHD. Your feedback is the missing evidence: the [15-minute test](docs/TRY-IT.md) tells you what to try and where to send it.
 
 ## What the skills do
@@ -59,7 +60,7 @@ flowchart LR
 Excerpt; the full answer is in [example.md](skills/idea-evaluation/references/example.md). Scores are available on request ("show scores").
 
 ## Install
-1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v3.1.0-beta.2 or later) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
+1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v4.0.0-beta.1 or later) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
 2. **Add them to your tool:**
    - **Claude (claude.ai):** open the Skills page in Settings and upload the `.skill` file (menu names change from time to time).
    - **Claude Code:** `mkdir -p ~/.claude/skills && unzip idea-evaluation.skill -d ~/.claude/skills/` (a `.skill` file is a zip). In a project, use `.claude/skills/` instead.
