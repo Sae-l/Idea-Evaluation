@@ -1,5 +1,7 @@
 # Idea Evaluation Suite
 
+[![CI](https://github.com/Sae-l/Idea-Evaluation/actions/workflows/ci.yml/badge.svg)](https://github.com/Sae-l/Idea-Evaluation/actions/workflows/ci.yml) [![CodeQL](https://github.com/Sae-l/Idea-Evaluation/actions/workflows/codeql.yml/badge.svg)](https://github.com/Sae-l/Idea-Evaluation/actions/workflows/codeql.yml) [![License: MIT](https://img.shields.io/github/license/Sae-l/Idea-Evaluation)](LICENSE) [![Release](https://img.shields.io/github/v/release/Sae-l/Idea-Evaluation?include_prereleases)](https://github.com/Sae-l/Idea-Evaluation/releases)
+
 > **Status: public beta** · MIT licensed · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
 >
 > Weights and thresholds are uncalibrated defaults, skill triggering is unmeasured, and the ADHD-friendly design is a hypothesis not yet tested with users. See [evals/RESULTS.md](evals/RESULTS.md) and [docs/RESEARCH.md](docs/RESEARCH.md).
@@ -29,6 +31,14 @@ Four small, portable, user-neutral skills. Replies follow the user's language; t
 How it differs from similar skills (and where those are stronger): [docs/COMPETITIVE-ANALYSIS.md](docs/COMPETITIVE-ANALYSIS.md); measured head-to-head: [docs/COMPARISON.md](docs/COMPARISON.md).
 
 Flow: `idea-evaluation` → `idea-to-plan` → `idea-redteam` → (after results) `idea-evaluation` again; `idea-market-check` is an optional side trip for one idea. Each skill works alone; they hand over a small [Idea Card](docs/idea-card.md). Skills do not reliably call each other, so each ends with a "Next step" line and you invoke the next one.
+
+```mermaid
+flowchart LR
+    A["idea-evaluation<br/>what to start"] --> B["idea-to-plan<br/>a realistic plan"]
+    B --> C["idea-redteam<br/>what could kill it"]
+    C -->|after results| A
+    A -. optional .-> D["idea-market-check<br/>prices and claims"]
+```
 
 ## Example
 **You write:**
