@@ -19,7 +19,7 @@
 ## What we know so far
 - In a small blind test (3 cases, LLM judges) the suite was **not** better overall than a plain Claude answer. It was stronger on one concrete first step with a stop rule and weaker on plain-language clarity and depth: [docs/COMPARISON.md](docs/COMPARISON.md).
 - Scores are rough: weights and thresholds are uncalibrated, and the same prompt varies by about ±0.5 between runs.
-- Not measured yet: whether the assistant picks the right skill on its own, and whether the design helps people with ADHD. Your feedback is the missing evidence: use the [feedback form](https://github.com/Sae-l/Idea-Evaluation/issues/new/choose).
+- Not measured yet: whether the assistant picks the right skill on its own, and whether the design helps people with ADHD. Your feedback is the missing evidence: the [15-minute test](docs/TRY-IT.md) tells you what to try and where to send it.
 
 ## What the skills do
 Four small, portable, user-neutral skills. Replies follow the user's language; the skills are written in English.
