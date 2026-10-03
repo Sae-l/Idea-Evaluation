@@ -87,13 +87,21 @@ Tips: say your hours per week, money and goal; say "assume, don't ask me questio
 - **Too long:** ask for the "Quick" version.
 - **Where do results go:** into an Idea Card ([format](docs/idea-card.md)); if files can be written, an `ideas.md` keeps your cards between sessions.
 - **Spreadsheet:** see [Export](#export).
-- **Privacy:** see the note at the end of this page.
+- **Privacy:** see [Privacy and safety](#privacy-and-safety).
 </details>
+
+## Privacy and safety
+> [!IMPORTANT]
+> - **Your ideas go to the AI provider you use** (Claude, ChatGPT, Copilot) under its terms. Do not paste secrets or confidential plans you are not allowed to share.
+> - **`idea-market-check` searches the web:** search terms derived from your idea go to the search provider. The skill is told to use generic terms only.
+> - **Saved files** (`ideas.md`, spreadsheets) contain what you typed. Keep them out of public repositories; this repository's `.gitignore` already excludes them.
+> - **GitHub issues are public:** do not paste private ideas there. Report security problems privately: see [SECURITY.md](SECURITY.md).
+> - The scripts run locally and make no network calls. Scores are rough estimates (±50 %), not professional, legal, financial or medical advice.
 
 ## Export
 `python skills/idea-evaluation/scripts/build_xlsx.py ideas.json Ideas.xlsx` (`--csv` works without dependencies). JSON schema is in the script header.
 
-## Method (in short)
+## How it works
 1. **Gate:** desirability, feasibility, viability. A clear "no" stops the idea.
 2. **Score:** six weighted criteria, rated 1-5, one criterion across all ideas at a time.
 3. **Evidence adjustment:** opinion < behavior < commitment (E0-E4) lowers or keeps the score.
@@ -103,7 +111,10 @@ Tips: say your hours per week, money and goal; say "assume, don't ask me questio
 
 Details load on demand from `references/` to save tokens.
 
-## Layout
+<details><summary>For contributors and the curious: layout, quality, sources, roadmap</summary>
+
+**Layout**
+
 | Path | What it is |
 |---|---|
 | `skills/<skill>/SKILL.md` | core instructions, loaded when the skill triggers |
@@ -113,25 +124,20 @@ Details load on demand from `references/` to save tokens.
 | `tests/` | unit tests, spreadsheet-formula cross-check, skills-in-sync check |
 | `evals/` | eval cases, results (`RESULTS.md`), output checkers, `trigger/` query sets |
 | `dist/` | packaged `<skill>.skill` files (rebuilt by `tools/build_packages.py`, checked in CI) |
-| `tools/` | `build_packages.py` |
-| `requirements-dev.txt` | test dependencies (openpyxl, formulas, PyYAML) |
+| `tools/`, `requirements-dev.txt` | package builder, test dependencies |
 | `.github/` | CI, CodeQL, release workflow, issue and PR templates, Dependabot |
 | root | `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `LICENSE`, `CHANGELOG.md` |
 
-## Roadmap
-Measure trigger accuracy in real clients, run a blind test with real users, calibrate weights and thresholds from real outcomes, and fix the jargon that testers name most. Details and open gaps: [evals/RESULTS.md](evals/RESULTS.md).
+**Quality**
+- Sources and confidence per design decision: [docs/RESEARCH.md](docs/RESEARCH.md).
+- Measured results and open gaps: [evals/RESULTS.md](evals/RESULTS.md).
+- After changes: `pip install -r requirements-dev.txt && python tests/run_all.py` (CI does the same).
 
-## Quality
-- **Sources and confidence per design decision:** [docs/RESEARCH.md](docs/RESEARCH.md).
-- **Measured results and open gaps:** [evals/RESULTS.md](evals/RESULTS.md) (eval cases and checkers live in `evals/`).
-- **Run the checks after changes:** `pip install -r requirements-dev.txt && python tests/run_all.py` (CI does the same).
+**Roadmap:** measure trigger accuracy in real clients, run a blind test with real users, calibrate weights and thresholds from real outcomes, and fix the jargon that testers name most.
 
-## Sources behind the method
-Desirability/Viability/Feasibility (IDEO), Stage-Gate (Cooper), Assumption Mapping (Bland & Osterwalder, *Testing Business Ideas*), Lean Startup, Jobs-to-be-Done, The Mom Test, Pretotyping, Effectuation (Sarasvathy), Pre-mortem (Klein), reference-class forecasting (Kahneman), ICE/RICE/WSJF, TRL. Base-rate example: US BLS Business Employment Dynamics.
+**Sources behind the method:** Desirability/Viability/Feasibility (IDEO), Stage-Gate (Cooper), Assumption Mapping (Bland & Osterwalder, *Testing Business Ideas*), Lean Startup, Jobs-to-be-Done, The Mom Test, Pretotyping, Effectuation (Sarasvathy), Pre-mortem (Klein), reference-class forecasting (Kahneman), ICE/RICE/WSJF, TRL. Base-rate example: US BLS Business Employment Dynamics.
+</details>
 
-Estimates produced by the skills are rough (±50 %) and not professional, legal, financial or medical advice. Feedback from real use, especially from people with ADHD, is the most useful contribution: see the issue templates.
-
-> [!IMPORTANT]
-> **Privacy:** when you use the skills in a hosted assistant (Claude, ChatGPT, Copilot), your ideas are sent to that provider under its terms. Do not paste secrets or confidential plans you are not allowed to share.
+Feedback from real use, especially from people with ADHD, is the most useful contribution: see the [issue forms](https://github.com/Sae-l/Idea-Evaluation/issues/new/choose).
 
 License: [MIT](LICENSE).

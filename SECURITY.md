@@ -1,7 +1,7 @@
 # Security policy
 
 ## Scope
-This repository contains plain-text instructions for AI assistants (`skills/*/SKILL.md`, `references/`), two small Python scripts (`scoring.py`, `build_xlsx.py`), tests and tooling. It runs no service, stores no data and makes no network calls. The scripts read a local JSON file and write a local `.xlsx` or `.csv` file; they use no `eval`, no shell and no network.
+This repository contains plain-text instructions for AI assistants (`skills/*/SKILL.md`, `references/`), two small Python scripts (`scoring.py`, `build_xlsx.py`), tests and tooling. It runs no service and stores no data. The scripts make no network calls: they read a local JSON file and write a local `.xlsx` or `.csv` file; they use no `eval`, no shell and no network. The optional `idea-market-check` skill asks the assistant to search the web, which sends search terms derived from your idea to the search provider; the skill tells the assistant to use generic terms only.
 
 ## What could go wrong (threat model)
 - **Prompt injection through idea text, pasted documents or fetched web pages.** The skills tell the assistant to treat user claims and fetched content as data. This reduces but cannot eliminate the risk. Do not paste secrets or confidential files into an evaluation.

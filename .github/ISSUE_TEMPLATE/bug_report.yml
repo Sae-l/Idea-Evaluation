@@ -2,6 +2,9 @@ name: Bug report
 description: A skill gave a wrong, too long, or confusing answer, or a script failed.
 labels: [bug]
 body:
+  - type: markdown
+    attributes:
+      value: "Issues are public. Do not paste secrets, personal data or confidential ideas; describe the problem in general terms. Security problems: use the private report link instead."
   - type: dropdown
     id: skill
     attributes:

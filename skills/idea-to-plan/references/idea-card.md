@@ -21,4 +21,4 @@ next_step: <one action, <=30 min>
 ```
 Rules: never invent a field value; write `unknown`. Claims by the user are hypotheses until evidence says otherwise; tag numbers `fact (source)`, `assumption`, or `unchecked`.
 
-Storing cards (optional): if files can be written and the user agrees, keep all cards in one `ideas.md` (one `## Idea Card` block per idea), read it first in every session and update it after results. Never store personal data beyond what the user typed. If files cannot be written, print the updated card for the user to paste next time. Update `evidence`, `adjusted`, `status`, `revisit` whenever new results arrive. Dates ISO (YYYY-MM-DD).
+Storing cards (optional): if files can be written and the user agrees, keep all cards in one `ideas.md` (one `## Idea Card` block per idea), read it first in every session and update it after results. Never store personal data beyond what the user typed, and keep `ideas.md` out of public repositories (add it to `.gitignore`). If files cannot be written, print the updated card for the user to paste next time. Update `evidence`, `adjusted`, `status`, `revisit` whenever new results arrive. Dates ISO (YYYY-MM-DD).

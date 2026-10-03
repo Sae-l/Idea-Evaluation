@@ -2,6 +2,12 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
+## 3.1.0-beta.3 (unreleased)
+Privacy and visitor-facing documentation; scoring and verdict rules are unchanged.
+- `idea-market-check`: search queries must use generic terms (they leave the user's machine). `idea-card.md` (all skills): keep `ideas.md` out of public repositories.
+- `SECURITY.md` states that the web search of `idea-market-check` sends search terms to the provider; issue forms warn that issues are public.
+- README: privacy and safety section for users, "How it works" visible, maintainer details (layout, quality, sources, roadmap) folded away.
+
 ## 3.1.0-beta.2 (2026-10-02)
 Documentation and release process only; the skills are unchanged. `v3.1.0-beta.1` was published by hand without the `.skill` package files and, as an immutable release, cannot be amended: use this release for the packages.
 - README status block and skill count fixed; CodeQL is skipped for Dependabot runs (read-only token).
