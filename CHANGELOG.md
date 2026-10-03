@@ -5,6 +5,7 @@ Format: one section per suite release, newest first. The release workflow reads 
 ## 4.0.0-beta.3 (2026-10-03)
 Docs and eval sets only; the skills are unchanged.
 - `docs/TRY-IT.md`: the trigger check no longer looks for a "ranked table"; it names the v4 answer shape, the plan and the red-team verdict.
+- `idea-evaluation` answer length: the Output template now has a hard ceiling of 300 words and shorter slots (direct answer ≤20 words, reasons ≤12 words, Parked/Stopped reasons ≤8 words, one test only, constraint checks go into Today or Assumed). Measured with `claude -p` on cases C1–C3: before, 313–414 words (mean 347, 6 runs); after, 249–298 words (mean 268, 9 runs); all nine pass `check_output.py`. Small sample, one model.
 - `evals/trigger/idea-evaluation.json`: added an Arabic positive query, because the v4 description lists Arabic phrases. Trigger accuracy is still unmeasured.
 
 ## 4.0.0-beta.2 (2026-10-03)

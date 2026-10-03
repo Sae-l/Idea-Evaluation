@@ -1,6 +1,6 @@
 # Eval results
 
-**v4 note (2026-10-03):** the results below were measured on `idea-evaluation` 3.1 and are kept as history. A 3-case, 9-run comparison of v3.1, v4 and a plain prompt exists but has not been scored or recorded here. Mechanical check on the three v4 answers of that run: two exceeded the 350-word tolerance (366 and 418 words; the skill aims for 150–250), so v4 does not yet meet its own length target.
+**v4 note (2026-10-03):** the results below were measured on `idea-evaluation` 3.1 and are kept as history. A 3-case, 9-run comparison of v3.1, v4 and a plain prompt exists but has not been scored or recorded here. Length: the first three v4 answers ran 319–418 words against a 150–250 target (two over the 350 tolerance). After adding a hard ceiling of 300 and shorter slots to `SKILL.md`, 9 runs on C1–C3 measured 249–298 words (mean 268; the same cases before: 313–414, mean 347, 6 runs); all pass `check_output.py`. Seven of nine still exceed 250, so the target is met on average only loosely. One model, small sample.
 
 Last updated 2026-10-02 after the full repository review (skill versions: `idea-evaluation` 3.1, `idea-to-plan` 1.0, `idea-redteam` 1.0, with review fixes).
 
