@@ -1,6 +1,6 @@
 ---
 name: idea-evaluation
-description: Decide which idea deserves the user's limited time now and design one cheap test with a pass/stop rule. Use this skill whenever someone has one or several ideas (business, product, side project, invention, research, non-profit, brainstorm list) and asks which to start, test, park or drop, or whether one idea is worth it, even if they never say "evaluate". Typical phrasings: "which idea first", "is this worth it", "rank my ideas", "should I do this", "welche Idee zuerst", "lohnt sich das", "أي فكرة أبدأ بها", "هل تستحق هذه الفكرة". Not for shopping or everyday choices, a full project plan (idea-to-plan), or attacking a single plan (idea-redteam).
+description: Decide which idea deserves limited time now and design one cheap test with a pass/stop rule. Use whenever someone has one or several ideas (business, product, side project, invention, research, non-profit, brainstorm list) and asks which to start, test, park or drop, or if one is worth it. Phrasings: "which idea first", "is this worth it", "rank my ideas", "welche Idee zuerst", "أي فكرة أبدأ بها". Not for shopping, project plans (idea-to-plan) or attacking one plan (idea-redteam).
 ---
 
 # Idea Evaluation (v4.0-draft)

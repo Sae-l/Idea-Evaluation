@@ -17,7 +17,7 @@ Idea Card if present (`references/idea-card.md`), else the idea, who it is for, 
 
 ## Process (internal, do not narrate)
 1. **Reality check first.** Usable load = **70 % of stated hours** (default). If the goal does not fit time, skills or money, say so in one sentence and offer the fitting version (smaller scope or longer horizon); never silently stretch the plan.
-2. **Analysis (brief).** Who has the problem, what they do today. Riskiest assumption (user, problem, solution, business, feasibility, adoption) and the **smallest thing that can falsify it** as an XYZ test: "At least X % of Y will Z" (Z costs something), time-box, `pass if` and `stop if` (`references/tests.md`). Unit economics only if money matters. MVP = that smallest test, not a product: demand test first, build second.
+2. **Analysis (brief).** Who has the problem, what they do today. Riskiest assumption (user, problem, solution, business, feasibility, adoption) and the **smallest thing that can falsify it** as one test of the matching type (behavior: "At least X of Y will Z", Z costs something; performance; calculation check), time-box, `pass if`, `stop if` and an inconclusive rule (`references/tests.md`). Unit economics only if money matters. MVP = that smallest test, not a product: test the claim that blocks the next commitment first, build second.
 3. **Milestones (max 4; ≤3 for horizons up to 4 weeks).** Each: outcome, date, **gate** (continue / pivot / stop criteria fixed in advance). **Circuit breaker:** a missed gate means stop or shrink scope by default; extending needs a new explicit decision. Name what is cut first if time runs short (`references/planning.md`).
 4. **To-do list.**
    - Tasks 10–60 min, verb first, each with "done when …". Tests are tasks too (with the threshold).
@@ -28,7 +28,7 @@ Idea Card if present (`references/idea-card.md`), else the idea, who it is for, 
 5. **Stop rule + revisit date** (≈ weekly). Offer to update the Idea Card.
 
 ## Check-in logic
-Compare done vs. planned and actual vs. estimated hours → new multiplier (median of actual ÷ estimate; per task type if ≥3 samples of that type, else overall). Convert test results to evidence level (E0 assumption … E4 repeat paying use). Verdict against the gate: **Continue / Pivot / Stop**; if behind, cut scope before adding hours. Re-cut next week's list with the same rules. Name what went well in one line, factually.
+Compare done vs. planned and actual vs. estimated hours → new multiplier (median of actual ÷ **raw** estimate, before any multiplier; per task type if ≥3 samples of that type, else overall). Convert test results to evidence level (E0 assumption … E4 repeat paying use). Verdict against the gate: **Continue / Pivot / Stop**; if behind, cut scope before adding hours. Re-cut next week's list with the same rules. Name what went well in one line, factually.
 
 ## Output (Plan)
 ```

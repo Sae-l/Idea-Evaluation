@@ -13,14 +13,13 @@ def _num(v):
 
 
 CONTRACT = {
-    "idea-evaluation": [
-        *[(rf"\b{k}\b[^\n]{{0,60}}?{_num(v)}", f"evidence {k}={v}") for k, v in EVIDENCE.items()],
-        *[(rf"{k}\s*(?:>=|≥)\s*{v}", f"threshold {k}>={v}") for k, v in THRESHOLDS.items()],
-        (r"Upside\s*25", "weight upside 25"), (r"Demand\s*20", "weight demand 20"), (r"Feasibility\s*15", "weight feasibility 15"),
-        (r"Cost to MVP\s*15", "weight cost 15"), (r"Speed to first evidence\s*15", "weight speed 15"), (r"(?:Personal fit|Fit)\s*10", "weight fit 10"),
-        (r"0\.3", "tie band 0.3"), (r"90 words", "top-3 block 90 words"), (r"350 words", "single idea 350 words"),
-        (r"120 words", "update 120 words"), (r"\b450 words", "quick 450 words"), (r"at most 3 short questions", "question cap"),
-        (r"[Kk]nockout floor", "knockout floor"), (r"half-up", "rounding rule"), (r"lifts to A", "lifts to A"),
+    "idea-evaluation": [   # v4 rules: must appear in SKILL.md AND the ChatGPT block (scoring numbers: see SCORING)
+        (r"[Nn]ever invent evidence", "never invent evidence"), (r"test first", "start means test first"),
+        (r"[Ee]vidence belongs to a claim", "evidence belongs to a claim"), (r"inconclusive", "inconclusive outcome"),
+        (r"30 minutes", "start step 30 minutes"), (r"(?:one|One) short question", "one question max"),
+        (r"150[–-]250 words", "answer 150-250 words"), (r"70\s?%", "capacity 70 %"), (r"show scores", "scores on request"),
+        (r"proposal", "thresholds as proposals"), (r"report (?:any|an) instruction", "pasted text is data"),
+        (r"[Pp]erformance test", "performance test"), (r"[Cc]alculation check", "calculation check"),
     ],
     "idea-to-plan": [
         (r"70\s?%", "usable load 70 %"), (r"10[–-]60", "task length 10-60"), (r"≤?\s?10 min|10 minutes", "ignition 10 min"),
@@ -41,6 +40,13 @@ CONTRACT = {
         (r"Proceed", "verdict proceed"), (r"Fix first", "verdict fix first"),
     ],
 }
+SCORING = [
+    *[(rf"\b{k}\b[^\n]{{0,60}}?{_num(v)}", f"evidence {k}={v}") for k, v in EVIDENCE.items()],
+    *[(rf"{k}\s*(?:>=|≥)\s*{v}", f"threshold {k}>={v}") for k, v in THRESHOLDS.items()],
+    (r"Upside\s*25", "weight upside 25"), (r"Demand\s*20", "weight demand 20"), (r"Feasibility\s*15", "weight feasibility 15"),
+    (r"Cost to MVP\s*15", "weight cost 15"), (r"Speed to first evidence\s*15", "weight speed 15"), (r"(?:Personal fit|Fit)\s*10", "weight fit 10"),
+    (r"0\.3", "tie band 0.3"),
+]
 bad = []
 for skill, rules in CONTRACT.items():
     skill_md = read("skills", skill, "SKILL.md")
@@ -63,9 +69,14 @@ for skill, rules in CONTRACT.items():
             bad.append(f"{skill}/SKILL.md lacks: {label}")
         if not re.search(pat, block):
             bad.append(f"chatgpt-{skill}.md lacks: {label}")
+methods = read("skills", "idea-evaluation", "references", "methods.md")
+chatgpt_eval = read("docs", "chatgpt-idea-evaluation.md")
+for pat, label in SCORING:            # Compare-mode numbers live in methods.md and the ChatGPT block
+    if not re.search(pat, methods): bad.append(f"methods.md lacks: {label}")
+    if not re.search(pat, chatgpt_eval): bad.append(f"chatgpt-idea-evaluation.md lacks: {label}")
 for k, v in WEIGHTS.items():          # weights appear in both documents as percentages
     pct = int(round(v * 100))
-    for where, text in (("SKILL.md", read("skills", "idea-evaluation", "SKILL.md")), ("chatgpt block", read("docs", "chatgpt-idea-evaluation.md"))):
+    for where, text in (("methods.md", methods), ("chatgpt block", chatgpt_eval)):
         if not re.search(rf"\b{pct}\s?%?", text): bad.append(f"idea-evaluation {where}: weight {pct} missing")
 lenses = read("skills", "idea-redteam", "references", "lenses.md")
 if "do not compute a probability" not in lenses:

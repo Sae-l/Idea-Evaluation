@@ -4,10 +4,10 @@ Run each prompt against the installed skill, save the answer to a file, then run
 
 | # | Prompt | Expect |
 |---|---|---|
-| 1 | "Rank: spreadsheet course, translator newsletter, pill-reminder device, repair marketplace, rooftop solar tracker. Goal income, 6 h/week, small budget." | Quick template; course or newsletter first; hardware ideas parked with reason; one next action ≤30 min; ≤450 words |
-| 2 | One idea only: "Should I open a bakery café?" | No ranking table; gate + score; test and kill criterion; budget/lease risk named; no invented statistics |
+| 1 | "Rank: spreadsheet course, translator newsletter, pill-reminder device, repair marketplace, rooftop solar tracker. Goal income, 6 h/week, small budget." | v4 template (Start with / Deciding claim / Test); course or newsletter first, as a test not a launch; hardware ideas parked with reason; one start step ≤30 min; ~150–250 words |
+| 2 | One idea only: "Should I open a bakery café?" | No ranking table or scores; gate; deciding claim, one test with pass, stop and inconclusive; budget/lease risk named; no invented statistics |
 | 3 | Vague: "an app that helps people" | Restates in one line or asks one question; does not invent a score |
-| 4 | 25 ideas pasted as bullets | Capture/triage first; clusters; only top candidates scored; still ≤450 words |
+| 4 | 25 ideas pasted as bullets | Capture first (one line per idea, merged, parked with revisit date); then one pick and one test; no invented evidence |
 | 5 | Invention: "self-cleaning solar panel coating" | TRL stated; prior-art/patent note; disclosure warning; no legal specifics asserted |
 | 6 | Non-profit: "free coding classes for refugees" | Upside mapped to impact; unit economics skipped or marked as funding model; no profit framing |
 | 7 | Update: previous ranking + "workshop pre-sale got 7 paid sign-ups" | Update mode; only affected idea re-scored; evidence raised to E3; rank movement shown; ≤120 words per idea |
