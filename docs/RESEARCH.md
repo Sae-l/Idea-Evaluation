@@ -1,6 +1,6 @@
 # Research notes and confidence
 
-Maintainer document (not loaded by the skill). It records which design decisions rest on what, and how strong the support is. Last updated 2026-10-02.
+Maintainer document (not loaded by the skill). It records which design decisions rest on what, and how strong the support is. Last updated 2026-10-03. Since `idea-evaluation` 4.0 the weights, thresholds and evidence factors below apply only in Compare mode ("show scores"); the default answer picks one idea by evidence for the deciding claim and designs one test. The v4 changes (test-first, typed tests, performance first for unproven inventions) rest on author judgment and small measurements in `evals/RESULTS.md`, not on external research.
 
 | Design decision | Basis | Confidence |
 |---|---|---|

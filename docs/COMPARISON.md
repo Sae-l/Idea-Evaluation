@@ -1,5 +1,7 @@
 # Head-to-head comparison (2026-10-02)
 
+> **Scope:** measured on `idea-evaluation` 3.1 (ranked-table answers). `idea-evaluation` 4.x answers differently (one decision and one test); a 3-case, 9-run comparison of v3.1, v4 and a plain prompt exists but is not scored or recorded here.
+
 Short version: **no proof that this suite beats a plain, skill-less answer.** It is better at one concrete first step with a stop criterion; it is about equal at labeling unverified claims; it is worse at plain-language clarity and depth. Rivals with web research add verifiable market facts that this suite deliberately leaves out, at 1.5–2× the length.
 
 ## What was run
