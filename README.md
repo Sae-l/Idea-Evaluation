@@ -8,8 +8,8 @@
 
 ## Who it is for
 - You have more ideas than time (side projects, a small business, inventions, a non-profit, research) and want **one next action** instead of a long report.
-- You tend to stall on choosing. Evaluation and red-team answers name a first step of 30 minutes or less, and every test comes with a stop rule agreed in advance; ideas you do not pick are parked with a revisit date, never deleted.
-- **Not for:** market research on its own (use `idea-market-check` or a dedicated research tool), legal, tax or financial advice, or everyday purchases.
+- You tend to stall on choosing. Evaluation and red-team answers are designed to name a first step of 30 minutes or less, and every test is meant to come with a stop rule agreed in advance; ideas you do not pick are parked with a revisit date, never deleted.
+- **Not for:** deep market research (`idea-market-check` only checks prices and claims for one idea; use a dedicated research tool for more), legal, tax or financial advice, or everyday purchases.
 
 ## What we know so far
 - In a small blind test (3 cases, LLM judges) the suite was **not** better overall than a plain Claude answer. It was stronger on one concrete first step with a stop rule and weaker on plain-language clarity and depth: [docs/COMPARISON.md](docs/COMPARISON.md).
@@ -31,7 +31,11 @@ How it differs from similar skills (and where those are stronger): [docs/COMPETI
 Flow: `idea-evaluation` → `idea-to-plan` → `idea-redteam` → (after results) `idea-evaluation` again; `idea-market-check` is an optional side trip for one idea. Each skill works alone; they hand over a small [Idea Card](docs/idea-card.md). Skills do not reliably call each other, so each ends with a "Next step" line and you invoke the next one.
 
 ## Example
+**You write:**
+
 > Rank: (1) spreadsheet course, (2) translator newsletter, (3) pill-reminder device, (4) repair marketplace, (5) rooftop solar tracker. Goal income, 6 h/week.
+
+**You get:**
 
 **Start with:** the spreadsheet course. Colleagues already ask for this and have paid for help (E2), so it has the strongest evidence at low cost. **Next, within 30 min:** write a 5-line course outline and send it to the 3 people who asked most recently.
 
@@ -40,7 +44,7 @@ Flow: `idea-evaluation` → `idea-to-plan` → `idea-redteam` → (after results
 | 1 | Spreadsheet course | 3.5 | E2 | low | A |
 | 2 | Translator newsletter | 3.2 | E0 | very low | B |
 
-**Test:** At least 5 of 30 people in one role will pre-pay | 10 days | pass if ≥5 paid, stop if ≤1
+**Test:** at least 5 of 30 people in one role will pre-pay · **Time:** 10 days · **Pass if** ≥5 paid · **Stop if** ≤1
 
 Excerpt with illustrative ratings; the full answer is in [example.md](skills/idea-evaluation/references/example.md).
 
@@ -49,9 +53,9 @@ Excerpt with illustrative ratings; the full answer is in [example.md](skills/ide
 2. **Add them to your tool:**
    - **Claude (claude.ai):** open the Skills page in Settings and upload the `.skill` file (menu names change from time to time).
    - **Claude Code:** `mkdir -p ~/.claude/skills && unzip idea-evaluation.skill -d ~/.claude/skills/` (a `.skill` file is a zip). In a project, use `.claude/skills/` instead.
-   - **VS Code / GitHub Copilot:** copy `skills/<skill>/` to `.github/skills/<skill>/`. VS Code also reads `.claude/skills/` and `.agents/skills/` according to its documentation; not tested by this project.
+   - **VS Code / GitHub Copilot:** `mkdir -p .github/skills && unzip idea-evaluation.skill -d .github/skills/`. VS Code also reads `.claude/skills/` and `.agents/skills/` according to its documentation; not tested by this project.
    - **ChatGPT / other chat tools:** paste `docs/chatgpt-<skill>.md` into a Custom GPT or Project and upload that skill's `references/` files as knowledge.
-3. **Check that it works:** type `Evaluate these ideas: a paid spreadsheet course, a YouTube channel about woodworking. I have 6 hours a week.` You should get a ranked table, a "Start with" line and one first step of 30 minutes or less. A generic essay means the skill was not used: say `use the idea-evaluation skill`.
+3. **Check that it works:** type `Evaluate these ideas: a paid spreadsheet course, a YouTube channel about woodworking. I have 6 hours a week.` You should get a ranked table, a "Start with" line and one first step of 30 minutes or less. In Claude Code, `~/.claude/skills/idea-evaluation/SKILL.md` should exist after step 2. A generic essay means the skill was not used: say `use the idea-evaluation skill`.
 
 ## Use
 | You write | Skill | You get |
@@ -69,7 +73,7 @@ Tips: say your hours per week, money and goal; say "assume, don't ask me questio
 - **The skill does not start:** name it in the request ("use the idea-evaluation skill"). Triggering is not measured yet.
 - **Too long:** ask for the "Quick" version.
 - **Where do results go:** into an Idea Card ([format](docs/idea-card.md)); if files can be written, an `ideas.md` keeps your cards between sessions.
-- **Spreadsheet:** see Export below.
+- **Spreadsheet:** see [Export](#export).
 - **Privacy:** see the note at the end of this page.
 </details>
 
