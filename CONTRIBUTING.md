@@ -14,6 +14,13 @@ Thanks for helping. This is a small project with strict goals: **short outputs, 
 - Fork, branch, change, run the checks, open a pull request using the template.
 - Keep commits focused; explain *why* in the message.
 
+## Try your change in 5 minutes
+1. Copy the skill folder you changed to `~/.claude/skills/` (or `.claude/skills/` in a test project).
+2. Ask one of the example prompts from the README (Use table) and read the answer.
+3. Compare with the cases in `evals/` and the checker for that skill (for example `python evals/check_output.py answer.md`).
+
+Python 3.10 or newer is needed for the tests (CI runs 3.10 and 3.12). New here? Issues labelled `good first issue` are a good start.
+
 ## Checks (run before every PR)
 ```bash
 pip install -r requirements-dev.txt

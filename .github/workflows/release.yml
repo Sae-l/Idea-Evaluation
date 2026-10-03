@@ -37,6 +37,8 @@ jobs:
           if grep -qF -- "## ${version} (unreleased)" CHANGELOG.md; then echo "CHANGELOG still says '(unreleased)' for ${version}"; exit 1; fi
           awk -v v="## ${version}" 'index($0,v)==1 && (length($0)==length(v) || substr($0,length(v)+1,1)==" ") {f=1; next} /^## / && f {exit} f' CHANGELOG.md > notes.md
           test -s notes.md || { echo "no CHANGELOG section '## ${version}'"; exit 1; }
+          { printf '%s\n\n' "Download the .skill files below and check them with sha256sum -c SHA256SUMS. Install: see README > Install (https://github.com/${GITHUB_REPOSITORY}#install)."; cat notes.md; } > notes.full.md
+          cp notes.full.md notes.md
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
