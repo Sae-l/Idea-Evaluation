@@ -50,7 +50,7 @@ Assume failure after 12 months; list the most likely cause. If it is fixable che
 ## Effectuation (Sarasvathy)
 Start from means (who I am, what I know, whom I know) and affordable loss, not from a perfect plan. Feeds *fit* and the money ceiling.
 
-## Compare mode: weights, evidence factors, thresholds (only on "show scores" or truly close options)
+## Compare mode: weights, evidence factors, thresholds (only on an explicit "show scores" request)
 Rate 1–5, one criterion across all ideas at a time. Weights: Upside 25 % · Demand 20 % · Feasibility 15 % · Cost to MVP 15 % · Speed to first evidence 15 % · Fit 10 %.
 Adjusted = weighted score × evidence factor: E0 assumption 0.80 · E1 stated interest 0.85 · E2 observed behavior 0.90 · E3 commitment (deposit, pre-order, paid pilot) 0.95 · E4 repeat paying use 1.0.
 Priority from the adjusted score: A ≥ 3.4 · B ≥ 2.8 · C ≥ 2.2 · else D. If the top two are within 0.3, call it a tie and prefer the cheaper test. A B idea gets "lifts to A if …". Show the basis of every rating and say that ratings vary by about ±0.5 between runs. Scores order ideas for a decision; they are never evidence and never replace the test.

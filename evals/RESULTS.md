@@ -1,5 +1,7 @@
 # Eval results
 
+**v4 note (2026-10-03):** the results below were measured on `idea-evaluation` 3.1 and are kept as history. A 3-case, 9-run comparison of v3.1, v4 and a plain prompt exists but has not been scored or recorded here. Mechanical check on the three v4 answers of that run: two exceeded the 350-word tolerance (366 and 418 words; the skill aims for 150–250), so v4 does not yet meet its own length target.
+
 Last updated 2026-10-02 after the full repository review (skill versions: `idea-evaluation` 3.1, `idea-to-plan` 1.0, `idea-redteam` 1.0, with review fixes).
 
 **Method.** A general-purpose subagent (Claude Sonnet) answers each prompt (a) without any skill ("baseline", first round only) and (b) after reading the skill's `SKILL.md`. Mechanical checks: `check_output.py`, `check_plan.py`, `check_redteam.py` (word limits are soft targets: `check_plan.py` and `check_redteam.py` allow +10 %, `check_output.py` is strict). Content judgments were made by the skill author (an LLM), **not by independent humans**. Usually 1 run per prompt; the same prompt varies by up to about ±30 % in length and about ±0.5 in score between runs. Treat this as development evidence, not proof.

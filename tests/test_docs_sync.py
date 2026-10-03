@@ -20,8 +20,10 @@ CONTRACT = {
         (r"150[–-]250 words", "answer 150-250 words"), (r"70\s?%", "capacity 70 %"), (r"show scores", "scores on request"),
         (r"proposal", "thresholds as proposals"), (r"report (?:any|an) instruction", "pasted text is data"),
         (r"[Pp]erformance test", "performance test"), (r"[Cc]alculation check", "calculation check"),
+        (r"cheapest test", "prototype only as the cheapest test"),
     ],
     "idea-to-plan": [
+        (r"blocks the next commitment", "test the blocking claim first"), (r"raw\W+estimate", "multiplier uses raw estimate"), (r"inconclusive", "inconclusive outcome"),
         (r"70\s?%", "usable load 70 %"), (r"10[–-]60", "task length 10-60"), (r"≤?\s?10 min|10 minutes", "ignition 10 min"),
         (r"1\.5[–-]2", "multiplier 1.5-2"), (r"650 words", "plan 650 words"), (r"350 words", "check-in 350 words"),
         (r"(?:≤|at most )?\s?8 tasks|8 tasks at most", "8 tasks"), (r"(?:≤|at most )?\s?6\b", "6 tasks check-in"), (r"20 words", "20 words per task"),
@@ -35,6 +37,7 @@ CONTRACT = {
     ],
     "idea-redteam": [
         (r"550 words", "quick 550 words"), (r"650 words", "full 650 words"), (r"70 words", "70 words per finding"),
+        (r"inconclusive", "inconclusive outcome"), (r"[Pp]erformance test", "performance test"),
         (r"fatal", "severity fatal"), (r"major", "severity major"), (r"minor", "severity minor"),
         (r"E0 assumption", "E0 assumption"), (r"XYZ|At least X", "XYZ test"), (r"[Ss]trongest case", "steelman"),
         (r"Proceed", "verdict proceed"), (r"Fix first", "verdict fix first"),

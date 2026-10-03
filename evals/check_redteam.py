@@ -13,7 +13,7 @@ findings = [l for l in text.splitlines() if re.match(r"\s*(\*\*)?\s*\d\.\s", l)]
 if len(findings) > 3: fails.append(f"{len(findings)} numbered findings (max 3)")
 if len(findings) < 1: fails.append("no findings")
 if any(l.strip().startswith("|") for l in text.splitlines()): fails.append("contains a table")
-for pat, name in (((r"At least \d+(?: ?%| of)", "XYZ test"), (r"strongest case", "steelman"), (r"change my mind", "what would change my mind")) if latin else ()):
+for pat, name in (((r"At least \d+(?: ?%| of)|performance test|calculation", "typed test"), (r"strongest case", "steelman"), (r"change my mind", "what would change my mind")) if latin else ()):
     if not re.search(pat, text, re.I): fails.append(f"missing {name}")
 bare = [l for l in text.splitlines() if latin and re.search(r"\d\s?%", l)
         and not re.search(r"assum|fact|verify|source|unchecked|At least|pass if|threshold|stop if|range|estimate|change my mind|strongest case|kill", l, re.I)]

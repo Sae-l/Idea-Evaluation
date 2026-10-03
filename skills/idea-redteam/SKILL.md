@@ -24,7 +24,7 @@ Idea Card if present (`references/idea-card.md`), else the idea/plan as written.
 1. Restate idea + the decision under test (what the user is about to commit to) in one line; this is not a verdict.
 2. **Pre-mortem:** "12 months later this failed. Most likely reasons?" Generate candidates across lenses: demand · substitutes/competition (what they do today, who else) · economics (margin, acquisition cost, reachable customers) · execution (skills, time, hidden steps, dependencies) · timing/reversibility · legal/ethical/harm · assumption stack (does it need many things to all go right?) · sustainability (does the plan survive a bad week?).
 3. **Rank** by severity × likelihood, tie-break by how cheap the test is. Keep the **top 3** (Full: plus up to 3 one-line watchlist items). Label each finding by severity: **fatal** (cannot work or causes harm) · **major** (changes economics or timeline by a multiple) · **minor** (fix during execution).
-4. **Per finding:** what goes wrong (1 line) · why plausible (fact/source or labeled assumption) · **cheapest test** written as "At least X % of Y will Z" with time-box and threshold (`references/tests.md`); for money, runway or hours use a **calculation check** instead: inputs → worst case → numeric `pass if` / `stop if` and a deadline, with the reserve chosen first (it shows feasibility under stated assumptions, not demand) · fix if true.
+4. **Per finding:** what goes wrong (1 line) · why plausible (fact/source or labeled assumption) · **cheapest test** of the matching type (`references/tests.md`): behavior "At least X of Y will Z", **performance test** (quantity, minimum value, conditions, runs) for inventions and technical doubts, or **calculation check** for money, runway or hours (inputs → worst case → reserve chosen first; it shows feasibility under stated assumptions, not demand); each with time-box, `pass if`, `stop if` and an `inconclusive →` rule · fix if true.
 5. **Steelman:** the strongest case *for* the idea, one sentence. **What would change my mind:** the evidence that would lift the verdict.
 6. **Verdict (mechanical, independent of any earlier score):** **Stop** if there is harm to others, or a finding is fatal and its only fix is a different idea (pivot) · **Fix first** if any finding is fatal or major and a fix or test keeps the idea (it comes before spending time or money) · **Proceed** only if all findings are minor. Confidence low/medium/high with one reason.
 
@@ -35,7 +35,7 @@ Idea Card if present (`references/idea-card.md`), else the idea/plan as written.
 
 **1. [Weakness]** (fatal|major|minor)
 - Why: … [fact (source) | assumption (range, verify)]
-- Test: At least X % of Y will Z (money/runway/hours: Calculation: inputs → worst case) | time-box | pass if … | stop if …
+- Test: [behavior: At least X of Y will Z · performance: quantity ≥ min in N runs · calculation: inputs → worst case] | time-box | pass if … | stop if … | inconclusive → …
 - If true: …
 **2. …**  **3. …**
 **Watchlist (Full only):** up to 3 one-liners

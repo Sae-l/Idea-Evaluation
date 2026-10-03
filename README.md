@@ -47,7 +47,7 @@ flowchart LR
 ## Example
 **You write:**
 
-> Rank: (1) spreadsheet course, (2) translator newsletter, (3) pill-reminder device, (4) repair marketplace, (5) rooftop solar tracker. Goal income, 6 h/week.
+> Which should I start? (1) spreadsheet course: three colleagues asked me to teach them and two paid me EUR 30 each for a session last month, (2) newsletter for translators, (3) pill-reminder device, (4) repair marketplace, (5) rooftop solar tracker. Goal: extra income. 6 h/week, EUR 300.
 
 **You get:**
 
@@ -60,7 +60,7 @@ flowchart LR
 Excerpt; the full answer is in [example.md](skills/idea-evaluation/references/example.md). Scores are available on request ("show scores").
 
 ## Install
-1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v4.0.0-beta.1 or later) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
+1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v4.0.0-beta.2 or later) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
 2. **Add them to your tool:**
    - **Claude (claude.ai):** open the Skills page in Settings and upload the `.skill` file (menu names change from time to time).
    - **Claude Code:** `mkdir -p ~/.claude/skills && unzip idea-evaluation.skill -d ~/.claude/skills/` (a `.skill` file is a zip). In a project, use `.claude/skills/` instead.

@@ -2,6 +2,14 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
+## 4.0.0-beta.2 (2026-10-03)
+Fixes from an external review of 4.0.0-beta.1 (each point checked against the repository first); the 4.0.0-beta.1 draft release was never published, use this one.
+- README example: the user message now contains the evidence the answer relies on (three colleagues asked, two paid), so the example no longer teaches invented evidence.
+- `idea-evaluation`: a small prototype is allowed when it is the cheapest test of the deciding claim (inventions, research); full builds and launches still need commitment evidence. Scores only on an explicit "show scores" (close options are settled by naming the separating test).
+- `idea-redteam` and `idea-to-plan` (SKILL.md and ChatGPT blocks): tests are typed (behavior, performance, calculation) with an inconclusive rule; the ChatGPT plan block now tests the blocking claim first and uses the raw estimate for the multiplier. The docs-sync contract enforces this.
+- Answer checker: bold labels need content, an inconclusive rule is required, and non-Latin answers need at least four lines and a number; two new rejecting fixtures. On the three v4 answers of the comparison run, two exceed the 350-word tolerance (see `evals/RESULTS.md`).
+- Eval cases no longer expect scores and ranks by default; RESULTS notes that its numbers are from 3.1.
+
 ## 4.0.0-beta.1 (2026-10-03)
 `idea-evaluation` v4.0: the answer is one decision and one test, not a ranked report. Behavior change; the Idea Card format is unchanged.
 - Core question is "which small commitment now?": Start / Today (≤30 min) / Deciding claim with evidence in words / Test with pass, stop and inconclusive fixed in advance / Parked with revisit date. Target 150–250 words (was ~450).
