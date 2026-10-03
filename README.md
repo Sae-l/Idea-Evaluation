@@ -17,9 +17,9 @@
 - **Not for:** deep market research (`idea-market-check` only checks prices and claims for one idea; use a dedicated research tool for more), legal, tax or financial advice, or everyday purchases.
 
 ## What we know so far
-- In a small blind test (3 cases, LLM judges) the suite was **not** better overall than a plain Claude answer. It was stronger on one concrete first step with a stop rule and weaker on plain-language clarity and depth: [docs/COMPARISON.md](docs/COMPARISON.md).
+- In a small blind test of v3.1 (3 cases, LLM judges) the suite was **not** better overall than a plain Claude answer. It was stronger on one concrete first step with a stop rule and weaker on plain-language clarity and depth: [docs/COMPARISON.md](docs/COMPARISON.md).
 - Scores are optional ("show scores"): weights and thresholds are uncalibrated, and the same prompt varies by about ±0.5 between runs.
-- v4 (test-first answers) was compared with v3.1 and a plain prompt on 3 cases, 9 runs, by one scorer; that result is not yet recorded in `evals/RESULTS.md`, so v4 ships as a beta.
+- v4 (test-first answers) was compared with v3.1 and a plain prompt on 3 cases, 9 runs, by one scorer; that result is not yet recorded in `evals/RESULTS.md`, so v4 ships as a beta. Measured on `claude -p` with one model: answers run about 250–300 words (target 150–250) and unproven inventions now get a performance test first; see `evals/RESULTS.md`.
 - Not measured yet: whether the assistant picks the right skill on its own, and whether the design helps people with ADHD. Your feedback is the missing evidence: the [15-minute test](docs/TRY-IT.md) tells you what to try and where to send it.
 
 ## What the skills do
@@ -60,7 +60,7 @@ flowchart LR
 Excerpt; the full answer is in [example.md](skills/idea-evaluation/references/example.md). Scores are available on request ("show scores").
 
 ## Install
-1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v4.0.0-beta.2 or later) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
+1. **Download** the `<skill>.skill` files from the newest [release](https://github.com/Sae-l/Idea-Evaluation/releases) (v4.0.0-beta.4 or later; v4.0.0-beta.1 to beta.3 were never published) and verify them with `sha256sum -c SHA256SUMS`. Start with `idea-evaluation`; add the others when you need them.
 2. **Add them to your tool:**
    - **Claude (claude.ai):** open the Skills page in Settings and upload the `.skill` file (menu names change from time to time).
    - **Claude Code:** `mkdir -p ~/.claude/skills && unzip idea-evaluation.skill -d ~/.claude/skills/` (a `.skill` file is a zip). In a project, use `.claude/skills/` instead.
@@ -72,7 +72,7 @@ Excerpt; the full answer is in [example.md](skills/idea-evaluation/references/ex
 | You write | Skill | You get |
 |---|---|---|
 | "Rank these ideas ... I have 6 hours a week and EUR 500." | `idea-evaluation` | which to test first, one test, first step (scores on request) |
-| "Should I do this? ..." (one idea) | `idea-evaluation` | verdict, priority, one test with a stop rule |
+| "Should I do this? ..." (one idea) | `idea-evaluation` | start-as-a-test or park, the deciding claim, one test with a stop rule |
 | "Plan idea X for 4 weeks" / "check in on my project" | `idea-to-plan` | milestones with gates, a realistic to-do list |
 | "What could go wrong?" / "red-team this plan" | `idea-redteam` | Proceed / Fix first / Stop, up to 3 weaknesses |
 | "Check the market for X" (web search needed) | `idea-market-check` | competitor prices, claim check |

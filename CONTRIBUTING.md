@@ -7,7 +7,7 @@ Thanks for helping. This is a small project with strict goals: **short outputs, 
 2. **No personal assumptions.** No fixed budgets, hours, currencies, countries or employers. Collect inputs or label assumptions.
 3. **No invented facts.** Numbers need a source or the label `assumption`. State where something is a design default, not research.
 4. **Test before you claim.** A behavior change needs an eval case (`evals/`) and, if it is computational, a unit test (`tests/`). Report results honestly, including cases where the skill made no difference.
-5. **Description says when, not how.** The frontmatter `description` begins with "Use when…" and must not summarize the workflow (the model may follow it instead of the body).
+5. **Description says when, not how.** The frontmatter `description` says when to use the skill (it may begin with "Use when…" or with the decision it supports, as `idea-evaluation` does), stays within 500 characters and must not summarize the workflow (the model may follow it instead of the body); `tests/test_skills_in_sync.py` checks length and workflow words.
 
 ## How to contribute
 - Open an issue first for larger changes (new skill, new scoring rule).
