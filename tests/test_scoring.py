@@ -4,7 +4,7 @@ import csv, itertools, json, os, subprocess, sys, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 SCRIPTS = os.path.join(HERE, "..", "skills", "idea-evaluation", "scripts")
 sys.path.insert(0, SCRIPTS)
-from scoring import CRIT, EVIDENCE, InputError, THRESHOLDS, WEIGHTS, config, economics, normalize, score, sensitivity, validate
+from scoring import CRIT, InputError, THRESHOLDS, config, economics, normalize, score, sensitivity, validate
 
 data = json.load(open(os.path.join(HERE, "sample_ideas.json")))
 w, ev, th = config(data)

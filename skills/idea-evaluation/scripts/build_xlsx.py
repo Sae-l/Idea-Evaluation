@@ -26,7 +26,6 @@ Scores are recomputed in the sheet from weights, evidence factors and thresholds
 """
 import csv, os, sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from scoring import CRIT, breakeven_label, config, economics as econ, load, normalize, score as _score, sort_key, validate
 
 args = [a for a in sys.argv[1:] if not a.startswith("--")]
@@ -102,7 +101,6 @@ for r in (1, 10):
 for r in list(range(2, 8)) + list(range(11, 16)) + [18, 19, 20, 22, 23]: st[f"B{r}"].fill = IN
 for r in list(range(2, 9)) + [23]: st[f"B{r}"].number_format = "0%"
 st.column_dimensions["A"].width = 42; st.column_dimensions["B"].width = 12
-GATE_ROWS = None
 
 cols = [("ID", "id", 5), ("Idea", "idea", 30), ("Problem / who / today solved by", "problem", 34),
         ("Gate: desirability", "gate_desirability", 11), ("Gate: feasibility", "gate_feasibility", 11),

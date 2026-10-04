@@ -2,6 +2,12 @@
 
 Format: one section per suite release, newest first. The release workflow reads the section matching the tag (tag `v3.1.0-beta.1` ↔ heading `## 3.1.0-beta.1`). Tags containing `-` are published as pre-releases.
 
+## 4.0.0-beta.6 (unreleased)
+Small clean-up from an over-engineering review (each point verified first); no behavior change, outputs of the scripts are identical.
+- `methods.md`: removed the ICE/RICE/WSJF section tied to a Deep mode that no longer exists; titles of `methods.md` and `checks.md` no longer mention Deep mode.
+- `build_xlsx.py`: removed an unused variable and a redundant `sys.path` line (the script is run directly, which already puts its folder on the path).
+- `tests/test_scoring.py`: removed two unused imports.
+
 ## 4.0.0-beta.5 (2026-10-03)
 From an external design audit of beta.4 (each point reproduced first).
 - `idea-card.md` (all skills): `evidence` names the claim it supports (a prototype is not evidence of demand, a payment is not evidence the technology works); `test` carries the type, a stop rule and an inconclusive rule; scores, adjusted score and priority are marked optional ("show scores").
