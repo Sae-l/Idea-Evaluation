@@ -1,4 +1,4 @@
-# Extended checks (load for Deep mode, or when the named risk is plausible)
+# Extended checks (load when the named risk is plausible)
 
 **Reversibility (one-way vs. two-way door).** Cheap, reversible steps: just do them. Costly or irreversible steps (signing, hiring, big purchase, public disclosure of an invention, quitting a job): require stronger evidence (E2+) and a written kill criterion first.
 

@@ -1,4 +1,4 @@
-# Methods and scoring anchors (load when scoring or in Deep mode)
+# Methods and scoring anchors (load when scoring)
 
 ## Gate: Desirability / Feasibility / Viability (IDEO)
 - **Desirability:** does a specific person have this problem, and would they switch from what they do today?
@@ -57,6 +57,3 @@ Priority from the adjusted score: A ≥ 3.4 · B ≥ 2.8 · C ≥ 2.2 · else D.
 
 ## Rounding (identical in `scoring.py` and the spreadsheet)
 The weighted raw score is rounded half-up to two decimals, multiplied by the evidence factor, then rounded half-up to one decimal; the priority comes from that one-decimal value.
-
-## Prioritization cross-checks (optional, Deep mode)
-ICE (impact × confidence × ease) and RICE (reach × impact × confidence ÷ effort) are quick sanity checks; WSJF (cost of delay ÷ size) when timing matters. If they disagree strongly with the main score, re-examine the ratings.
