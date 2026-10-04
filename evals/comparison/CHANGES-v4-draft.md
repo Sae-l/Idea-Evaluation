@@ -1,3 +1,5 @@
+> **Historical note (2026-10-03):** this is the memo of the v4 draft. Everything under "Still to do after the comparison" except the scored comparison itself was done in 4.0.0-beta.1 to beta.4; see `CHANGELOG.md` and `evals/RESULTS.md` for the current state.
+
 # v4.0-draft: what changed and why
 
 | Change | Reason |
