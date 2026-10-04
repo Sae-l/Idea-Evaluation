@@ -23,6 +23,8 @@
 | beta.5 text (budgets; 'next commitment is to build or buy parts') | C3 | 3 | 230–273, 255 | 0 | behavior 3 |
 | beta.5 text (budgets; 'next commitment is to build or buy parts') | C6 | 2 | 265–271, 268 | 0 | performance 2 |
 
+Non-commercial goals (2026-10-04), cases 17 to 19 in `cases.md`, beta.5 text, 3 runs each, `claude -p`, not blind, one model: research goal gave a performance or replication test in 3 of 3, learning goal a performance test of one small project in 3 of 3, free community class a behavior test with sign-ups and attendance in 3 of 3. No answer asked for payment, pre-orders or prices, so a claim that the method only fits commercial ideas was not reproduced on these cases. Length: 8 of 9 answers at or under 300 words, one at 310. Small sample; it does not show the answers were the right ones, only that the paid-demand pattern did not appear.
+
 Reading: the 300-word ceiling and slot budgets removed answers above 300 words (0 of 15 final runs; the released beta.4 text had 4 of 12 above 300). The performance-first rule works but is sensitive to wording: "doubt blocks the next commitment" gave 0 of 4 performance tests on the hardware case (C2), the released beta.4 text gave 3 of 4, the final beta.5 text gives 1 of 6 performance and 4 of 6 calculation plus prior art (acceptable under the budget fallback, but not the performance test the case asks for) and a performance test on 2 of 2 for the gadget case (C6). Software cases stay on behavior tests. Small samples, one model, not blind; treat as directions.
 
 Last updated 2026-10-02 after the full repository review (skill versions: `idea-evaluation` 3.1, `idea-to-plan` 1.0, `idea-redteam` 1.0, with review fixes).
